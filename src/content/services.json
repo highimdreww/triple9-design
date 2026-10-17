@@ -1,0 +1,24 @@
+{
+  "services": [
+    {
+      "title": "Web Design",
+      "description": "Distinctive, fast, mobile-first websites designed to make the right first impression and turn attention into action."
+    },
+    {
+      "title": "Hosting & Care Plans",
+      "description": "Reliable hosting, SSL, maintenance, and ongoing updates so your website stays ready for business."
+    },
+    {
+      "title": "SEO",
+      "description": "Search-focused site structure and content that help the right customers find your business."
+    },
+    {
+      "title": "Social Media Management",
+      "description": "Consistent, on-brand content that keeps your business visible and your audience engaged."
+    },
+    {
+      "title": "Ad Management",
+      "description": "Targeted digital campaigns built to put your business in front of people ready to take action."
+    }
+  ]
+}
