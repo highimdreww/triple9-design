@@ -217,8 +217,9 @@ const money = (value: number) =>
           <h2 class="section-heading">{home.pricingHeading}</h2>
 
           <p>
-            No confusing packages. No mystery pricing.
-            Choose the foundation you need and let's build something better.
+            Premium design. Straightforward pricing.
+            Choose the level of digital presence and ongoing
+            marketing support that fits your business.
           </p>
         </div>
 
@@ -233,8 +234,13 @@ const money = (value: number) =>
             >
               <div class="pricing-card-top">
                 <div class="pricing-card-label">
-                  <span>0{index + 1} / {tier.name}</span>
-                  {tier.featured && <span>MOST POPULAR</span>}
+                  <span>
+                    0{index + 1} / {tier.name}
+                  </span>
+
+                  {tier.featured && (
+                    <span>MOST POPULAR</span>
+                  )}
                 </div>
 
                 <h3>{tier.name}</h3>
@@ -244,13 +250,36 @@ const money = (value: number) =>
                 </p>
 
                 <div class="price">
-                  <strong>{money(tier.price)}</strong>
-                  <span>ONE-TIME</span>
+                  <div class="price-one-time">
+                    <strong>{money(tier.price)}</strong>
+                    <span>ONE-TIME</span>
+                  </div>
+
+                  {tier.monthlyPrice > 0 && (
+                    <div class="price-monthly">
+                      <span class="price-plus">+</span>
+
+                      <div class="monthly-amount">
+                        <strong>
+                          {money(tier.monthlyPrice)}
+                        </strong>
+                        <span>/ MONTH</span>
+                      </div>
+                    </div>
+                  )}
+
+                  {tier.monthlyPrice === 0 && (
+                    <div class="price-no-monthly">
+                      NO MONTHLY PLAN FEE
+                    </div>
+                  )}
                 </div>
               </div>
 
               <div class="pricing-card-features">
-                <span class="includes-label">WHAT'S INCLUDED</span>
+                <span class="includes-label">
+                  WHAT'S INCLUDED
+                </span>
 
                 <ul>
                   {tier.features.map((feature) => (
@@ -270,15 +299,21 @@ const money = (value: number) =>
         </div>
 
         <div class="pricing-disclaimer reveal">
-          <span>THE DETAILS MATTER.</span>
+          <span>GOOD TO KNOW.</span>
 
-          <p>
-            All packages include 12 months of the listed services.
-            Advertising spend is separate from the Dominate package.
-            Scope, deliverables, and renewal options are confirmed
-            before your project begins. Ongoing services after the
-            included term are quoted separately.
-          </p>
+          <div class="pricing-disclaimer-content">
+            <p class="pricing-main-note">
+              Monthly plans bill each month and can be canceled anytime.
+            </p>
+
+            <p>
+              Launch includes 1 year of hosting, SSL, and
+              2–3 content updates per month for 12 months.
+              Growth and Dominate include the listed services
+              for 12 months. Meta advertising spend is billed
+              separately and paid directly to Meta.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -754,11 +789,15 @@ const money = (value: number) =>
     color: #aaa;
   }
 
+  /* UPDATED PRICE DISPLAY */
+
   .price {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 35px 0;
+    justify-content: flex-start;
+    gap: 20px;
+    min-height: 205px;
+    padding: 30px 0;
     border-bottom: 1px solid #ccc;
   }
 
@@ -766,18 +805,70 @@ const money = (value: number) =>
     border-color: #444;
   }
 
-  .price strong {
-    font-size: clamp(44px, 5vw, 74px);
+  .price-one-time {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .price-one-time strong {
+    font-size: clamp(42px, 4.5vw, 70px);
     line-height: 1;
     letter-spacing: -.075em;
     font-weight: 700;
   }
 
-  .price span {
+  .price-one-time > span {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: .12em;
   }
+
+  .price-monthly {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .price-plus {
+    font-size: 24px;
+    font-weight: 400;
+    color: #777;
+  }
+
+  .featured .price-plus {
+    color: #aaa;
+  }
+
+  .monthly-amount {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .monthly-amount strong {
+    font-size: clamp(29px, 3vw, 43px);
+    line-height: 1;
+    letter-spacing: -.065em;
+    font-weight: 650;
+  }
+
+  .monthly-amount span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    white-space: nowrap;
+  }
+
+  .price-no-monthly {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: #777;
+  }
+
+  /* PRICING FEATURES */
 
   .pricing-card-features {
     flex: 1;
@@ -821,6 +912,8 @@ const money = (value: number) =>
     width: 100%;
   }
 
+  /* PRICING DISCLAIMER */
+
   .pricing-disclaimer {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -830,18 +923,29 @@ const money = (value: number) =>
     border-top: 1px solid #ddd;
   }
 
-  .pricing-disclaimer span {
+  .pricing-disclaimer > span {
     font-size: 10px;
     font-weight: 700;
     letter-spacing: .1em;
   }
 
-  .pricing-disclaimer p {
+  .pricing-disclaimer-content {
     max-width: 700px;
+  }
+
+  .pricing-disclaimer-content p {
     margin: 0;
     color: #777;
     font-size: 12px;
     line-height: 1.9;
+  }
+
+  .pricing-disclaimer-content .pricing-main-note {
+    margin-bottom: 14px;
+    color: #111;
+    font-size: 15px;
+    font-weight: 650;
+    letter-spacing: -.025em;
   }
 
   /* INTERLUDE */
@@ -1098,6 +1202,10 @@ const money = (value: number) =>
       min-height: 0;
     }
 
+    .price {
+      min-height: 0;
+    }
+
     .about-grid,
     .contact-grid {
       grid-template-columns: 1fr;
@@ -1190,6 +1298,19 @@ const money = (value: number) =>
 
     .pricing-card {
       padding: 30px 25px;
+    }
+
+    .price {
+      gap: 18px;
+      padding: 30px 0;
+    }
+
+    .price-one-time strong {
+      font-size: 56px;
+    }
+
+    .monthly-amount strong {
+      font-size: 36px;
     }
 
     .pricing-disclaimer {
