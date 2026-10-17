@@ -1,0 +1,30 @@
+{
+  "eyebrow": "ABOUT TRIPLE9",
+  "headline": "We believe exceptional brands are built intentionally.",
+  "introduction": "Triple9 Design is a full-service digital agency bringing brand strategy, creative design, web development, and marketing together under one clear vision.",
+  "missionEyebrow": "WHAT DRIVES US",
+  "missionHeading": "The standard is the difference.",
+  "missionBody": "Good enough is everywhere. We believe businesses deserve more: thoughtful strategy, confident design, clear communication, and digital experiences that reflect the quality of the work behind them. We approach every engagement with a commitment to building something distinctive, functional, and worth remembering.",
+  "values": [
+    {
+      "title": "Clarity",
+      "description": "We simplify complexity, define the objective, and give every creative decision a purpose."
+    },
+    {
+      "title": "Craft",
+      "description": "Typography, composition, messaging, usability, and execution all matter. We pay attention to the details."
+    },
+    {
+      "title": "Consistency",
+      "description": "A recognizable brand delivers the same level of quality across every customer touchpoint."
+    },
+    {
+      "title": "Momentum",
+      "description": "We create the tools and digital foundations businesses need to keep moving forward."
+    }
+  ],
+  "approachEyebrow": "OUR APPROACH",
+  "approachHeading": "Creative thinking with commercial purpose.",
+  "approachBody": "We don’t separate great design from business results. We connect brand identity, website experience, visibility, and marketing into a unified digital presence that supports the bigger picture.",
+  "location": "Serving businesses throughout Central Florida and beyond."
+}
