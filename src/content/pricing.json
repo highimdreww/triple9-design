@@ -2,49 +2,53 @@
   "tiers": [
     {
       "name": "LAUNCH",
-      "price": 750,
-      "description": "A professional foundation for businesses ready to make a stronger first impression.",
+      "price": 650,
+      "monthlyPrice": 0,
+      "description": "A professional online presence built to help your business stand out and turn visitors into customers.",
       "featured": false,
       "features": [
         "Custom website — up to 5 pages",
         "1 year of hosting and SSL",
-        "Mobile-responsive design",
-        "Click-to-call functionality",
-        "Contact forms",
-        "Basic on-page SEO",
-        "2–3 content updates per month",
-        "12 months of included care"
+        "Click-to-call buttons",
+        "Quote request forms",
+        "Google Maps integration",
+        "Basic SEO setup",
+        "Google Business Profile setup",
+        "2–3 content updates per month for 12 months"
       ]
     },
     {
       "name": "GROWTH",
-      "price": 1600,
-      "description": "A stronger digital presence with the content and visibility to match.",
+      "price": 900,
+      "monthlyPrice": 200,
+      "description": "A complete website and ongoing marketing presence designed to help your business grow.",
       "featured": true,
       "features": [
         "Everything included in Launch",
         "Custom website — up to 10 pages",
-        "Blog integration",
-        "Full on-page SEO setup",
-        "Facebook and Instagram management",
-        "3 social posts per week",
-        "Monthly performance reports",
-        "12 months of included services"
+        "Blog and updates section",
+        "Full SEO",
+        "Google Business Profile optimization",
+        "Social media management",
+        "3 posts per week on Facebook and Instagram",
+        "Monthly performance report",
+        "12-month service package"
       ]
     },
     {
       "name": "DOMINATE",
-      "price": 2800,
-      "description": "The complete digital presence for businesses ready to push harder.",
+      "price": 1100,
+      "monthlyPrice": 400,
+      "description": "Your website, social presence, advertising, and reputation management working together.",
       "featured": false,
       "features": [
         "Everything included in Growth",
         "Meta advertising management",
-        "Advertising spend billed separately",
-        "Review generation system",
+        "Advertising spend billed separately to Meta",
+        "Google review generation",
         "Unlimited minor content updates",
-        "Quarterly strategy sessions",
-        "12 months of included services"
+        "Quarterly strategy check-ins",
+        "12-month service package"
       ]
     }
   ]
