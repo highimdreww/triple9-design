@@ -1,0 +1,528 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+import servicesData from '../../content/services.json';
+
+const base = import.meta.env.BASE_URL;
+
+const serviceLabels = [
+  'DIGITAL EXPERIENCES',
+  'BRAND TRANSFORMATION',
+  'SOCIAL PRESENCE',
+  'PAID MEDIA',
+  'SEARCH VISIBILITY',
+  'ONGOING SUPPORT'
+];
+
+const isFeatured = (id: string) => id === 'brand-identity';
+---
+
+<BaseLayout
+  title="Our Services | Triple9 Design"
+  description="Explore Triple9 Design's full-service capabilities: custom web design, complete rebrands, brand identity, social media marketing, Meta and Google advertising, SEO, and hosting."
+>
+  <Header />
+
+  <main class="page-shell">
+    <section class="page-hero mesh-surface">
+      <div class="page-hero-orbit" aria-hidden="true"></div>
+
+      <div class="container-studio page-hero-content">
+        <span class="section-kicker reveal">
+          {servicesData.eyebrow}
+        </span>
+
+        <h1 class="page-title reveal delay-1">
+          Everything your brand
+          <span class="text-gold">needs to stand apart.</span>
+        </h1>
+
+        <p class="lead-copy reveal delay-2">
+          {servicesData.description}
+        </p>
+      </div>
+    </section>
+
+    <!-- SERVICES INTRO -->
+
+    <section class="services-overview light-surface section-pad-small">
+      <div class="container-studio">
+        <div class="overview-top reveal">
+          <span class="section-kicker dark">
+            CONNECTED CAPABILITIES
+          </span>
+
+          <p>
+            Your brand doesn’t exist in separate pieces.
+            Neither should your strategy.
+          </p>
+        </div>
+
+        <div class="overview-links">
+          {servicesData.services.map((service) => (
+            <a href={`#${service.id}`} class="overview-link">
+              <span>{service.shortTitle}</span>
+              <span class="overview-line" aria-hidden="true"></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- INDIVIDUAL SERVICES -->
+
+    {servicesData.services.map((service, index) => (
+      <section
+        id={service.id}
+        class:list={[
+          'service-detail',
+          'section-pad',
+          {
+            'service-detail-light': index % 2 === 0,
+            'service-detail-dark': index % 2 !== 0,
+            'service-detail-featured': isFeatured(service.id)
+          }
+        ]}
+      >
+        <div class="container-studio service-detail-grid">
+          <div class="service-detail-copy reveal">
+            <span class="section-kicker">
+              {serviceLabels[index]}
+            </span>
+
+            {isFeatured(service.id) && (
+              <div class="flagship-marker">
+                FLAGSHIP OFFERING
+              </div>
+            )}
+
+            <h2 class="section-title">
+              {service.title}
+            </h2>
+
+            <p class="service-summary">{service.summary}</p>
+
+            <p class="service-description">
+              {service.description}
+            </p>
+
+            <a
+              href={`${base}contact/`}
+              class={index % 2 === 0 ? 'button-dark' : 'button-gold'}
+            >
+              Request a consultation
+              <span class="button-mark" aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div class="service-detail-side reveal delay-1">
+            <div class="service-visual" aria-hidden="true">
+              <div class="visual-grid"></div>
+
+              <div class:list={[
+                'visual-emblem',
+                `visual-emblem-${index + 1}`
+              ]}>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="visual-bottom">
+                <span>TRIPLE9 DESIGN</span>
+                <span>{service.shortTitle.toUpperCase()}</span>
+              </div>
+            </div>
+
+            <div class="deliverables">
+              <h3>WHAT WE DELIVER</h3>
+
+              <ul>
+                {service.deliverables.map((deliverable) => (
+                  <li>
+                    <span class="deliverable-marker" aria-hidden="true"></span>
+                    {deliverable}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- CLOSING CTA -->
+
+    <section class="section-pad light-surface">
+      <div class="container-studio">
+        <div class="cta-panel reveal">
+          <span class="section-kicker">
+            LET’S MAKE IT HAPPEN
+          </span>
+
+          <h2>
+            Your next big move starts with a conversation.
+          </h2>
+
+          <p>
+            Tell us what your business needs. We’ll help define
+            the right creative and digital direction.
+          </p>
+
+          <a class="button-gold" href={`${base}contact/`}>
+            Get a quote
+            <span class="button-mark" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero .page-title {
+    max-width: 1150px;
+  }
+
+  .page-hero .page-title span {
+    display: block;
+  }
+
+  .services-overview {
+    border-bottom: 1px solid #d7d6d0;
+  }
+
+  .overview-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+    margin-bottom: 55px;
+  }
+
+  .overview-top p {
+    max-width: 620px;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(23px, 3vw, 42px);
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -.055em;
+  }
+
+  .overview-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .overview-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    min-height: 65px;
+    padding: 15px 20px;
+    border: 1px solid #d6d5d0;
+    font-size: 12px;
+    font-weight: 700;
+    transition:
+      border-color .2s ease,
+      background .2s ease;
+  }
+
+  .overview-link:hover {
+    border-color: var(--gold-deep);
+    background: #eee8de;
+  }
+
+  .overview-line {
+    flex: 0 0 18px;
+    width: 18px;
+    height: 1px;
+    background: var(--gold-deep);
+  }
+
+  .service-detail {
+    scroll-margin-top: 0;
+  }
+
+  .service-detail-light {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .service-detail-dark {
+    background:
+      radial-gradient(
+        ellipse at 95% 10%,
+        rgba(214, 180, 125, .1),
+        transparent 40%
+      ),
+      #16171b;
+    color: #fff;
+  }
+
+  .service-detail-featured {
+    background:
+      radial-gradient(
+        ellipse at 20% 0,
+        rgba(214, 180, 125, .18),
+        transparent 40%
+      ),
+      linear-gradient(135deg, #29251f, #121316 75%);
+  }
+
+  .service-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr .9fr;
+    gap: clamp(60px, 8vw, 135px);
+    align-items: start;
+  }
+
+  .service-detail-copy {
+    padding-top: 20px;
+  }
+
+  .service-detail-copy h2 {
+    max-width: 720px;
+    margin: 35px 0;
+  }
+
+  .service-detail-light .section-kicker {
+    color: var(--gold-deep);
+  }
+
+  .flagship-marker {
+    display: inline-flex;
+    margin: 35px 0 0;
+    padding: 9px 12px;
+    border: 1px solid rgba(214, 180, 125, .5);
+    color: var(--gold);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .13em;
+  }
+
+  .flagship-marker + h2 {
+    margin-top: 25px;
+  }
+
+  .service-summary {
+    max-width: 650px;
+    margin: 0 0 25px;
+    font-size: clamp(19px, 2vw, 26px);
+    font-weight: 600;
+    line-height: 1.55;
+    letter-spacing: -.025em;
+  }
+
+  .service-description {
+    max-width: 640px;
+    margin: 0 0 40px;
+    color: #707178;
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  .service-detail-dark .service-description {
+    color: #a6a8af;
+  }
+
+  .service-visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 380px;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        ellipse at 50% 50%,
+        rgba(214, 180, 125, .16),
+        transparent 60%
+      ),
+      linear-gradient(145deg, #292b30, #111216);
+    border: 1px solid rgba(214, 180, 125, .22);
+  }
+
+  .visual-grid {
+    position: absolute;
+    inset: 0;
+    opacity: .12;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, .15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, .15) 1px, transparent 1px);
+    background-size: 45px 45px;
+  }
+
+  .visual-emblem {
+    position: relative;
+    width: 175px;
+    height: 175px;
+    transform: rotate(45deg);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 60px rgba(214, 180, 125, .15);
+  }
+
+  .visual-emblem span {
+    position: absolute;
+    display: block;
+    border: 1px solid rgba(214, 180, 125, .7);
+  }
+
+  .visual-emblem span:nth-child(1) {
+    inset: 18px;
+  }
+
+  .visual-emblem span:nth-child(2) {
+    inset: 40px;
+    background: rgba(214, 180, 125, .12);
+  }
+
+  .visual-emblem span:nth-child(3) {
+    inset: 67px;
+    background: var(--gold);
+  }
+
+  .visual-emblem-2 {
+    border-radius: 50%;
+  }
+
+  .visual-emblem-2 span {
+    border-radius: 50%;
+  }
+
+  .visual-emblem-3 {
+    transform: rotate(20deg) skew(-10deg);
+  }
+
+  .visual-emblem-4 {
+    transform: rotate(45deg) scaleX(1.4);
+  }
+
+  .visual-emblem-5 {
+    border-radius: 50% 0 50% 0;
+  }
+
+  .visual-emblem-6 {
+    transform: rotate(0);
+    border-radius: 50%;
+  }
+
+  .visual-bottom {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    left: 25px;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: #a3a4a9;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .13em;
+  }
+
+  .deliverables {
+    padding-top: 32px;
+  }
+
+  .deliverables h3 {
+    margin: 0 0 25px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .17em;
+  }
+
+  .deliverables ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 25px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .deliverables li {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 58px;
+    padding: 12px 0;
+    border-top: 1px solid currentColor;
+    border-color: rgba(127, 127, 127, .25);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .deliverable-marker {
+    flex: 0 0 6px;
+    width: 6px;
+    height: 6px;
+    background: var(--gold-deep);
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 900px) {
+    .service-detail-grid {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+
+    .service-detail-copy {
+      padding-top: 0;
+    }
+
+    .service-visual {
+      min-height: 320px;
+    }
+
+    .overview-top {
+      flex-direction: column;
+    }
+
+    .overview-links {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 600px) {
+    .overview-links {
+      grid-template-columns: 1fr;
+    }
+
+    .service-visual {
+      min-height: 270px;
+    }
+
+    .visual-emblem {
+      width: 130px;
+      height: 130px;
+    }
+
+    .visual-emblem span:nth-child(1) {
+      inset: 14px;
+    }
+
+    .visual-emblem span:nth-child(2) {
+      inset: 30px;
+    }
+
+    .visual-emblem span:nth-child(3) {
+      inset: 49px;
+    }
+
+    .deliverables ul {
+      grid-template-columns: 1fr;
+    }
+
+    .service-detail-copy h2 {
+      margin: 25px 0;
+    }
+  }
+</style>
