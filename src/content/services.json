@@ -1,24 +1,103 @@
 {
+  "eyebrow": "OUR EXPERTISE",
+  "headline": "Everything your brand needs to stand apart.",
+  "description": "Creative, development, and marketing services designed to work together. Whether you’re building from the ground up or ready for a complete transformation, we create the foundation and momentum for what comes next.",
   "services": [
     {
-      "title": "Web Design",
-      "description": "Distinctive, fast, mobile-first websites designed to make the right first impression and turn attention into action."
+      "id": "web-design",
+      "number": "01",
+      "title": "Web Design & Development",
+      "shortTitle": "Web Design",
+      "summary": "Digital experiences that make a powerful first impression and give customers a reason to take action.",
+      "description": "Your website is often the most important interaction someone has with your business. We create distinctive, responsive websites that combine premium design with intuitive navigation, clear messaging, and conversion-focused structure. Every page is built with purpose, from the first headline to the final call to action.",
+      "deliverables": [
+        "Custom website design",
+        "Responsive development",
+        "Conversion-focused page structure",
+        "Contact and lead-generation forms",
+        "Performance and usability optimization",
+        "Analytics and tracking integration"
+      ]
     },
     {
+      "id": "brand-identity",
+      "number": "02",
+      "title": "Full Rebrands & Brand Identity",
+      "shortTitle": "Brand Identity",
+      "summary": "Complete brand transformations that create recognition, establish authority, and build lasting value.",
+      "description": "This is where everything starts. We develop the strategic and visual foundations that define how a business looks, feels, and communicates. From complete rebrands to new identities, our work creates consistency across your website, marketing, social channels, and customer experience. The result is a brand with a distinct point of view and the confidence to own its space.",
+      "deliverables": [
+        "Brand discovery and creative direction",
+        "Custom logo design and logo systems",
+        "Typography and color systems",
+        "Visual identity development",
+        "Brand guidelines and usage standards",
+        "Branded digital and marketing assets"
+      ]
+    },
+    {
+      "id": "social-media",
+      "number": "03",
+      "title": "Social Media Marketing",
+      "shortTitle": "Social Media",
+      "summary": "Content, consistency, and creative direction that keep your brand relevant and recognizable.",
+      "description": "A strong social presence doesn’t happen by accident. We build a cohesive content strategy around your audience, voice, and business goals, then manage the creative and publishing process to keep your brand active and engaging. Every post should reinforce who you are and why you matter.",
+      "deliverables": [
+        "Social media strategy",
+        "Content planning and calendars",
+        "Branded graphic and content creation",
+        "Facebook and Instagram management",
+        "Copywriting and publishing",
+        "Performance reporting and refinement"
+      ]
+    },
+    {
+      "id": "digital-advertising",
+      "number": "04",
+      "title": "Digital Advertising",
+      "shortTitle": "Digital Advertising",
+      "summary": "Strategic paid campaigns designed to put your business in front of the right audience.",
+      "description": "Attention is valuable when it comes from the right people. We develop and manage targeted advertising campaigns across Meta and Google, pairing compelling creative with smart audience strategy, performance monitoring, and ongoing optimization. The focus is measurable business opportunity, not empty impressions.",
+      "deliverables": [
+        "Meta advertising management",
+        "Google Ads management",
+        "Campaign strategy and setup",
+        "Audience and keyword research",
+        "Ad creative and copywriting",
+        "Campaign monitoring and optimization"
+      ]
+    },
+    {
+      "id": "seo",
+      "number": "05",
+      "title": "Search Engine Optimization",
+      "shortTitle": "SEO",
+      "summary": "A stronger search presence that helps customers discover your business when they’re ready to act.",
+      "description": "Being exceptional means little if the right customers can’t find you. We improve the technical, structural, and content foundations of your website to support visibility in search results. Our approach connects relevant search intent with useful content, strong local signals, and a better experience for visitors.",
+      "deliverables": [
+        "SEO audits and strategy",
+        "Keyword research",
+        "On-page optimization",
+        "Technical SEO improvements",
+        "Local SEO",
+        "Google Business Profile optimization"
+      ]
+    },
+    {
+      "id": "hosting-care",
+      "number": "06",
       "title": "Hosting & Care Plans",
-      "description": "Reliable hosting, SSL, maintenance, and ongoing updates so your website stays ready for business."
-    },
-    {
-      "title": "SEO",
-      "description": "Search-focused site structure and content that help the right customers find your business."
-    },
-    {
-      "title": "Social Media Management",
-      "description": "Consistent, on-brand content that keeps your business visible and your audience engaged."
-    },
-    {
-      "title": "Ad Management",
-      "description": "Targeted digital campaigns built to put your business in front of people ready to take action."
+      "shortTitle": "Hosting & Care",
+      "summary": "Reliable website support that keeps your digital presence secure, current, and ready for what’s next.",
+      "description": "A great website should continue performing long after launch. We offer ongoing hosting and website care to help keep your online presence running smoothly, with maintenance, content support, and attention to the details that matter as your business evolves.",
+      "deliverables": [
+        "Website hosting",
+        "SSL and security support",
+        "Routine maintenance",
+        "Content and image updates",
+        "Performance monitoring",
+        "Ongoing website support"
+      ]
     }
   ]
 }
