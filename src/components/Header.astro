@@ -1,50 +1,62 @@
 ---
-import contact from '../content/contact.json';
-
 const base = import.meta.env.BASE_URL;
-const home = base;
-const logo = `${base}images/triple9-logo.jpg`;
 
-const links = [
-  ['Work', 'work'],
-  ['Services', 'services'],
-  ['Pricing', 'pricing'],
-  ['About', 'about'],
-  ['Contact', 'contact']
+const navigation = [
+  { label: 'Home', href: base, path: '/' },
+  { label: 'Services', href: `${base}services/`, path: '/services/' },
+  { label: 'About', href: `${base}about/`, path: '/about/' },
+  { label: 'Contact', href: `${base}contact/`, path: '/contact/' }
 ];
+
+const currentPath = Astro.url.pathname.startsWith(base)
+  ? `/${Astro.url.pathname.slice(base.length)}`
+  : Astro.url.pathname;
+
+const normalizedPath = currentPath.replace(/\/+/g, '/');
 ---
 
-<header id="site-header" class="site-header">
-  <div class="container-studio header-inner">
-    <a href={home} class="brand" aria-label="Triple9 Design home">
+<header class="site-header" id="site-header">
+  <div class="site-header-inner container-studio">
+    <a
+      class="site-logo"
+      href={base}
+      aria-label="Triple9 Design — Home"
+    >
       <img
-        src={logo}
+        src={`${base}images/triple9-logo.jpg`}
         alt="Triple9 Design"
-        width="154"
-        height="54"
+        width="180"
+        height="64"
       />
     </a>
 
     <nav class="desktop-nav" aria-label="Main navigation">
-      {links.map(([label, anchor]) => (
-        <a href={`${home}#${anchor}`}>{label}</a>
+      {navigation.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'nav-link',
+            { active: normalizedPath === item.path }
+          ]}
+          aria-current={normalizedPath === item.path ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
       ))}
     </nav>
 
-    <a
-      href={`tel:${contact.phoneHref}`}
-      class="header-cta"
-    >
-      Start a project
+    <a class="header-cta" href={`${base}contact/`}>
+      Get a quote
+      <span class="cta-line" aria-hidden="true"></span>
     </a>
 
     <button
-      id="menu-toggle"
-      class="menu-toggle"
+      class="mobile-toggle"
       type="button"
       aria-label="Open navigation"
-      aria-controls="mobile-nav"
       aria-expanded="false"
+      aria-controls="mobile-navigation"
+      data-menu-toggle
     >
       <span></span>
       <span></span>
@@ -52,179 +64,61 @@ const links = [
   </div>
 
   <nav
-    id="mobile-nav"
     class="mobile-nav"
+    id="mobile-navigation"
     aria-label="Mobile navigation"
-    inert
+    hidden
   >
-    {links.map(([label, anchor]) => (
-      <a href={`${home}#${anchor}`}>{label}</a>
+    {navigation.map((item) => (
+      <a href={item.href}>{item.label}</a>
     ))}
 
-    <a href={`tel:${contact.phoneHref}`}>
-      Start a project
+    <a class="mobile-quote" href={`${base}contact/`}>
+      Get a quote
     </a>
   </nav>
 </header>
 
-<style>
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255,255,255,.95);
-    border-bottom: 1px solid rgba(0,0,0,.08);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-
-  .header-inner {
-    height: 84px;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-  }
-
-  .brand {
-    display: flex;
-    align-items: center;
-    flex: none;
-  }
-
-  .brand img {
-    width: 154px;
-    max-height: 57px;
-    object-fit: contain;
-  }
-
-  .desktop-nav {
-    display: flex;
-    align-items: center;
-    gap: clamp(18px, 2.3vw, 36px);
-    margin-left: auto;
-  }
-
-  .desktop-nav a {
-    font-size: 12px;
-    font-weight: 550;
-    transition: opacity .25s ease;
-  }
-
-  .desktop-nav a:hover {
-    opacity: .45;
-  }
-
-  .header-cta {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 42px;
-    padding: 0 20px;
-    background: #111;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 650;
-    transition: background .25s ease;
-  }
-
-  .header-cta:hover {
-    background: #444;
-  }
-
-  .menu-toggle,
-  .mobile-nav {
-    display: none;
-  }
-
-  @media (max-width: 950px) {
-    .desktop-nav,
-    .header-cta {
-      display: none;
-    }
-
-    .header-inner {
-      height: 72px;
-    }
-
-    .menu-toggle {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 6px;
-      width: 44px;
-      height: 44px;
-      margin-left: auto;
-      background: none;
-      border: 0;
-    }
-
-    .menu-toggle span {
-      display: block;
-      height: 2px;
-      width: 25px;
-      background: #111;
-      transition: transform .3s ease;
-    }
-
-    .menu-toggle[aria-expanded="true"] span:first-child {
-      transform: translateY(4px) rotate(45deg);
-    }
-
-    .menu-toggle[aria-expanded="true"] span:last-child {
-      transform: translateY(-4px) rotate(-45deg);
-    }
-
-    .mobile-nav {
-      display: none;
-      flex-direction: column;
-      padding: 18px 24px 30px;
-      border-top: 1px solid #eee;
-      background: white;
-    }
-
-    .mobile-nav.open {
-      display: flex;
-    }
-
-    .mobile-nav a {
-      padding: 15px 0;
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: -.04em;
-      border-bottom: 1px solid #eee;
-    }
-  }
-</style>
-
 <script>
-  const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-nav');
+  const header = document.querySelector<HTMLElement>('#site-header');
+  const toggle = document.querySelector<HTMLButtonElement>(
+    '[data-menu-toggle]'
+  );
+  const mobileNav = document.querySelector<HTMLElement>(
+    '#mobile-navigation'
+  );
 
-  if (toggle && menu) {
+  if (header && toggle && mobileNav) {
     const closeMenu = () => {
-      menu.classList.remove('open');
-      menu.inert = true;
       toggle.setAttribute('aria-expanded', 'false');
       toggle.setAttribute('aria-label', 'Open navigation');
+      mobileNav.hidden = true;
+      header.classList.remove('menu-open');
     };
 
     toggle.addEventListener('click', () => {
-      const isOpen = menu.classList.toggle('open');
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
 
-      menu.inert = !isOpen;
-      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-expanded', String(!isOpen));
       toggle.setAttribute(
         'aria-label',
-        isOpen ? 'Close navigation' : 'Open navigation'
+        isOpen ? 'Open navigation' : 'Close navigation'
       );
+
+      mobileNav.hidden = isOpen;
+      header.classList.toggle('menu-open', !isOpen);
     });
 
-    menu.querySelectorAll('a').forEach((link) => {
+    mobileNav.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', closeMenu);
     });
 
     window.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') closeMenu();
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900) closeMenu();
     });
   }
 </script>
