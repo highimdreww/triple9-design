@@ -6,16 +6,22 @@ import Footer from '../../components/Footer.astro';
 import about from '../../content/about.json';
 
 const base = import.meta.env.BASE_URL;
+
+const values = Array.isArray(about.values)
+  ? about.values
+  : [];
 ---
 
 <BaseLayout
-  title="About | Triple9 Design"
-  description="Triple9 Design is a full-service digital agency dedicated to making brands impossible to ignore."
+  title="About Triple9 Design | Creative Strategy & Digital Excellence"
+  description="Learn about Triple9 Design, a full-service digital agency bringing brand strategy, identity, web development, and marketing together."
 >
   <Header />
 
   <main class="page-shell">
-    <section class="page-hero mesh-surface">
+    <!-- HERO -->
+
+    <section class="page-hero mesh-surface about-hero">
       <div class="page-hero-orbit" aria-hidden="true"></div>
 
       <div class="container-studio page-hero-content">
@@ -24,122 +30,141 @@ const base = import.meta.env.BASE_URL;
         </span>
 
         <h1 class="page-title reveal delay-1">
-          {about.heading}
+          {about.headline}
         </h1>
 
         <p class="lead-copy reveal delay-2">
-          {about.intro}
+          {about.introduction}
         </p>
       </div>
     </section>
 
-    <!-- STORY -->
+    <!-- MISSION -->
 
-    <section class="section-pad light-surface about-story">
-      <div class="container-studio about-story-grid">
-        <div class="reveal">
+    <section class="section-pad light-surface mission-section">
+      <div class="container-studio mission-grid">
+        <div class="mission-visual reveal" aria-hidden="true">
+          <div class="mission-grid-lines"></div>
+
+          <div class="mission-circle circle-one"></div>
+          <div class="mission-circle circle-two"></div>
+
+          <div class="mission-core">
+            <span>THE TRIPLE9 STANDARD</span>
+            <strong>999</strong>
+            <span>ALWAYS INTENTIONAL.</span>
+          </div>
+
+          <div class="mission-visual-bottom">
+            <span>FORM</span>
+            <span>FUNCTION</span>
+            <span>IMPACT</span>
+          </div>
+        </div>
+
+        <div class="mission-copy reveal delay-1">
           <span class="section-kicker dark">
-            {about.storyEyebrow}
+            {about.missionEyebrow}
           </span>
 
           <h2 class="section-title">
-            {about.storyHeading}
+            {about.missionHeading}
           </h2>
-        </div>
 
-        <div class="reveal delay-1">
-          {about.storyParagraphs.map((paragraph) => (
-            <p class="story-copy">{paragraph}</p>
-          ))}
+          <p>{about.missionBody}</p>
+
+          <a class="button-dark" href={`${base}services/`}>
+            Explore our capabilities
+            <span class="button-mark" aria-hidden="true"></span>
+          </a>
         </div>
       </div>
     </section>
 
     <!-- VALUES -->
 
-    <section class="section-pad dark-surface about-values">
+    <section class="section-pad values-section">
       <div class="container-studio">
-        <div class="section-heading-row reveal">
-          <div>
-            <span class="section-kicker">
-              {about.valuesEyebrow}
-            </span>
-
-            <h2 class="section-title">
-              {about.valuesHeading}
-            </h2>
-          </div>
-
-          <p class="lead-copy">{about.valuesIntro}</p>
-        </div>
-
-        <div class="values-grid">
-          {about.values.map((value) => (
-            <div class="value-card reveal">
-              <div class="value-card-top">
-                <span class="value-dot" aria-hidden="true"></span>
-                <span>TRIPLE9 STANDARD</span>
-              </div>
-
-              <h3>{value.title}</h3>
-              <p>{value.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CAPABILITIES -->
-
-    <section class="section-pad about-capabilities mesh-surface">
-      <div class="container-studio capabilities-grid">
-        <div class="reveal">
+        <div class="values-intro reveal">
           <span class="section-kicker">
-            {about.capabilitiesEyebrow}
+            WHAT DEFINES OUR WORK
           </span>
 
           <h2 class="section-title">
-            {about.capabilitiesHeading}
+            Our principles aren't decoration.
+            <span class="text-gold">They're the foundation.</span>
           </h2>
-
-          <p class="lead-copy">
-            {about.capabilitiesIntro}
-          </p>
         </div>
 
-        <div class="capabilities-list">
-          {about.capabilities.map((capability, index) => (
-            <a
-              href={`${base}services/#${capability.id}`}
-              class="capability-item reveal"
-            >
-              <div>
-                <h3>{capability.title}</h3>
-                <p>{capability.summary}</p>
+        <div class="values-grid">
+          {values.map((value) => (
+            <article class="value-card reveal">
+              <div class="value-card-top">
+                <span class="value-diamond" aria-hidden="true"></span>
+                <span>TRIPLE9 PRINCIPLE</span>
               </div>
 
-              <span class="capability-arrow" aria-hidden="true"></span>
-            </a>
+              <h3>{value.title}</h3>
+
+              <p>{value.description}</p>
+            </article>
           ))}
         </div>
       </div>
     </section>
 
-    <!-- CLOSING -->
+    <!-- APPROACH -->
 
-    <section class="section-pad light-surface">
+    <section class="section-pad approach-light">
+      <div class="container-studio approach-light-grid">
+        <div class="reveal">
+          <span class="section-kicker dark">
+            {about.approachEyebrow}
+          </span>
+
+          <h2 class="section-title">
+            {about.approachHeading}
+          </h2>
+        </div>
+
+        <div class="approach-light-right reveal delay-1">
+          <p>{about.approachBody}</p>
+
+          <div class="approach-tags">
+            <span>STRATEGY</span>
+            <span>DESIGN</span>
+            <span>DEVELOPMENT</span>
+            <span>MARKETING</span>
+          </div>
+
+          <div class="location-note">
+            <span class="location-marker" aria-hidden="true"></span>
+            {about.location}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+
+    <section class="section-pad dark-surface">
       <div class="container-studio">
         <div class="cta-panel reveal">
           <span class="section-kicker">
-            {about.closingEyebrow}
+            THE NEXT MOVE
           </span>
 
-          <h2>{about.closingHeading}</h2>
+          <h2>
+            Ready to raise the standard?
+          </h2>
 
-          <p>{about.closingDescription}</p>
+          <p>
+            Let's talk about where your business is today
+            and the brand you want to build tomorrow.
+          </p>
 
           <a class="button-gold" href={`${base}contact/`}>
-            Start the conversation
+            Request a consultation
             <span class="button-mark" aria-hidden="true"></span>
           </a>
         </div>
@@ -151,206 +176,295 @@ const base = import.meta.env.BASE_URL;
 </BaseLayout>
 
 <style>
-  .page-hero .page-title {
+  .about-hero .page-title {
     max-width: 1150px;
   }
 
-  .about-story-grid {
+  .mission-grid {
     display: grid;
-    grid-template-columns: .9fr 1fr;
-    gap: clamp(55px, 8vw, 125px);
-    align-items: start;
+    grid-template-columns: .95fr 1.05fr;
+    gap: clamp(60px, 8vw, 130px);
+    align-items: center;
   }
 
-  .about-story-grid h2 {
-    max-width: 680px;
-    margin: 30px 0 0;
-  }
-
-  .story-copy {
-    margin: 0 0 35px;
-    color: #5b5d64;
-    font-size: clamp(16px, 1.8vw, 23px);
-    line-height: 1.85;
-  }
-
-  .story-copy:last-child {
-    margin-bottom: 0;
-  }
-
-  .about-values {
+  .mission-visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    min-height: 620px;
+    overflow: hidden;
     background:
       radial-gradient(
-        ellipse at 90% 5%,
-        rgba(214, 180, 125, .08),
-        transparent 35%
+        circle at 50% 45%,
+        rgba(214, 180, 125, .17),
+        transparent 45%
       ),
-      #111216;
+      #191a1e;
+    color: #fff;
   }
 
-  .section-heading-row p {
-    max-width: 560px;
+  .mission-grid-lines {
+    position: absolute;
+    inset: 0;
+    opacity: .13;
+    background-image:
+      linear-gradient(
+        rgba(255, 255, 255, .16) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, .16) 1px,
+        transparent 1px
+      );
+    background-size: 55px 55px;
   }
 
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-    margin-top: 80px;
+  .mission-circle {
+    position: absolute;
+    width: 65%;
+    aspect-ratio: 1;
+    border: 1px solid rgba(214, 180, 125, .45);
+    border-radius: 50%;
   }
 
-  .value-card {
+  .circle-two {
+    width: 48%;
+    border-color: rgba(214, 180, 125, .65);
+    box-shadow: 0 0 0 65px rgba(214, 180, 125, .025);
+  }
+
+  .mission-core {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    min-height: 340px;
-    padding: 30px;
-    border: 1px solid var(--line-dark);
-    background: rgba(255, 255, 255, .035);
-    backdrop-filter: blur(12px);
+    align-items: center;
+    gap: 15px;
   }
 
-  .value-card-top {
+  .mission-core strong {
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: clamp(85px, 10vw, 155px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.12em;
+  }
+
+  .mission-core span {
+    color: #bcb2a4;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .2em;
+  }
+
+  .mission-visual-bottom {
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    left: 30px;
     display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: auto;
-    color: #999ba1;
+    justify-content: space-between;
+    gap: 20px;
+    color: #8e8f95;
     font-size: 9px;
     font-weight: 700;
     letter-spacing: .15em;
   }
 
-  .value-dot {
-    width: 8px;
-    height: 8px;
+  .mission-copy h2 {
+    margin: 30px 0;
+  }
+
+  .mission-copy > p {
+    max-width: 630px;
+    margin: 0 0 40px;
+    color: #62646a;
+    font-size: 17px;
+    line-height: 1.95;
+  }
+
+  .values-section {
+    background:
+      radial-gradient(
+        ellipse at 80% 0,
+        rgba(214, 180, 125, .12),
+        transparent 40%
+      ),
+      #111216;
+  }
+
+  .values-intro {
+    max-width: 1020px;
+  }
+
+  .values-intro h2 {
+    margin: 30px 0 65px;
+  }
+
+  .values-intro h2 span {
+    display: block;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .value-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 360px;
+    padding: 30px;
+    background:
+      linear-gradient(
+        150deg,
+        rgba(214, 180, 125, .07),
+        transparent 60%
+      ),
+      #1d1f24;
+    border: 1px solid rgba(255, 255, 255, .1);
+  }
+
+  .value-card-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: auto;
+    color: #999ba1;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .12em;
+  }
+
+  .value-diamond {
+    width: 9px;
+    height: 9px;
     border: 1px solid var(--gold);
     transform: rotate(45deg);
   }
 
   .value-card h3 {
-    margin: 45px 0 17px;
+    margin: 50px 0 20px;
     font-family: var(--font-display);
-    font-size: 27px;
+    font-size: clamp(27px, 2.5vw, 39px);
     font-weight: 700;
     letter-spacing: -.055em;
-    line-height: 1.25;
   }
 
   .value-card p {
     margin: 0;
-    color: #a4a6ac;
-    font-size: 14px;
-    line-height: 1.8;
+    color: #a5a7ad;
+    font-size: 13px;
+    line-height: 1.85;
   }
 
-  .capabilities-grid {
+  .approach-light {
+    background: #eae8e2;
+    color: var(--ink);
+  }
+
+  .approach-light-grid {
     display: grid;
-    grid-template-columns: .75fr 1fr;
-    gap: clamp(60px, 8vw, 135px);
+    grid-template-columns: 1fr .85fr;
+    gap: clamp(65px, 9vw, 155px);
     align-items: start;
   }
 
-  .capabilities-grid h2 {
-    margin: 30px 0;
+  .approach-light h2 {
+    margin: 30px 0 0;
   }
 
-  .capabilities-grid .lead-copy {
-    max-width: 520px;
+  .approach-light-right {
+    padding-top: 60px;
   }
 
-  .capabilities-list {
-    border-top: 1px solid var(--line-dark);
+  .approach-light-right > p {
+    margin: 0;
+    color: #62646a;
+    font-size: clamp(18px, 2vw, 25px);
+    line-height: 1.75;
   }
 
-  .capability-item {
+  .approach-tags {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin: 45px 0;
+    padding-top: 30px;
+    border-top: 1px solid #c8c5bd;
+  }
+
+  .approach-tags span {
+    color: #62646a;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+  }
+
+  .location-note {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 30px;
-    padding: 38px 0;
-    border-bottom: 1px solid var(--line-dark);
-    color: #fff;
+    gap: 15px;
+    color: #62646a;
+    font-size: 13px;
+    line-height: 1.7;
   }
 
-  .capability-item h3 {
-    margin: 0 0 14px;
-    font-family: var(--font-display);
-    font-size: clamp(24px, 3vw, 42px);
-    font-weight: 700;
-    letter-spacing: -.055em;
-    line-height: 1.25;
-    transition: color .2s ease;
+  .location-marker {
+    flex: 0 0 10px;
+    width: 10px;
+    height: 10px;
+    background: var(--gold-deep);
+    transform: rotate(45deg);
   }
 
-  .capability-item p {
-    margin: 0;
-    color: #9b9d9b;
-    font-size: 14px;
-    line-height: 1.8;
-    transition: color .2s ease;
-  }
+  @media (max-width: 1100px) {
+    .values-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 
-  .capability-item:hover h3 {
-    color: var(--gold);
-  }
-
-  .capability-item:hover p {
-    color: #b0b2b8;
-  }
-
-  .capability-arrow {
-    position: relative;
-    flex: 0 0 36px;
-    width: 36px;
-    height: 36px;
-    border: 1px solid rgba(214, 180, 125, .35);
-  }
-
-  .capability-arrow::before {
-    content: '';
-    position: absolute;
-    left: 10px;
-    right: 10px;
-    top: 50%;
-    height: 1px;
-    background: var(--gold);
-  }
-
-  .capability-arrow::after {
-    content: '';
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    width: 8px;
-    height: 8px;
-    border-top: 1px solid var(--gold);
-    border-right: 1px solid var(--gold);
-    transform: translateY(-50%) rotate(45deg);
+    .value-card {
+      min-height: 290px;
+    }
   }
 
   @media (max-width: 900px) {
-    .about-story-grid,
-    .capabilities-grid {
+    .mission-grid,
+    .approach-light-grid {
       grid-template-columns: 1fr;
-      gap: 45px;
+    }
+
+    .mission-visual {
+      min-height: 480px;
+    }
+
+    .approach-light-right {
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .mission-visual {
+      min-height: 350px;
+    }
+
+    .mission-core strong {
+      font-size: 90px;
     }
 
     .values-grid {
       grid-template-columns: 1fr;
-      gap: 12px;
-      margin-top: 55px;
     }
 
     .value-card {
-      min-height: 230px;
+      min-height: 260px;
     }
 
-    .value-card h3 {
-      margin-top: 35px;
-    }
-
-    .capability-item {
-      padding: 30px 0;
+    .approach-tags {
+      gap: 15px;
     }
   }
 </style>
