@@ -1,0 +1,356 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+import about from '../../content/about.json';
+
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="About | Triple9 Design"
+  description="Triple9 Design is a full-service digital agency dedicated to making brands impossible to ignore."
+>
+  <Header />
+
+  <main class="page-shell">
+    <section class="page-hero mesh-surface">
+      <div class="page-hero-orbit" aria-hidden="true"></div>
+
+      <div class="container-studio page-hero-content">
+        <span class="section-kicker reveal">
+          {about.eyebrow}
+        </span>
+
+        <h1 class="page-title reveal delay-1">
+          {about.heading}
+        </h1>
+
+        <p class="lead-copy reveal delay-2">
+          {about.intro}
+        </p>
+      </div>
+    </section>
+
+    <!-- STORY -->
+
+    <section class="section-pad light-surface about-story">
+      <div class="container-studio about-story-grid">
+        <div class="reveal">
+          <span class="section-kicker dark">
+            {about.storyEyebrow}
+          </span>
+
+          <h2 class="section-title">
+            {about.storyHeading}
+          </h2>
+        </div>
+
+        <div class="reveal delay-1">
+          {about.storyParagraphs.map((paragraph) => (
+            <p class="story-copy">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUES -->
+
+    <section class="section-pad dark-surface about-values">
+      <div class="container-studio">
+        <div class="section-heading-row reveal">
+          <div>
+            <span class="section-kicker">
+              {about.valuesEyebrow}
+            </span>
+
+            <h2 class="section-title">
+              {about.valuesHeading}
+            </h2>
+          </div>
+
+          <p class="lead-copy">{about.valuesIntro}</p>
+        </div>
+
+        <div class="values-grid">
+          {about.values.map((value) => (
+            <div class="value-card reveal">
+              <div class="value-card-top">
+                <span class="value-dot" aria-hidden="true"></span>
+                <span>TRIPLE9 STANDARD</span>
+              </div>
+
+              <h3>{value.title}</h3>
+              <p>{value.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+
+    <section class="section-pad about-capabilities mesh-surface">
+      <div class="container-studio capabilities-grid">
+        <div class="reveal">
+          <span class="section-kicker">
+            {about.capabilitiesEyebrow}
+          </span>
+
+          <h2 class="section-title">
+            {about.capabilitiesHeading}
+          </h2>
+
+          <p class="lead-copy">
+            {about.capabilitiesIntro}
+          </p>
+        </div>
+
+        <div class="capabilities-list">
+          {about.capabilities.map((capability, index) => (
+            <a
+              href={`${base}services/#${capability.id}`}
+              class="capability-item reveal"
+            >
+              <div>
+                <h3>{capability.title}</h3>
+                <p>{capability.summary}</p>
+              </div>
+
+              <span class="capability-arrow" aria-hidden="true"></span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+
+    <section class="section-pad light-surface">
+      <div class="container-studio">
+        <div class="cta-panel reveal">
+          <span class="section-kicker">
+            {about.closingEyebrow}
+          </span>
+
+          <h2>{about.closingHeading}</h2>
+
+          <p>{about.closingDescription}</p>
+
+          <a class="button-gold" href={`${base}contact/`}>
+            Start the conversation
+            <span class="button-mark" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .page-hero .page-title {
+    max-width: 1150px;
+  }
+
+  .about-story-grid {
+    display: grid;
+    grid-template-columns: .9fr 1fr;
+    gap: clamp(55px, 8vw, 125px);
+    align-items: start;
+  }
+
+  .about-story-grid h2 {
+    max-width: 680px;
+    margin: 30px 0 0;
+  }
+
+  .story-copy {
+    margin: 0 0 35px;
+    color: #5b5d64;
+    font-size: clamp(16px, 1.8vw, 23px);
+    line-height: 1.85;
+  }
+
+  .story-copy:last-child {
+    margin-bottom: 0;
+  }
+
+  .about-values {
+    background:
+      radial-gradient(
+        ellipse at 90% 5%,
+        rgba(214, 180, 125, .08),
+        transparent 35%
+      ),
+      #111216;
+  }
+
+  .section-heading-row p {
+    max-width: 560px;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 80px;
+  }
+
+  .value-card {
+    display: flex;
+    flex-direction: column;
+    min-height: 340px;
+    padding: 30px;
+    border: 1px solid var(--line-dark);
+    background: rgba(255, 255, 255, .035);
+    backdrop-filter: blur(12px);
+  }
+
+  .value-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: auto;
+    color: #999ba1;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .15em;
+  }
+
+  .value-dot {
+    width: 8px;
+    height: 8px;
+    border: 1px solid var(--gold);
+    transform: rotate(45deg);
+  }
+
+  .value-card h3 {
+    margin: 45px 0 17px;
+    font-family: var(--font-display);
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: -.055em;
+    line-height: 1.25;
+  }
+
+  .value-card p {
+    margin: 0;
+    color: #a4a6ac;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .capabilities-grid {
+    display: grid;
+    grid-template-columns: .75fr 1fr;
+    gap: clamp(60px, 8vw, 135px);
+    align-items: start;
+  }
+
+  .capabilities-grid h2 {
+    margin: 30px 0;
+  }
+
+  .capabilities-grid .lead-copy {
+    max-width: 520px;
+  }
+
+  .capabilities-list {
+    border-top: 1px solid var(--line-dark);
+  }
+
+  .capability-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 38px 0;
+    border-bottom: 1px solid var(--line-dark);
+    color: #fff;
+  }
+
+  .capability-item h3 {
+    margin: 0 0 14px;
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 42px);
+    font-weight: 700;
+    letter-spacing: -.055em;
+    line-height: 1.25;
+    transition: color .2s ease;
+  }
+
+  .capability-item p {
+    margin: 0;
+    color: #9b9d9b;
+    font-size: 14px;
+    line-height: 1.8;
+    transition: color .2s ease;
+  }
+
+  .capability-item:hover h3 {
+    color: var(--gold);
+  }
+
+  .capability-item:hover p {
+    color: #b0b2b8;
+  }
+
+  .capability-arrow {
+    position: relative;
+    flex: 0 0 36px;
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(214, 180, 125, .35);
+  }
+
+  .capability-arrow::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    top: 50%;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .capability-arrow::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-top: 1px solid var(--gold);
+    border-right: 1px solid var(--gold);
+    transform: translateY(-50%) rotate(45deg);
+  }
+
+  @media (max-width: 900px) {
+    .about-story-grid,
+    .capabilities-grid {
+      grid-template-columns: 1fr;
+      gap: 45px;
+    }
+
+    .values-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 55px;
+    }
+
+    .value-card {
+      min-height: 230px;
+    }
+
+    .value-card h3 {
+      margin-top: 35px;
+    }
+
+    .capability-item {
+      padding: 30px 0;
+    }
+  }
+</style>
