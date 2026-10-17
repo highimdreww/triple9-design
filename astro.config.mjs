@@ -1,13 +1,13 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 
-const site = process.env.SITE_URL || 'https://example.github.io';
-
-const base = process.env.BASE_PATH || '/';
-
 export default defineConfig({
-  site,
-  base,
+  site: 'https://highimdreww.github.io',
+
+  base: '/triple9-design',
+
+  trailingSlash: 'always',
+
   output: 'static',
 
   integrations: [
