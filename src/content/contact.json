@@ -1,7 +1,22 @@
 {
+  "eyebrow": "LET’S CONNECT",
+  "headline": "Tell us what you’re building.",
+  "description": "A new website. A complete rebrand. A smarter marketing strategy. Whatever the next move looks like, we’re ready to hear about it.",
+  "formHeading": "Request a consultation",
+  "formDescription": "Share a few details about your business and what you need. We’ll use that information to start the conversation.",
   "phone": "(407) 764-0241",
   "phoneHref": "+14077640241",
   "email": "asaunders995@gmail.com",
-  "location": "St. Cloud, Florida",
-  "hours": "Available by appointment. Call or email to start a conversation."
+  "location": "Central Florida",
+  "serviceOptions": [
+    "Web Design",
+    "Full Rebrand",
+    "Social Media Marketing",
+    "Digital Advertising",
+    "SEO",
+    "Hosting & Care",
+    "Other"
+  ],
+  "successHeading": "Your inquiry is ready.",
+  "successMessage": "Your email application should open with your project details prepared. Send the email from your email application to complete your request."
 }
