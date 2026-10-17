@@ -1,0 +1,51 @@
+{
+  "tiers": [
+    {
+      "name": "LAUNCH",
+      "price": 750,
+      "description": "A professional foundation for businesses ready to make a stronger first impression.",
+      "featured": false,
+      "features": [
+        "Custom website — up to 5 pages",
+        "1 year of hosting and SSL",
+        "Mobile-responsive design",
+        "Click-to-call functionality",
+        "Contact forms",
+        "Basic on-page SEO",
+        "2–3 content updates per month",
+        "12 months of included care"
+      ]
+    },
+    {
+      "name": "GROWTH",
+      "price": 1600,
+      "description": "A stronger digital presence with the content and visibility to match.",
+      "featured": true,
+      "features": [
+        "Everything included in Launch",
+        "Custom website — up to 10 pages",
+        "Blog integration",
+        "Full on-page SEO setup",
+        "Facebook and Instagram management",
+        "3 social posts per week",
+        "Monthly performance reports",
+        "12 months of included services"
+      ]
+    },
+    {
+      "name": "DOMINATE",
+      "price": 2800,
+      "description": "The complete digital presence for businesses ready to push harder.",
+      "featured": false,
+      "features": [
+        "Everything included in Growth",
+        "Meta advertising management",
+        "Advertising spend billed separately",
+        "Review generation system",
+        "Unlimited minor content updates",
+        "Quarterly strategy sessions",
+        "12 months of included services"
+      ]
+    }
+  ]
+}
