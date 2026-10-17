@@ -1,0 +1,231 @@
+<form id="project-form" class="project-form" novalidate>
+  <div class="form-grid">
+    <div class="form-group">
+      <label for="name">Your name *</label>
+      <input
+        class="field"
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Full name"
+        autocomplete="name"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="business">Business name *</label>
+      <input
+        class="field"
+        type="text"
+        id="business"
+        name="business"
+        placeholder="Your company"
+        autocomplete="organization"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone number *</label>
+      <input
+        class="field"
+        type="tel"
+        id="phone"
+        name="phone"
+        placeholder="(407) 555-0123"
+        autocomplete="tel"
+        required
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="service">What do you need? *</label>
+      <select class="field" id="service" name="service" required>
+        <option value="">Select a service</option>
+        <option value="Web Design">Web Design</option>
+        <option value="Hosting & Care Plans">Hosting & Care Plans</option>
+        <option value="SEO">SEO</option>
+        <option value="Social Media Management">
+          Social Media Management
+        </option>
+        <option value="Ad Management">Ad Management</option>
+        <option value="Multiple Services">Multiple Services</option>
+      </select>
+    </div>
+
+    <div class="form-group full">
+      <label for="message">Tell me about your project *</label>
+      <textarea
+        class="field"
+        id="message"
+        name="message"
+        rows="4"
+        placeholder="What are you looking to build?"
+        required
+      ></textarea>
+    </div>
+  </div>
+
+  <p id="form-error" class="form-error" role="alert" hidden>
+    Please complete all required fields with valid information.
+  </p>
+
+  <button type="submit" class="button-primary submit-button">
+    Prepare inquiry
+  </button>
+
+  <p class="form-note">
+    This demo form prepares an email in your email application.
+    No information is stored on this website.
+  </p>
+
+  <div id="form-success" class="form-success" role="status" hidden>
+    <strong>Your inquiry is ready.</strong>
+    <p>
+      Your email application should open with your project details.
+      Send the email there to complete your inquiry.
+    </p>
+    <a id="email-fallback" href="mailto:asaunders995@gmail.com">
+      Open email manually
+    </a>
+  </div>
+</form>
+
+<style>
+  .project-form {
+    width: 100%;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 28px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .form-group.full {
+    grid-column: 1 / -1;
+  }
+
+  .form-group label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .01em;
+  }
+
+  .form-group textarea {
+    resize: vertical;
+    min-height: 125px;
+  }
+
+  .submit-button {
+    margin-top: 36px;
+    min-width: 190px;
+  }
+
+  .form-note {
+    margin-top: 18px;
+    color: #777;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+
+  .form-error {
+    margin-top: 24px;
+    color: #a52a2a;
+    font-size: 13px;
+  }
+
+  .form-success {
+    margin-top: 28px;
+    padding: 25px;
+    border: 1px solid #111;
+  }
+
+  .form-success strong {
+    display: block;
+    font-size: 21px;
+    letter-spacing: -.04em;
+  }
+
+  .form-success p {
+    margin: 12px 0;
+    color: #555;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .form-success a {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('#project-form');
+  const error = document.querySelector<HTMLElement>('#form-error');
+  const success = document.querySelector<HTMLElement>('#form-success');
+  const fallback = document.querySelector<HTMLAnchorElement>('#email-fallback');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    if (!form.checkValidity()) {
+      if (error) error.hidden = false;
+      form.reportValidity();
+      return;
+    }
+
+    const data = new FormData(form);
+
+    const name = String(data.get('name') || '').trim();
+    const business = String(data.get('business') || '').trim();
+    const phone = String(data.get('phone') || '').trim();
+    const service = String(data.get('service') || '').trim();
+    const message = String(data.get('message') || '').trim();
+
+    if (![name, business, phone, service, message].every(Boolean)) {
+      if (error) error.hidden = false;
+      return;
+    }
+
+    const subject = `Project Inquiry — ${business}`;
+
+    const body = [
+      'New project inquiry for Triple9 Design',
+      '',
+      `Name: ${name}`,
+      `Business: ${business}`,
+      `Phone: ${phone}`,
+      `Service: ${service}`,
+      '',
+      'Project details:',
+      message
+    ].join('\n');
+
+    const mailto = `mailto:asaunders995@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    if (error) error.hidden = true;
+    if (fallback) fallback.href = mailto;
+    if (success) success.hidden = false;
+
+    window.location.href = mailto;
+  });
+</script>
