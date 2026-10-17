@@ -11,12 +11,20 @@ const {
   description = 'Triple9 Design creates premium websites, SEO, and digital marketing solutions for local businesses in St. Cloud and Central Florida.'
 } = Astro.props;
 
-const base = import.meta.env.BASE_URL;
+const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
+
+const siteOrigin = 'https://highimdreww.github.io';
+
 const logo = `${base}images/triple9-logo.jpg`;
 
 const canonical = new URL(
   Astro.url.pathname,
-  Astro.site ?? Astro.url
+  siteOrigin
+).toString();
+
+const ogImage = new URL(
+  logo,
+  siteOrigin
 ).toString();
 ---
 
@@ -24,6 +32,7 @@ const canonical = new URL(
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1"
@@ -32,39 +41,77 @@ const canonical = new URL(
     <meta name="generator" content={Astro.generator} />
 
     <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#111111" />
 
-    <link rel="canonical" href={canonical} />
+    <meta
+      name="description"
+      content={description}
+    />
 
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={new URL(logo, Astro.site ?? Astro.url).toString()} />
+    <meta
+      name="theme-color"
+      content="#111111"
+    />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="canonical"
+      href={canonical}
+    />
+
+    <meta
+      property="og:type"
+      content="website"
+    />
+
+    <meta
+      property="og:title"
+      content={title}
+    />
+
+    <meta
+      property="og:description"
+      content={description}
+    />
+
+    <meta
+      property="og:url"
+      content={canonical}
+    />
+
+    <meta
+      property="og:image"
+      content={ogImage}
+    />
+
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+
     <link
       rel="preconnect"
       href="https://fonts.gstatic.com"
       crossorigin
     />
 
-    <script type="application/ld+json" set:html={JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'ProfessionalService',
-      name: 'Triple9 Design',
-      description,
-      telephone: '+14077640241',
-      email: 'asaunders995@gmail.com',
-      areaServed: 'Central Florida',
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'St. Cloud',
-        addressRegion: 'FL',
-        addressCountry: 'US'
-      }
-    })} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'ProfessionalService',
+        name: 'Triple9 Design',
+        url: new URL(base, siteOrigin).toString(),
+        description,
+        telephone: '+14077640241',
+        email: 'asaunders995@gmail.com',
+        areaServed: 'Central Florida',
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: 'St. Cloud',
+          addressRegion: 'FL',
+          addressCountry: 'US'
+        }
+      })}
+    />
   </head>
 
   <body>
