@@ -1,0 +1,1220 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WorkCard from '../components/WorkCard.astro';
+import ContactForm from '../components/ContactForm.astro';
+
+import home from '../content/home.json';
+import servicesData from '../content/services.json';
+import pricingData from '../content/pricing.json';
+import contact from '../content/contact.json';
+
+const base = import.meta.env.BASE_URL;
+
+const process = [
+  {
+    number: '01',
+    title: 'Pick a plan.',
+    description: 'Choose the level of website and marketing support that fits where your business is headed.'
+  },
+  {
+    number: '02',
+    title: 'Kickoff call.',
+    description: 'We talk through your business, your customers, your goals, and what your new site needs to accomplish.'
+  },
+  {
+    number: '03',
+    title: 'Design & build.',
+    description: 'I handle the design, development, and details. You review the work before anything goes live.'
+  },
+  {
+    number: '04',
+    title: 'Launch.',
+    description: 'Your new website goes live, and the included ongoing care keeps things moving.'
+  }
+];
+
+const money = (value: number) =>
+  new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    maximumFractionDigits: 0
+  }).format(value);
+---
+
+<BaseLayout>
+  <Header />
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container-studio hero-inner">
+        <div class="hero-top reveal">
+          <span class="eyebrow">{home.eyebrow}</span>
+          <span class="hero-index">INDEPENDENT BY DESIGN / 001</span>
+        </div>
+
+        <h1 id="hero-title" class="display hero-title reveal delay-1">
+          {home.headline}
+        </h1>
+
+        <div class="hero-bottom reveal delay-2">
+          <div class="hero-description">
+            <p>{home.description}</p>
+
+            <div class="hero-actions">
+              <a
+                class="button-primary"
+                href={`tel:${contact.phoneHref}`}
+              >
+                Let's talk
+              </a>
+
+              <a class="button-outline" href="#work">
+                See the work
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-aside" aria-hidden="true">
+            <span>DESIGN WITH PURPOSE.</span>
+            <span>BUILT TO PERFORM.</span>
+            <div class="hero-nine">9<span>9</span>9</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-bottom-rule"></div>
+    </section>
+
+    <!-- STATEMENT -->
+    <section class="statement-section">
+      <div class="container-studio">
+        <div class="statement-grid">
+          <span class="eyebrow reveal">THE PHILOSOPHY</span>
+
+          <p class="statement-text reveal">
+            Your website isn't just a place to be found.
+            <span>It's the first impression that decides what happens next.</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK -->
+    <section id="work" class="section-space work-section">
+      <div class="container-studio">
+        <div class="section-intro reveal">
+          <span class="eyebrow">01 / SELECTED WORK</span>
+
+          <div class="section-intro-bottom">
+            <h2 class="section-heading">{home.workHeading}</h2>
+            <p>
+              Real businesses. Thoughtful concepts.
+              A look at what's possible when design is taken seriously.
+            </p>
+          </div>
+        </div>
+
+        <div class="work-grid">
+          <div class="reveal">
+            <WorkCard
+              number="01"
+              title="Space Coast Sewer and Drain"
+              category="Sewer & Drain"
+              location="Merritt Island, Florida"
+              href={`${base}demos/spacecoast/`}
+              variant="dark"
+            />
+          </div>
+
+          <div class="reveal delay-1">
+            <WorkCard
+              number="02"
+              title="Bk Landscaping"
+              category="Lawn Care & Landscaping"
+              location="St. Cloud, Florida"
+              href={`${base}demos/bk-landscaping/`}
+              variant="light"
+            />
+          </div>
+        </div>
+
+        <div class="work-footer reveal">
+          <span>Two different businesses. Two distinct directions.</span>
+
+          <a href={`${base}demos/`}>
+            Explore the projects <span aria-hidden="true">+</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services" class="section-space services-section">
+      <div class="container-studio">
+        <div class="services-heading reveal">
+          <span class="eyebrow">02 / WHAT I DO</span>
+          <h2 class="section-heading">{home.servicesHeading}</h2>
+        </div>
+
+        <div class="services-list">
+          {servicesData.services.map((service, index) => (
+            <div class="service-row reveal">
+              <span class="service-number">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+
+              <h3>{service.title}</h3>
+
+              <p>{service.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="services-outro reveal">
+          <p>
+            No unnecessary complexity. Just the right tools,
+            executed exceptionally well.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section id="process" class="section-space process-section">
+      <div class="container-studio">
+        <div class="process-intro reveal">
+          <span class="eyebrow">03 / HOW IT WORKS</span>
+          <h2 class="section-heading">{home.processHeading}</h2>
+          <p>
+            A straightforward process that keeps you informed
+            without turning your website into a second job.
+          </p>
+        </div>
+
+        <div class="process-grid">
+          {process.map((step) => (
+            <div class="process-card reveal">
+              <span class="process-number">{step.number}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section-space pricing-section">
+      <div class="container-studio">
+        <div class="pricing-intro reveal">
+          <span class="eyebrow">04 / THE INVESTMENT</span>
+
+          <h2 class="section-heading">{home.pricingHeading}</h2>
+
+          <p>
+            No confusing packages. No mystery pricing.
+            Choose the foundation you need and let's build something better.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          {pricingData.tiers.map((tier, index) => (
+            <article
+              class:list={[
+                'pricing-card',
+                'reveal',
+                { featured: tier.featured }
+              ]}
+            >
+              <div class="pricing-card-top">
+                <div class="pricing-card-label">
+                  <span>0{index + 1} / {tier.name}</span>
+                  {tier.featured && <span>MOST POPULAR</span>}
+                </div>
+
+                <h3>{tier.name}</h3>
+
+                <p class="pricing-description">
+                  {tier.description}
+                </p>
+
+                <div class="price">
+                  <strong>{money(tier.price)}</strong>
+                  <span>ONE-TIME</span>
+                </div>
+              </div>
+
+              <div class="pricing-card-features">
+                <span class="includes-label">WHAT'S INCLUDED</span>
+
+                <ul>
+                  {tier.features.map((feature) => (
+                    <li>{feature}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <a
+                href={`tel:${contact.phoneHref}`}
+                class={tier.featured ? 'button-light' : 'button-primary'}
+              >
+                Choose {tier.name.toLowerCase()}
+              </a>
+            </article>
+          ))}
+        </div>
+
+        <div class="pricing-disclaimer reveal">
+          <span>THE DETAILS MATTER.</span>
+
+          <p>
+            All packages include 12 months of the listed services.
+            Advertising spend is separate from the Dominate package.
+            Scope, deliverables, and renewal options are confirmed
+            before your project begins. Ongoing services after the
+            included term are quoted separately.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LARGE TYPOGRAPHIC INTERLUDE -->
+    <section class="interlude" aria-label="Design philosophy">
+      <div class="container-studio">
+        <span class="eyebrow reveal">THE DIFFERENCE</span>
+
+        <p class="interlude-text reveal">
+          Less ordinary.
+          <br />
+          More impact.
+        </p>
+
+        <div class="interlude-bottom reveal">
+          <span>DESIGN IS NOT DECORATION.</span>
+          <span>IT'S HOW YOU GET REMEMBERED.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section-space about-section">
+      <div class="container-studio">
+        <div class="about-grid">
+          <div class="about-left reveal">
+            <span class="eyebrow">05 / THE STUDIO</span>
+            <div class="about-monogram" aria-hidden="true">
+              T<span>9</span>
+            </div>
+          </div>
+
+          <div class="about-right reveal">
+            <h2 class="section-heading">{home.aboutHeading}</h2>
+
+            <p class="about-body">{home.aboutBody}</p>
+
+            <div class="about-signature">
+              <strong>Drew Saunders</strong>
+              <span>FOUNDER & DESIGNER</span>
+              <span>ST. CLOUD, FLORIDA</span>
+            </div>
+
+            <a class="button-outline" href="#contact">
+              Work with me
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section-space contact-section">
+      <div class="container-studio">
+        <div class="contact-top reveal">
+          <span class="eyebrow">06 / GET IN TOUCH</span>
+          <h2 class="section-heading">{home.contactHeading}</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-details reveal">
+            <p>
+              Tell me what you're building.
+              I'll help you figure out the next move.
+            </p>
+
+            <a
+              class="contact-phone"
+              href={`tel:${contact.phoneHref}`}
+            >
+              {contact.phone}
+            </a>
+
+            <a
+              class="contact-email"
+              href={`mailto:${contact.email}`}
+            >
+              {contact.email}
+            </a>
+
+            <div class="contact-location">
+              <span>BASED IN</span>
+              <strong>{contact.location}</strong>
+              <span>SERVING CENTRAL FLORIDA & BEYOND</span>
+            </div>
+          </div>
+
+          <div class="contact-form-wrap reveal delay-1">
+            <div class="form-heading">
+              <span>PROJECT INQUIRY</span>
+              <span>LET'S GET STARTED</span>
+            </div>
+
+            <ContactForm />
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  /* HERO */
+
+  .hero {
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    min-height: min(850px, calc(100svh - 84px));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: clamp(55px, 7vw, 115px);
+    padding-bottom: 55px;
+  }
+
+  .hero-top,
+  .hero-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 35px;
+  }
+
+  .hero-index {
+    font-size: 9px;
+    font-weight: 650;
+    letter-spacing: .12em;
+  }
+
+  .hero-title {
+    max-width: 1300px;
+    margin: 65px 0 80px;
+  }
+
+  .hero-description {
+    max-width: 510px;
+  }
+
+  .hero-description p {
+    margin: 0;
+    font-size: clamp(18px, 2.2vw, 27px);
+    line-height: 1.4;
+    letter-spacing: -.04em;
+    font-weight: 450;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 35px;
+  }
+
+  .hero-aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    min-width: 230px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .14em;
+  }
+
+  .hero-nine {
+    margin-top: 8px;
+    font-size: clamp(95px, 14vw, 190px);
+    line-height: .8;
+    letter-spacing: -.13em;
+    font-weight: 750;
+  }
+
+  .hero-nine span {
+    color: #999;
+  }
+
+  .hero-bottom-rule {
+    height: 1px;
+    background: #111;
+  }
+
+  /* STATEMENT */
+
+  .statement-section {
+    background: #f5f5f3;
+    padding: clamp(100px, 12vw, 180px) 0;
+  }
+
+  .statement-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 70px;
+  }
+
+  .statement-text {
+    margin: 0;
+    font-size: clamp(32px, 4.6vw, 70px);
+    line-height: 1.14;
+    letter-spacing: -.065em;
+    font-weight: 650;
+  }
+
+  .statement-text span {
+    color: #999;
+  }
+
+  /* SHARED SECTION INTRO */
+
+  .section-intro-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 60px;
+    margin: 35px 0 75px;
+  }
+
+  .section-intro-bottom h2 {
+    max-width: 850px;
+    margin: 0;
+  }
+
+  .section-intro-bottom p {
+    max-width: 280px;
+    margin: 0 0 10px;
+    color: #777;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  /* WORK */
+
+  .work-section {
+    background: #fff;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+  }
+
+  .work-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    padding-top: 25px;
+    margin-top: 40px;
+    border-top: 1px solid #ddd;
+    font-size: 12px;
+  }
+
+  .work-footer > span {
+    color: #777;
+  }
+
+  .work-footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    font-weight: 700;
+  }
+
+  .work-footer a span {
+    font-size: 22px;
+  }
+
+  /* SERVICES */
+
+  .services-section {
+    background: #111;
+    color: #fff;
+  }
+
+  .services-heading {
+    max-width: 1000px;
+    margin-bottom: 90px;
+  }
+
+  .services-heading h2 {
+    margin: 38px 0 0;
+  }
+
+  .service-row {
+    display: grid;
+    grid-template-columns: 70px 1.15fr 1fr;
+    gap: 30px;
+    align-items: start;
+    padding: 36px 0;
+    border-top: 1px solid #444;
+  }
+
+  .service-row:last-child {
+    border-bottom: 1px solid #444;
+  }
+
+  .service-number {
+    padding-top: 8px;
+    color: #888;
+    font-size: 11px;
+  }
+
+  .service-row h3 {
+    margin: 0;
+    font-size: clamp(27px, 3.1vw, 48px);
+    line-height: 1.1;
+    font-weight: 600;
+    letter-spacing: -.055em;
+  }
+
+  .service-row p {
+    max-width: 440px;
+    margin: 5px 0 0;
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .services-outro {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 75px;
+  }
+
+  .services-outro p {
+    max-width: 330px;
+    margin: 0;
+    color: #999;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -.025em;
+  }
+
+  /* PROCESS */
+
+  .process-section {
+    background: #f5f5f3;
+  }
+
+  .process-intro {
+    max-width: 950px;
+  }
+
+  .process-intro h2 {
+    margin: 35px 0;
+  }
+
+  .process-intro > p {
+    max-width: 440px;
+    margin: 0;
+    color: #666;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+    margin-top: 100px;
+  }
+
+  .process-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 330px;
+    padding: 25px 0 0;
+    border-top: 1px solid #111;
+  }
+
+  .process-number {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .process-card h3 {
+    margin: 0 0 15px;
+    font-size: clamp(25px, 2.6vw, 39px);
+    line-height: 1.1;
+    font-weight: 650;
+    letter-spacing: -.055em;
+  }
+
+  .process-card p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* PRICING */
+
+  .pricing-section {
+    background: #fff;
+  }
+
+  .pricing-intro {
+    max-width: 1080px;
+  }
+
+  .pricing-intro h2 {
+    margin: 35px 0;
+  }
+
+  .pricing-intro > p {
+    max-width: 480px;
+    margin: 0;
+    color: #666;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+    margin-top: 85px;
+  }
+
+  .pricing-card {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(25px, 3vw, 45px);
+    border: 1px solid #d6d6d6;
+    background: #f5f5f3;
+  }
+
+  .pricing-card.featured {
+    background: #111;
+    border-color: #111;
+    color: #fff;
+  }
+
+  .pricing-card-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    min-height: 20px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: .1em;
+  }
+
+  .pricing-card-label span:last-child:not(:first-child) {
+    color: #bbb;
+  }
+
+  .pricing-card h3 {
+    margin: 60px 0 20px;
+    font-size: clamp(32px, 3.5vw, 55px);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -.065em;
+  }
+
+  .pricing-description {
+    min-height: 90px;
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .featured .pricing-description {
+    color: #aaa;
+  }
+
+  .price {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 35px 0;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .featured .price {
+    border-color: #444;
+  }
+
+  .price strong {
+    font-size: clamp(44px, 5vw, 74px);
+    line-height: 1;
+    letter-spacing: -.075em;
+    font-weight: 700;
+  }
+
+  .price span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+  }
+
+  .pricing-card-features {
+    flex: 1;
+    padding: 35px 0 40px;
+  }
+
+  .includes-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+  }
+
+  .pricing-card-features ul {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+    margin: 28px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pricing-card-features li {
+    position: relative;
+    padding-left: 17px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .pricing-card-features li::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 0;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .pricing-card > a {
+    width: 100%;
+  }
+
+  .pricing-disclaimer {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+    padding-top: 35px;
+    margin-top: 55px;
+    border-top: 1px solid #ddd;
+  }
+
+  .pricing-disclaimer span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+  }
+
+  .pricing-disclaimer p {
+    max-width: 700px;
+    margin: 0;
+    color: #777;
+    font-size: 12px;
+    line-height: 1.9;
+  }
+
+  /* INTERLUDE */
+
+  .interlude {
+    padding: clamp(110px, 13vw, 200px) 0 45px;
+    background: #111;
+    color: #fff;
+    overflow: hidden;
+  }
+
+  .interlude-text {
+    margin: 80px 0 110px;
+    font-size: clamp(65px, 12vw, 190px);
+    line-height: .92;
+    font-weight: 750;
+    letter-spacing: -.09em;
+  }
+
+  .interlude-bottom {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 25px;
+    border-top: 1px solid #555;
+    color: #999;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+  }
+
+  /* ABOUT */
+
+  .about-section {
+    background: #f5f5f3;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: clamp(60px, 9vw, 160px);
+  }
+
+  .about-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 550px;
+  }
+
+  .about-monogram {
+    font-size: clamp(140px, 22vw, 330px);
+    line-height: .8;
+    letter-spacing: -.12em;
+    font-weight: 750;
+  }
+
+  .about-monogram span {
+    color: #aaa;
+  }
+
+  .about-right h2 {
+    margin: 0 0 55px;
+  }
+
+  .about-body {
+    max-width: 630px;
+    margin: 0;
+    font-size: clamp(18px, 2vw, 26px);
+    line-height: 1.6;
+    letter-spacing: -.035em;
+  }
+
+  .about-signature {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 55px 0 45px;
+    padding-top: 22px;
+    border-top: 1px solid #bbb;
+  }
+
+  .about-signature strong {
+    margin-bottom: 10px;
+    font-size: 20px;
+    letter-spacing: -.045em;
+  }
+
+  .about-signature span {
+    color: #777;
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: .1em;
+  }
+
+  /* CONTACT */
+
+  .contact-section {
+    background: #fff;
+  }
+
+  .contact-top {
+    margin-bottom: 95px;
+  }
+
+  .contact-top h2 {
+    max-width: 1100px;
+    margin: 35px 0 0;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: clamp(60px, 9vw, 150px);
+  }
+
+  .contact-details > p {
+    max-width: 380px;
+    margin: 0 0 50px;
+    color: #777;
+    font-size: 19px;
+    line-height: 1.6;
+    letter-spacing: -.025em;
+  }
+
+  .contact-phone {
+    display: block;
+    width: fit-content;
+    font-size: clamp(32px, 4vw, 60px);
+    font-weight: 650;
+    letter-spacing: -.07em;
+    line-height: 1.2;
+  }
+
+  .contact-email {
+    display: block;
+    width: fit-content;
+    margin-top: 20px;
+    font-size: clamp(15px, 1.6vw, 22px);
+    letter-spacing: -.035em;
+    border-bottom: 1px solid #111;
+    padding-bottom: 5px;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-location {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 90px;
+  }
+
+  .contact-location span {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    color: #888;
+  }
+
+  .contact-location strong {
+    margin: 5px 0;
+    font-size: 24px;
+    letter-spacing: -.05em;
+  }
+
+  .form-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 0 25px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid #111;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .1em;
+  }
+
+  /* RESPONSIVE */
+
+  @media (max-width: 1100px) {
+    .pricing-grid {
+      gap: 10px;
+    }
+
+    .pricing-card {
+      padding: 24px;
+    }
+
+    .service-row {
+      grid-template-columns: 50px 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .hero-inner {
+      min-height: 750px;
+    }
+
+    .hero-title {
+      margin: 80px 0;
+    }
+
+    .hero-aside {
+      display: none;
+    }
+
+    .statement-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .section-intro-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 25px;
+    }
+
+    .work-grid {
+      gap: 18px;
+    }
+
+    .service-row {
+      grid-template-columns: 40px 1fr;
+    }
+
+    .service-row p {
+      grid-column: 2;
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 45px 25px;
+    }
+
+    .process-card {
+      min-height: 260px;
+    }
+
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .pricing-card {
+      padding: 40px;
+    }
+
+    .pricing-card h3 {
+      margin-top: 35px;
+    }
+
+    .pricing-description {
+      min-height: 0;
+    }
+
+    .about-grid,
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 70px;
+    }
+
+    .about-left {
+      min-height: 0;
+    }
+
+    .about-monogram {
+      display: none;
+    }
+
+    .contact-location {
+      margin-top: 55px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .hero-inner {
+      min-height: 690px;
+      padding-top: 55px;
+      padding-bottom: 45px;
+    }
+
+    .hero-index {
+      display: none;
+    }
+
+    .hero-title {
+      margin: 75px 0 60px;
+    }
+
+    .hero-actions {
+      gap: 9px;
+    }
+
+    .hero-actions a {
+      flex: 1;
+      padding: 0 16px;
+    }
+
+    .section-intro-bottom {
+      margin-bottom: 45px;
+    }
+
+    .work-grid {
+      grid-template-columns: 1fr;
+      gap: 45px;
+    }
+
+    .work-footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .services-heading {
+      margin-bottom: 55px;
+    }
+
+    .service-row {
+      grid-template-columns: 35px 1fr;
+      gap: 15px;
+      padding: 30px 0;
+    }
+
+    .service-row h3 {
+      font-size: 30px;
+    }
+
+    .service-row p {
+      font-size: 13px;
+    }
+
+    .process-grid {
+      grid-template-columns: 1fr;
+      gap: 0;
+      margin-top: 65px;
+    }
+
+    .process-card {
+      min-height: 230px;
+      padding: 25px 0 30px;
+    }
+
+    .pricing-grid {
+      margin-top: 55px;
+    }
+
+    .pricing-card {
+      padding: 30px 25px;
+    }
+
+    .pricing-disclaimer {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .interlude-text {
+      margin: 65px 0 95px;
+    }
+
+    .interlude-bottom {
+      flex-direction: column;
+    }
+
+    .about-right h2 {
+      margin-bottom: 35px;
+    }
+
+    .contact-top {
+      margin-bottom: 65px;
+    }
+
+    .contact-grid {
+      gap: 85px;
+    }
+  }
+</style>
