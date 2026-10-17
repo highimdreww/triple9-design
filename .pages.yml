@@ -11,113 +11,231 @@ content:
       - name: eyebrow
         label: Hero Eyebrow
         type: string
-
-      - name: headline
-        label: Hero Headline
+      - name: primaryCta
+        label: Primary CTA Text
         type: string
-
+      - name: secondaryCta
+        label: Secondary CTA Text
+        type: string
       - name: description
         label: Hero Description
         type: text
-
-      - name: workHeading
-        label: Work Heading
+      - name: introEyebrow
+        label: Intro Eyebrow
         type: string
-
+      - name: introHeading
+        label: Intro Heading
+        type: string
+      - name: introBody
+        label: Intro Body
+        type: text
+      - name: servicesEyebrow
+        label: Services Eyebrow
+        type: string
       - name: servicesHeading
         label: Services Heading
         type: string
-
-      - name: processHeading
-        label: Process Heading
+      - name: servicesDescription
+        label: Services Description
+        type: text
+      - name: brandEyebrow
+        label: Brand Feature Eyebrow
         type: string
-
-      - name: pricingHeading
-        label: Pricing Heading
+      - name: brandHeading
+        label: Brand Feature Heading
         type: string
-
-      - name: aboutHeading
-        label: About Heading
+      - name: brandDescription
+        label: Brand Feature Description
+        type: text
+      - name: approachEyebrow
+        label: Approach Eyebrow
         type: string
-
-      - name: aboutBody
-        label: About Description
+      - name: approachHeading
+        label: Approach Heading
+        type: string
+      - name: approachDescription
+        label: Approach Description
+        type: text
+      - name: closingEyebrow
+        label: Closing Eyebrow
+        type: string
+      - name: closingHeading
+        label: Closing Heading
+        type: string
+      - name: closingDescription
+        label: Closing Description
         type: text
 
-      - name: contactHeading
-        label: Contact Heading
-        type: string
-
   - name: services
-    label: Services
+    label: Services Page
     type: file
     path: src/content/services.json
     fields:
+      - name: eyebrow
+        label: Services Eyebrow
+        type: string
+      - name: description
+        label: Services Description
+        type: text
       - name: services
         label: Service List
         type: object
         list: true
         fields:
+          - name: id
+            label: Service ID
+            type: string
           - name: title
             label: Service Name
             type: string
-
-          - name: description
-            label: Description
+          - name: shortTitle
+            label: Service Short Title
+            type: string
+          - name: summary
+            label: Service Summary
             type: text
+          - name: description
+            label: Service Description
+            type: text
+          - name: deliverables
+            label: Deliverables
+            type: object
+            list: true
+            fields:
+              - name: label
+                label: Deliverable
+                type: string
 
-  - name: pricing
-    label: Pricing
+  - name: about
+    label: About Page
     type: file
-    path: src/content/pricing.json
+    path: src/content/about.json
     fields:
-      - name: tiers
-        label: Pricing Tiers
+      - name: eyebrow
+        label: Page Eyebrow
+        type: string
+      - name: heading
+        label: Page Heading
+        type: string
+      - name: intro
+        label: Page Intro
+        type: text
+      - name: storyEyebrow
+        label: Story Eyebrow
+        type: string
+      - name: storyHeading
+        label: Story Heading
+        type: string
+      - name: storyParagraphs
+        label: Story Paragraphs
         type: object
         list: true
         fields:
-          - name: name
-            label: Tier Name
-            type: string
-
-          - name: price
-            label: Price
-            type: number
-
-          - name: description
-            label: Short Description
+          - name: paragraph
+            label: Paragraph
             type: text
-
-          - name: featured
-            label: Featured Plan
-            type: boolean
-
-          - name: features
-            label: Included Features
+      - name: valuesEyebrow
+        label: Values Eyebrow
+        type: string
+      - name: valuesHeading
+        label: Values Heading
+        type: string
+      - name: valuesIntro
+        label: Values Intro
+        type: text
+      - name: values
+        label: Values
+        type: object
+        list: true
+        fields:
+          - name: title
+            label: Value Title
             type: string
-            list: true
+          - name: description
+            label: Value Description
+            type: text
+      - name: capabilitiesEyebrow
+        label: Capabilities Eyebrow
+        type: string
+      - name: capabilitiesHeading
+        label: Capabilities Heading
+        type: string
+      - name: capabilitiesIntro
+        label: Capabilities Intro
+        type: text
+      - name: capabilities
+        label: Capabilities
+        type: object
+        list: true
+        fields:
+          - name: id
+            label: Capability ID
+            type: string
+          - name: title
+            label: Capability Title
+            type: string
+          - name: summary
+            label: Capability Summary
+            type: text
+      - name: closingEyebrow
+        label: Closing Eyebrow
+        type: string
+      - name: closingHeading
+        label: Closing Heading
+        type: string
+      - name: closingDescription
+        label: Closing Description
+        type: text
 
   - name: contact
-    label: Contact Information
+    label: Contact Page
     type: file
     path: src/content/contact.json
     fields:
-      - name: phone
-        label: Phone Number
+      - name: eyebrow
+        label: Page Eyebrow
         type: string
-
-      - name: phoneHref
-        label: Phone Link
+      - name: heading
+        label: Page Heading
         type: string
-
+      - name: intro
+        label: Page Intro
+        type: text
+      - name: detailsEyebrow
+        label: Details Eyebrow
+        type: string
       - name: email
-        label: Email Address
+        label: Email
         type: string
-
-      - name: location
-        label: Location
+      - name: phone
+        label: Phone
         type: string
-
-      - name: hours
-        label: Availability Note
+      - name: serving
+        label: Serving
+        type: text
+      - name: note
+        label: Note
+        type: text
+      - name: whyEyebrow
+        label: Why Eyebrow
         type: string
+      - name: whyItems
+        label: Why Items
+        type: object
+        list: true
+        fields:
+          - name: item
+            label: Item
+            type: string
+      - name: formEyebrow
+        label: Form Eyebrow
+        type: string
+      - name: formHeading
+        label: Form Heading
+        type: string
+      - name: formDescription
+        label: Form Description
+        type: text
+      - name: footerNote
+        label: Footer Note
+        type: text
