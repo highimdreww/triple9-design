@@ -1,231 +1,227 @@
-<form id="project-form" class="project-form" novalidate>
-  <div class="form-grid">
-    <div class="form-group">
-      <label for="name">Your name *</label>
-      <input
-        class="field"
-        type="text"
-        id="name"
-        name="name"
-        placeholder="Full name"
-        autocomplete="name"
-        required
-      />
+---
+import contact from '../content/contact.json';
+---
+
+<div class="quote-form-shell">
+  <form id="quote-form" class="quote-form">
+    <div class="form-row">
+      <div class="form-field">
+        <label for="quote-name">Your name <span>*</span></label>
+        <input
+          id="quote-name"
+          name="name"
+          type="text"
+          autocomplete="name"
+          placeholder="Your full name"
+          required
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="quote-business">Business name <span>*</span></label>
+        <input
+          id="quote-business"
+          name="business"
+          type="text"
+          autocomplete="organization"
+          placeholder="Your business"
+          required
+        />
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="business">Business name *</label>
-      <input
-        class="field"
-        type="text"
-        id="business"
-        name="business"
-        placeholder="Your company"
-        autocomplete="organization"
-        required
-      />
+    <div class="form-row">
+      <div class="form-field">
+        <label for="quote-email">Email address <span>*</span></label>
+        <input
+          id="quote-email"
+          name="email"
+          type="email"
+          autocomplete="email"
+          placeholder="you@business.com"
+          required
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="quote-phone">Phone number <span>*</span></label>
+        <input
+          id="quote-phone"
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          placeholder="(407) 555-0123"
+          required
+        />
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="phone">Phone number *</label>
-      <input
-        class="field"
-        type="tel"
-        id="phone"
-        name="phone"
-        placeholder="(407) 555-0123"
-        autocomplete="tel"
-        required
-      />
-    </div>
+    <fieldset class="services-fieldset">
+      <legend>What services are you interested in? <span>*</span></legend>
 
-    <div class="form-group">
-      <label for="service">What do you need? *</label>
-      <select class="field" id="service" name="service" required>
-        <option value="">Select a service</option>
-        <option value="Web Design">Web Design</option>
-        <option value="Hosting & Care Plans">Hosting & Care Plans</option>
-        <option value="SEO">SEO</option>
-        <option value="Social Media Management">
-          Social Media Management
-        </option>
-        <option value="Ad Management">Ad Management</option>
-        <option value="Multiple Services">Multiple Services</option>
-      </select>
-    </div>
+      <p>Select everything that applies.</p>
 
-    <div class="form-group full">
-      <label for="message">Tell me about your project *</label>
+      <div class="service-checkbox-grid">
+        {contact.serviceOptions.map((service, index) => (
+          <label class="service-checkbox">
+            <input
+              type="checkbox"
+              name="services"
+              value={service}
+              id={`service-option-${index}`}
+            />
+            <span class="checkbox-indicator" aria-hidden="true"></span>
+            <span>{service}</span>
+          </label>
+        ))}
+      </div>
+
+      <p
+        class="form-error"
+        id="service-selection-error"
+        role="alert"
+        hidden
+      >
+        Please select at least one service.
+      </p>
+    </fieldset>
+
+    <div class="form-field">
+      <label for="quote-details">Tell us about your project <span>*</span></label>
+
       <textarea
-        class="field"
-        id="message"
-        name="message"
-        rows="4"
-        placeholder="What are you looking to build?"
+        id="quote-details"
+        name="details"
+        rows="6"
+        placeholder="Tell us about your business, your goals, and what you’re looking to accomplish."
         required
       ></textarea>
     </div>
-  </div>
 
-  <p id="form-error" class="form-error" role="alert" hidden>
-    Please complete all required fields with valid information.
-  </p>
+    <button type="submit" class="button-gold form-submit">
+      Prepare my inquiry
+      <span class="button-mark" aria-hidden="true"></span>
+    </button>
 
-  <button type="submit" class="button-primary submit-button">
-    Prepare inquiry
-  </button>
-
-  <p class="form-note">
-    This demo form prepares an email in your email application.
-    No information is stored on this website.
-  </p>
-
-  <div id="form-success" class="form-success" role="status" hidden>
-    <strong>Your inquiry is ready.</strong>
-    <p>
-      Your email application should open with your project details.
-      Send the email there to complete your inquiry.
+    <p class="form-fineprint">
+      Submitting prepares an email in your email application.
+      You’ll need to send it to complete your request.
     </p>
-    <a id="email-fallback" href="mailto:asaunders995@gmail.com">
-      Open email manually
+  </form>
+
+  <div
+    id="quote-success"
+    class="quote-success"
+    role="status"
+    aria-live="polite"
+    hidden
+  >
+    <span class="section-kicker">NEXT STEP</span>
+
+    <h3>{contact.successHeading}</h3>
+
+    <p>{contact.successMessage}</p>
+
+    <a
+      id="quote-email-link"
+      class="button-gold"
+      href={`mailto:${contact.email}`}
+    >
+      Open prepared email
+      <span class="button-mark" aria-hidden="true"></span>
     </a>
+
+    <button
+      type="button"
+      class="form-reset"
+      id="quote-start-over"
+    >
+      Start another inquiry
+    </button>
   </div>
-</form>
+</div>
 
-<style>
-  .project-form {
-    width: 100%;
+<script define:vars={{ recipient: contact.email }}>
+  const form = document.getElementById('quote-form');
+  const success = document.getElementById('quote-success');
+  const emailLink = document.getElementById('quote-email-link');
+  const startOver = document.getElementById('quote-start-over');
+  const selectionError = document.getElementById('service-selection-error');
+
+  if (form && success && emailLink && startOver && selectionError) {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      if (!form.reportValidity()) return;
+
+      const data = new FormData(form);
+      const services = data.getAll('services').map(String);
+
+      if (services.length === 0) {
+        selectionError.hidden = false;
+
+        const firstCheckbox = form.querySelector(
+          'input[name="services"]'
+        );
+
+        firstCheckbox?.focus();
+        return;
+      }
+
+      selectionError.hidden = true;
+
+      const name = String(data.get('name') || '').trim();
+      const business = String(data.get('business') || '').trim();
+      const email = String(data.get('email') || '').trim();
+      const phone = String(data.get('phone') || '').trim();
+      const details = String(data.get('details') || '').trim();
+
+      const subject = `Triple9 Design Consultation Request — ${business}`;
+
+      const body = [
+        'TRIPLE9 DESIGN — CONSULTATION REQUEST',
+        '',
+        `Name: ${name}`,
+        `Business: ${business}`,
+        `Email: ${email}`,
+        `Phone: ${phone}`,
+        '',
+        'SERVICES REQUESTED',
+        ...services.map((service) => `- ${service}`),
+        '',
+        'PROJECT DETAILS',
+        details
+      ].join('\n');
+
+      const mailto =
+        `mailto:${recipient}` +
+        `?subject=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(body)}`;
+
+      emailLink.setAttribute('href', mailto);
+
+      form.hidden = true;
+      success.hidden = false;
+
+      window.location.href = mailto;
+    });
+
+    form.querySelectorAll('input[name="services"]').forEach((checkbox) => {
+      checkbox.addEventListener('change', () => {
+        const selected = form.querySelector(
+          'input[name="services"]:checked'
+        );
+
+        if (selected) selectionError.hidden = true;
+      });
+    });
+
+    startOver.addEventListener('click', () => {
+      form.reset();
+      form.hidden = false;
+      success.hidden = true;
+      selectionError.hidden = true;
+      form.querySelector('input')?.focus();
+    });
   }
-
-  .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 34px 28px;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-  }
-
-  .form-group.full {
-    grid-column: 1 / -1;
-  }
-
-  .form-group label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .01em;
-  }
-
-  .form-group textarea {
-    resize: vertical;
-    min-height: 125px;
-  }
-
-  .submit-button {
-    margin-top: 36px;
-    min-width: 190px;
-  }
-
-  .form-note {
-    margin-top: 18px;
-    color: #777;
-    font-size: 11px;
-    line-height: 1.7;
-  }
-
-  .form-error {
-    margin-top: 24px;
-    color: #a52a2a;
-    font-size: 13px;
-  }
-
-  .form-success {
-    margin-top: 28px;
-    padding: 25px;
-    border: 1px solid #111;
-  }
-
-  .form-success strong {
-    display: block;
-    font-size: 21px;
-    letter-spacing: -.04em;
-  }
-
-  .form-success p {
-    margin: 12px 0;
-    color: #555;
-    font-size: 13px;
-    line-height: 1.7;
-  }
-
-  .form-success a {
-    display: inline-block;
-    margin-top: 8px;
-    font-size: 12px;
-    font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  @media (max-width: 600px) {
-    .form-grid {
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-  }
-</style>
-
-<script>
-  const form = document.querySelector<HTMLFormElement>('#project-form');
-  const error = document.querySelector<HTMLElement>('#form-error');
-  const success = document.querySelector<HTMLElement>('#form-success');
-  const fallback = document.querySelector<HTMLAnchorElement>('#email-fallback');
-
-  form?.addEventListener('submit', (event) => {
-    event.preventDefault();
-
-    if (!form.checkValidity()) {
-      if (error) error.hidden = false;
-      form.reportValidity();
-      return;
-    }
-
-    const data = new FormData(form);
-
-    const name = String(data.get('name') || '').trim();
-    const business = String(data.get('business') || '').trim();
-    const phone = String(data.get('phone') || '').trim();
-    const service = String(data.get('service') || '').trim();
-    const message = String(data.get('message') || '').trim();
-
-    if (![name, business, phone, service, message].every(Boolean)) {
-      if (error) error.hidden = false;
-      return;
-    }
-
-    const subject = `Project Inquiry — ${business}`;
-
-    const body = [
-      'New project inquiry for Triple9 Design',
-      '',
-      `Name: ${name}`,
-      `Business: ${business}`,
-      `Phone: ${phone}`,
-      `Service: ${service}`,
-      '',
-      'Project details:',
-      message
-    ].join('\n');
-
-    const mailto = `mailto:asaunders995@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    if (error) error.hidden = true;
-    if (fallback) fallback.href = mailto;
-    if (success) success.hidden = false;
-
-    window.location.href = mailto;
-  });
 </script>
