@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import about from '../content/about.json';
+---
+<BaseLayout
+  title="About — Triple9 Design"
+  description="Triple9 is a digital agency for local businesses. The people you talk to are the people who do the work."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker reveal">{about.eyebrow}</p>
+      <h1 class="display reveal" set:html={about.headline}></h1>
+      <p class="about-body reveal">{about.body}</p>
+    </div>
+  </section>
+
+  <section class="section section-soft">
+    <div class="wrap">
+      <div class="cards values">
+        {about.values.map((v) => (
+          <div class="card reveal">
+            <span class="tick" aria-hidden="true"></span>
+            <h3>{v.title}</h3>
+            <p>{v.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</BaseLayout>
