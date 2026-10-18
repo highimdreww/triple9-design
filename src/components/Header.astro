@@ -1,124 +1,17 @@
 ---
 const base = import.meta.env.BASE_URL;
-
-const navigation = [
-  { label: 'Home', href: base, path: '/' },
-  { label: 'Services', href: `${base}services/`, path: '/services/' },
-  { label: 'About', href: `${base}about/`, path: '/about/' },
-  { label: 'Contact', href: `${base}contact/`, path: '/contact/' }
-];
-
-const currentPath = Astro.url.pathname.startsWith(base)
-  ? `/${Astro.url.pathname.slice(base.length)}`
-  : Astro.url.pathname;
-
-const normalizedPath = currentPath.replace(/\/+/g, '/');
 ---
-
-<header class="site-header" id="site-header">
-  <div class="site-header-inner container-studio">
-    <a
-      class="site-logo"
-      href={base}
-      aria-label="Triple9 Design — Home"
-    >
-      <img
-        src={`${base}images/triple9-logo.jpg`}
-        alt="Triple9 Design"
-        width="180"
-        height="64"
-      />
+<header class="site-header">
+  <div class="wrap">
+    <a href={base} class="logo" aria-label="Triple9 Design — home">
+      <img src={`${base}images/triple9-logo.jpg`} alt="Triple9 Design" />
     </a>
-
-    <nav class="desktop-nav" aria-label="Main navigation">
-      {navigation.map((item) => (
-        <a
-          href={item.href}
-          class:list={[
-            'nav-link',
-            { active: normalizedPath === item.path }
-          ]}
-          aria-current={normalizedPath === item.path ? 'page' : undefined}
-        >
-          {item.label}
-        </a>
-      ))}
+    <nav class="nav" id="siteNav" aria-label="Primary">
+      <a class="nav-link" href={`${base}services/`}>Services</a>
+      <a class="nav-link" href={`${base}about/`}>About</a>
+      <a class="nav-link" href={`${base}contact/`}>Contact</a>
+      <a class="btn btn-accent" href={`${base}contact/`}>Get a quote</a>
     </nav>
-
-    <a class="header-cta" href={`${base}contact/`}>
-      Get a quote
-      <span class="cta-line" aria-hidden="true"></span>
-    </a>
-
-    <button
-      class="mobile-toggle"
-      type="button"
-      aria-label="Open navigation"
-      aria-expanded="false"
-      aria-controls="mobile-navigation"
-      data-menu-toggle
-    >
-      <span></span>
-      <span></span>
-    </button>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">≡</button>
   </div>
-
-  <nav
-    class="mobile-nav"
-    id="mobile-navigation"
-    aria-label="Mobile navigation"
-    hidden
-  >
-    {navigation.map((item) => (
-      <a href={item.href}>{item.label}</a>
-    ))}
-
-    <a class="mobile-quote" href={`${base}contact/`}>
-      Get a quote
-    </a>
-  </nav>
 </header>
-
-<script>
-  const header = document.querySelector<HTMLElement>('#site-header');
-  const toggle = document.querySelector<HTMLButtonElement>(
-    '[data-menu-toggle]'
-  );
-  const mobileNav = document.querySelector<HTMLElement>(
-    '#mobile-navigation'
-  );
-
-  if (header && toggle && mobileNav) {
-    const closeMenu = () => {
-      toggle.setAttribute('aria-expanded', 'false');
-      toggle.setAttribute('aria-label', 'Open navigation');
-      mobileNav.hidden = true;
-      header.classList.remove('menu-open');
-    };
-
-    toggle.addEventListener('click', () => {
-      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
-
-      toggle.setAttribute('aria-expanded', String(!isOpen));
-      toggle.setAttribute(
-        'aria-label',
-        isOpen ? 'Open navigation' : 'Close navigation'
-      );
-
-      mobileNav.hidden = isOpen;
-      header.classList.toggle('menu-open', !isOpen);
-    });
-
-    mobileNav.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', closeMenu);
-    });
-
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') closeMenu();
-    });
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 900) closeMenu();
-    });
-  }
-</script>
