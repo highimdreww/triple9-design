@@ -1,0 +1,95 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import contact from '../content/contact.json';
+---
+<BaseLayout
+  title="Contact — Triple9 Design"
+  description="Request a quote or a consultation. Tell us what you're building and we'll get back to you within one business day."
+>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="kicker reveal">{contact.eyebrow}</p>
+      <h1 class="display reveal" set:html={contact.headline}></h1>
+      <p class="sub reveal">{contact.sub}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="reveal">
+          <form id="quoteForm" novalidate>
+            <div class="field">
+              <label for="f-name">Your name *</label>
+              <input type="text" id="f-name" name="name" required autocomplete="name" />
+            </div>
+            <div class="field">
+              <label for="f-business">Business name *</label>
+              <input type="text" id="f-business" name="business" required autocomplete="organization" />
+            </div>
+            <div class="field">
+              <label for="f-email">Email *</label>
+              <input type="email" id="f-email" name="email" required autocomplete="email" />
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <input type="tel" id="f-phone" name="phone" autocomplete="tel" />
+            </div>
+            <div class="field">
+              <span class="field-label">What do you need? *</span>
+              <div class="checks">
+                {contact.services.map((s) => (
+                  <label><input type="checkbox" name="services" value={s} /> {s}</label>
+                ))}
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-details">Tell us about the project *</label>
+              <textarea id="f-details" name="details" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-accent">Prepare my inquiry</button>
+            <p class="form-note">This opens your email app with everything filled in. Nothing is stored on this site.</p>
+          </form>
+          <div class="form-success" id="formSuccess" role="status">
+            <h3>{contact.successHeading}</h3>
+            <p>{contact.successText}</p>
+          </div>
+        </div>
+        <aside class="contact-card reveal">
+          <h3>Prefer to talk?</h3>
+          <p><a href={contact.phoneHref}>{contact.phone}</a></p>
+          <p><a href={`mailto:${contact.email}`}>{contact.email}</a></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('quoteForm');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const data = new FormData(form);
+        const get = (n) => (data.get(n) || '').toString().trim();
+        const services = data.getAll('services').map((s) => s.toString()).join(', ') || 'Not specified';
+        if (!get('name') || !get('business') || !get('email') || !get('details')) {
+          alert('Please fill in your name, business, email, and project details.');
+          return;
+        }
+        const subject = encodeURIComponent('Quote request — ' + get('business'));
+        const body = encodeURIComponent(
+          'Name: ' + get('name') + '\n' +
+          'Business: ' + get('business') + '\n' +
+          'Email: ' + get('email') + '\n' +
+          'Phone: ' + (get('phone') || 'Not provided') + '\n' +
+          'Services needed: ' + services + '\n\n' +
+          'Project details:\n' + get('details')
+        );
+        window.location.href = 'mailto:asaunders995@gmail.com?subject=' + subject + '&body=' + body;
+        const ok = document.getElementById('formSuccess');
+        if (ok) ok.classList.add('show');
+        form.style.display = 'none';
+      });
+    }
+  </script>
+</BaseLayout>
