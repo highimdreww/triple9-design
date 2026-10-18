@@ -1,143 +1,47 @@
 ---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
-interface Props {
-  title?: string;
-  description?: string;
-}
-
 const {
-  title = 'Triple9 Design | Premium Web Design in St. Cloud, FL',
-  description = 'Triple9 Design creates premium websites, SEO, and digital marketing solutions for local businesses in St. Cloud and Central Florida.'
+  title = 'Triple9 Design — Websites, Branding & Marketing',
+  description = 'Triple9 is a digital agency for local businesses. Websites, branding, and marketing that make customers choose you.',
 } = Astro.props;
-
-const base = `${import.meta.env.BASE_URL.replace(/\/$/, '')}/`;
-
-const siteOrigin = 'https://highimdreww.github.io';
-
-const logo = `${base}images/triple9-logo.jpg`;
-
-const canonical = new URL(
-  Astro.url.pathname,
-  siteOrigin
-).toString();
-
-const ogImage = new URL(
-  logo,
-  siteOrigin
-).toString();
+const base = import.meta.env.BASE_URL;
+const canonical = new URL(Astro.url.pathname.replace(/^\//, ''), 'https://highimdreww.github.io/triple9-design/').href;
 ---
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1"
-    />
-
-    <meta name="generator" content={Astro.generator} />
-
-    <title>{title}</title>
-
-    <meta
-      name="description"
-      content={description}
-    />
-
-    <meta
-      name="theme-color"
-      content="#111111"
-    />
-
-    <link
-      rel="canonical"
-      href={canonical}
-    />
-
-    <meta
-      property="og:type"
-      content="website"
-    />
-
-    <meta
-      property="og:title"
-      content={title}
-    />
-
-    <meta
-      property="og:description"
-      content={description}
-    />
-
-    <meta
-      property="og:url"
-      content={canonical}
-    />
-
-    <meta
-      property="og:image"
-      content={ogImage}
-    />
-
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
-
-    <script
-      type="application/ld+json"
-      set:html={JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'ProfessionalService',
-        name: 'Triple9 Design',
-        url: new URL(base, siteOrigin).toString(),
-        description,
-        telephone: '+14077640241',
-        email: 'asaunders995@gmail.com',
-        areaServed: 'Central Florida',
-        address: {
-          '@type': 'PostalAddress',
-          addressLocality: 'St. Cloud',
-          addressRegion: 'FL',
-          addressCountry: 'US'
-        }
-      })}
-    />
-  </head>
-
-  <body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/jpeg" href={`${base}images/triple9-logo.jpg`} />
+</head>
+<body>
+  <Header />
+  <main>
     <slot />
-
-    <script>
-      const revealObserver = new IntersectionObserver(
-        (entries, observer) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        {
-          threshold: 0.08,
-          rootMargin: '0px 0px -35px 0px'
-        }
-      );
-
-      document.querySelectorAll('.reveal').forEach((element) => {
-        revealObserver.observe(element);
+  </main>
+  <Footer />
+  <script>
+    const btn = document.getElementById('menuBtn');
+    const nav = document.getElementById('siteNav');
+    if (btn && nav) {
+      btn.addEventListener('click', () => nav.classList.toggle('open'));
+      nav.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => nav.classList.remove('open')));
+    }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
       });
-
-      document.documentElement.classList.add('js-ready');
-    </script>
-  </body>
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+</body>
 </html>
