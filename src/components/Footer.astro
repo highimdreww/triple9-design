@@ -1,68 +1,28 @@
 ---
-import contact from '../content/contact.json';
-
 const base = import.meta.env.BASE_URL;
-
-const links = [
-  { label: 'Home', href: base },
-  { label: 'Services', href: `${base}services/` },
-  { label: 'About', href: `${base}about/` },
-  { label: 'Contact', href: `${base}contact/` }
-];
-
-const year = new Date().getFullYear();
 ---
-
 <footer class="site-footer">
-  <div class="container-studio">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href={base} aria-label="Triple9 Design — Home">
-          <img
-            src={`${base}images/triple9-logo.jpg`}
-            alt="Triple9 Design"
-            width="205"
-            height="75"
-            loading="lazy"
-          />
-        </a>
-
-        <p>
-          Strategy. Identity. Digital.
-          <br />
-          Built to make an impact.
-        </p>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <span class="logo-box">
+          <img src={`${base}images/triple9-logo.jpg`} alt="Triple9 Design" />
+        </span>
+        <p class="footer-tag">A digital agency for local businesses. Websites, branding, and marketing.</p>
       </div>
-
-      <div class="footer-column">
-        <span class="footer-label">EXPLORE</span>
-
-        <nav aria-label="Footer navigation">
-          {links.map((link) => (
-            <a href={link.href}>{link.label}</a>
-          ))}
-        </nav>
-      </div>
-
-      <div class="footer-column">
-        <span class="footer-label">START A CONVERSATION</span>
-
-        <a href={`mailto:${contact.email}`}>
-          {contact.email}
-        </a>
-
-        <a href={`tel:${contact.phoneHref}`}>
-          {contact.phone}
-        </a>
-
-        <span class="footer-location">{contact.location}</span>
+      <nav class="footer-links" aria-label="Footer">
+        <a href={`${base}services/`}>Services</a>
+        <a href={`${base}about/`}>About</a>
+        <a href={`${base}contact/`}>Contact</a>
+      </nav>
+      <div class="footer-contact">
+        <p><a class="tel" href="tel:+14077640241">(407) 764-0241</a></p>
+        <p><a class="mail" href="mailto:asaunders995@gmail.com">asaunders995@gmail.com</a></p>
       </div>
     </div>
-
     <div class="footer-bottom">
-      <span>© {year} Triple9 Design. All rights reserved.</span>
-
-      <span>CREATIVE WITH PURPOSE. BUILT WITH INTENTION.</span>
+      <span>© 2026 Triple9 Design.</span>
+      <span>Built with intent.</span>
     </div>
   </div>
 </footer>
