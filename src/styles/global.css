@@ -35,6 +35,8 @@ a { color: inherit; }
 .btn-dark:hover { background: #1d1d1f; }
 .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
 .btn-ghost:hover { border-color: var(--ink); }
+.btn-white { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+.btn-white:hover { border-color: var(--ink); box-shadow: 0 8px 22px rgba(0,0,0,0.08); }
 .nav .btn { padding: 12px 26px; font-size: 15px; }
 .hero { position: relative; overflow: hidden; background: var(--white); padding: 168px 0 128px; }
 .hero .wrap { position: relative; z-index: 1; }
@@ -129,6 +131,6 @@ a { color: inherit; }
   .section { padding: 84px 0; }
   .cta-band { padding: 96px 0; }
   .page-hero { padding: 148px 0 64px; }
-  .nine-motif { font-size: 13rem; right: -3rem; top: auto; bottom: -4rem; transform: none; }
+  .nine-motif { font-size: 13rem; right: -3rem; top: auto; bottom: 0; transform: none; }
   .footer-grid { flex-direction: column; }
 }
