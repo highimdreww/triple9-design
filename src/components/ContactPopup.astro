@@ -31,6 +31,7 @@ const useFormspree = typeof endpoint === 'string' && endpoint.length > 0;
     >
       &times;
     </button>
+    <div class="contact-modal-scroll">
     <div class="popup-heading">
       <p class="popup-eyebrow">
         <span aria-hidden="true"></span>
@@ -187,6 +188,7 @@ const useFormspree = typeof endpoint === 'string' && endpoint.length > 0;
       <a href={`mailto:${email}`}>{email}</a>
       <a href={phoneHref}>{phone}</a>
     </div>
+    </div>
   </div>
 </div>
 
@@ -218,17 +220,24 @@ const useFormspree = typeof endpoint === 'string' && endpoint.length > 0;
 
 .contact-modal {
     position: relative;
+    display: flex;
+    flex-direction: column;
     width: min(690px, 100%);
     max-height: 90svh;
     padding: clamp(26px, 5vw, 48px);
-    overflow-y: auto;
-    overscroll-behavior: contain;
+    overflow: hidden;
     border-radius: 20px;
     background: var(--paper, #fafafa);
     color: var(--ink, #0b0b0c);
     box-shadow: 0 35px 110px rgba(0, 0, 0, .32);
     transform: translateY(18px) scale(.985);
     transition: transform .25s ease;
+}
+
+.contact-modal-scroll {
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     scrollbar-width: thin;
     scrollbar-color: #bdbdc0 transparent;
 }
