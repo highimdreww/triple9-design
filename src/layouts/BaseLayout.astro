@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ContactPopup from '../components/ContactPopup.astro';
 import '../styles/global.css';
 
 const {
@@ -29,6 +30,7 @@ const canonical = new URL(Astro.url.pathname.replace(/^\//, ''), 'https://highim
     <slot />
   </main>
   <Footer />
+  <ContactPopup />
   <script>
     const btn = document.getElementById('menuBtn');
     const nav = document.getElementById('siteNav');
@@ -42,6 +44,55 @@ const canonical = new URL(Astro.url.pathname.replace(/^\//, ''), 'https://highim
       });
     }, { threshold: 0.1 });
     document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+  </script>
+  <script>
+    const contactOverlay = document.querySelector('[data-contact-popup]');
+    const contactModal = contactOverlay ? contactOverlay.querySelector('[data-contact-modal]') : null;
+    let contactPreviousFocus = null;
+
+    function openContactPopup() {
+      if (!contactOverlay || !contactModal) return;
+      contactPreviousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      contactOverlay.classList.add('is-open');
+      contactOverlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('popup-open');
+      const closeButton = contactOverlay.querySelector('[data-close-contact]');
+      if (closeButton) closeButton.focus();
+    }
+
+    function closeContactPopup() {
+      if (!contactOverlay) return;
+      contactOverlay.classList.remove('is-open');
+      contactOverlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('popup-open');
+      if (contactPreviousFocus) contactPreviousFocus.focus();
+      contactPreviousFocus = null;
+    }
+
+    document.addEventListener('click', (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const trigger = target.closest('a[href="#contactpopup"], [data-open-contact]');
+      if (trigger) {
+        event.preventDefault();
+        openContactPopup();
+        return;
+      }
+      if (target.closest('[data-close-contact]')) {
+        closeContactPopup();
+        return;
+      }
+      if (target === contactOverlay) {
+        closeContactPopup();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && contactOverlay && contactOverlay.classList.contains('is-open')) {
+        event.preventDefault();
+        closeContactPopup();
+      }
+    });
   </script>
 </body>
 </html>

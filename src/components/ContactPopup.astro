@@ -1,0 +1,714 @@
+---
+import contact from '../content/contact.json';
+
+const services = Array.isArray(contact.services)
+  ? contact.services
+  : [];
+
+const email = contact.email;
+const phone = contact.phone;
+const phoneHref = contact.phoneHref;
+
+const endpoint = (contact as any).quoteFormEndpoint || '';
+const useFormspree = typeof endpoint === 'string' && endpoint.length > 0;
+---
+
+<div
+  class="contact-overlay"
+  data-contact-popup
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="popup-contact-title"
+  tabindex="-1"
+>
+  <div class="contact-modal" data-contact-modal>
+    <button
+      class="contact-close"
+      type="button"
+      aria-label="Close contact form"
+      data-close-contact
+    >
+      &times;
+    </button>
+    <div class="popup-heading">
+      <p class="popup-eyebrow">
+        <span aria-hidden="true"></span>
+        Get a quote
+      </p>
+
+      <h2
+        id="popup-contact-title"
+        class="popup-title"
+        set:html={contact.headline}
+      ></h2>
+
+      <p class="popup-description">
+        Tell us about your business and what you have in mind.
+        We'll take it from there.
+      </p>
+    </div>
+
+    <div class="popup-form-panel" data-popup-form-panel>
+      <form id="popup-contact-form" data-mode={useFormspree ? 'formspree' : 'mailto'} data-endpoint={useFormspree ? endpoint : ''} novalidate>
+        {useFormspree && (
+          <>
+            <input type="hidden" name="_subject" value="New Triple9 Design quote request" />
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+          </>
+        )}
+        <div class="popup-form-grid">
+          <div class="field">
+            <label for="p-name">Your name *</label>
+            <input
+              id="p-name"
+              name="name"
+              type="text"
+              autocomplete="name"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="p-business">Business name *</label>
+            <input
+              id="p-business"
+              name="business"
+              type="text"
+              autocomplete="organization"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="p-email">Email *</label>
+            <input
+              id="p-email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+          </div>
+
+          <div class="field">
+            <label for="p-phone">Phone</label>
+            <input
+              id="p-phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+            />
+          </div>
+        </div>
+
+        <div class="field popup-services-field">
+          <span class="field-label" id="p-services-label">
+            What do you need? *
+          </span>
+
+          <div
+            class="checks"
+            role="group"
+            aria-labelledby="p-services-label"
+          >
+            {services.map((service, index) => (
+              <label for={`p-service-${index}`}>
+                <input
+                  id={`p-service-${index}`}
+                  type="checkbox"
+                  name="services"
+                  value={service}
+                />
+                <span>{service}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="p-details">Tell us about the project *</label>
+          <textarea
+            id="p-details"
+            name="details"
+            rows="5"
+            required
+          ></textarea>
+        </div>
+
+        <button
+          class="btn btn-accent popup-submit"
+          type="submit"
+        >
+          {useFormspree ? 'Send inquiry' : 'Prepare my inquiry'}
+        </button>
+
+        <p class="form-note popup-form-note">
+          {useFormspree
+            ? "We'll get back to you within one business day."
+            : 'This opens your email app with everything filled in. Nothing is stored on this site.'}
+        </p>
+      </form>
+    </div>
+
+    <div
+      class="form-success popup-success"
+      data-popup-success
+      role="status"
+      aria-live="polite"
+      tabindex="-1"
+      hidden
+    >
+      <span class="popup-success-mark" aria-hidden="true"></span>
+
+      <h3 data-popup-success-heading>{contact.successHeading}</h3>
+      <p data-popup-success-text>{contact.successText}</p>
+
+      {!useFormspree && (
+        <a
+          class="btn btn-dark popup-email-fallback"
+          data-popup-email-link
+          href={`mailto:${email}`}
+        >
+          Open prepared email
+        </a>
+      )}
+
+      <button
+        type="button"
+        class="popup-reset"
+        data-popup-reset
+      >
+        Start another inquiry
+      </button>
+    </div>
+
+    <div class="popup-contact-fallback">
+      <a href={`mailto:${email}`}>{email}</a>
+      <a href={phoneHref}>{phone}</a>
+    </div>
+  </div>
+</div>
+
+<style>
+.contact-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 22px;
+    background: rgba(11, 11, 12, .8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity .25s ease,
+      visibility .25s ease;
+}
+
+.contact-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.contact-modal {
+    position: relative;
+    width: min(690px, 100%);
+    max-height: 90svh;
+    padding: clamp(26px, 5vw, 48px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    border-radius: 20px;
+    background: var(--paper, #fafafa);
+    color: var(--ink, #0b0b0c);
+    box-shadow: 0 35px 110px rgba(0, 0, 0, .32);
+    transform: translateY(18px) scale(.985);
+    transition: transform .25s ease;
+    scrollbar-width: thin;
+    scrollbar-color: #bdbdc0 transparent;
+}
+
+.contact-overlay.is-open .contact-modal {
+    transform: translateY(0) scale(1);
+}
+
+.contact-close {
+    position: absolute;
+    top: 17px;
+    right: 19px;
+    display: grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--line, #e8e8ea);
+    border-radius: 50%;
+    background: #fff;
+    color: var(--ink, #0b0b0c);
+    font-family: var(--font, 'Inter', sans-serif);
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+      background .2s ease,
+      border-color .2s ease;
+}
+
+.contact-close:hover {
+    background: #fff0e9;
+    border-color: var(--accent, #ff4d00);
+}
+
+.popup-heading {
+    padding-right: 28px;
+}
+
+.popup-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 22px;
+    color: var(--gray, #6b6b6e);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+}
+
+.popup-eyebrow span {
+    width: 25px;
+    height: 3px;
+    background: var(--accent, #ff4d00);
+}
+
+.popup-title {
+    max-width: 550px;
+    margin: 0;
+    font-size: clamp(35px, 5.5vw, 57px);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -.065em;
+}
+
+.popup-title :global(.accent) {
+    color: var(--accent, #ff4d00);
+}
+
+.popup-description {
+    max-width: 500px;
+    margin: 17px 0 28px;
+    color: var(--gray, #6b6b6e);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.popup-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 16px;
+}
+
+.contact-modal .field {
+    min-width: 0;
+    margin-bottom: 18px;
+}
+
+.contact-modal .field > label,
+.contact-modal .field > .field-label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.contact-modal .field input[type="text"],
+.contact-modal .field input[type="email"],
+.contact-modal .field input[type="tel"],
+.contact-modal .field textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 12px 14px;
+    border: 1px solid #dedee0;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--ink, #0b0b0c);
+    font-family: var(--font, 'Inter', sans-serif);
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.contact-modal .field textarea {
+    min-height: 115px;
+    resize: vertical;
+}
+
+.contact-modal .field input:focus,
+.contact-modal .field textarea:focus {
+    outline: 2px solid var(--accent, #ff4d00);
+    outline-offset: 1px;
+    border-color: var(--accent, #ff4d00);
+}
+
+.contact-modal .checks {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+}
+
+.contact-modal .checks label {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    min-width: 0;
+    padding: 10px 12px;
+    border: 1px solid #e8e8ea;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--ink, #0b0b0c);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.contact-modal .checks label:hover {
+    border-color: var(--accent, #ff4d00);
+}
+
+.contact-modal .checks label:has(input:checked) {
+    border-color: var(--accent, #ff4d00);
+    background: #fff1eb;
+}
+
+.contact-modal .checks input {
+    flex: 0 0 16px;
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    accent-color: var(--accent, #ff4d00);
+}
+
+.popup-submit {
+    width: 100%;
+    min-height: 52px;
+    margin-top: 4px;
+}
+
+.popup-form-note {
+    margin: 14px 0 0;
+    color: var(--gray, #6b6b6e);
+    font-size: 11px;
+    line-height: 1.7;
+    text-align: center;
+}
+
+.popup-form-error {
+    margin: 14px 0 0;
+    color: #b3261e;
+    font-size: 13px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.popup-success {
+    display: none;
+    padding: 34px 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    text-align: left;
+}
+
+.popup-success.show {
+    display: block;
+}
+
+.popup-success-mark {
+    display: block;
+    width: 36px;
+    height: 5px;
+    margin-bottom: 24px;
+    background: var(--accent, #ff4d00);
+}
+
+.popup-success h3 {
+    margin: 0 0 12px;
+    color: var(--ink, #0b0b0c);
+    font-size: clamp(29px, 5vw, 43px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.05em;
+}
+
+.popup-success p {
+    max-width: 440px;
+    margin: 0 0 25px;
+    color: var(--gray, #6b6b6e);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.popup-email-fallback {
+    margin-bottom: 20px;
+}
+
+.popup-reset {
+    display: block;
+    padding: 4px 0;
+    border: 0;
+    border-bottom: 1px solid var(--ink, #0b0b0c);
+    background: transparent;
+    color: var(--ink, #0b0b0c);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.popup-contact-fallback {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line, #e8e8ea);
+}
+
+.popup-contact-fallback a {
+    color: var(--gray, #6b6b6e);
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.popup-contact-fallback a:hover {
+    color: var(--accent, #ff4d00);
+}
+
+@media (max-width: 600px) {
+  .contact-overlay {
+      align-items: center;
+      padding: 12px;
+  }
+
+  .contact-modal {
+      width: 100%;
+      max-height: 94vh;
+      max-height: 94svh;
+      padding: 27px 20px;
+      border-radius: 16px;
+  }
+
+  .popup-heading {
+      padding-right: 20px;
+  }
+
+  .popup-title {
+      font-size: clamp(33px, 9vw, 47px);
+  }
+
+  .popup-form-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .contact-modal .checks {
+      grid-template-columns: 1fr;
+  }
+
+  .contact-close {
+      top: 12px;
+      right: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-overlay,
+  .contact-modal,
+  .contact-close {
+      transition: none;
+  }
+}
+</style>
+
+<script>
+  const popupForm = document.querySelector<HTMLFormElement>(
+    '#popup-contact-form'
+  );
+
+  const popupFormPanel = document.querySelector<HTMLElement>(
+    '[data-popup-form-panel]'
+  );
+
+  const popupSuccess = document.querySelector<HTMLElement>(
+    '[data-popup-success]'
+  );
+
+  const popupEmailLink = document.querySelector<HTMLAnchorElement>(
+    '[data-popup-email-link]'
+  );
+
+  const popupReset = document.querySelector<HTMLButtonElement>(
+    '[data-popup-reset]'
+  );
+
+  const recipient = 'asaunders995@gmail.com';
+
+  function showPopupSuccess() {
+    if (!popupFormPanel || !popupSuccess) return;
+    popupFormPanel.hidden = true;
+    popupSuccess.hidden = false;
+    popupSuccess.classList.add('show');
+    popupSuccess.focus();
+  }
+
+  if (popupForm && popupFormPanel && popupSuccess) {
+    popupForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const name = (
+        popupForm.elements.namedItem('name') as HTMLInputElement
+      ).value.trim();
+
+      const business = (
+        popupForm.elements.namedItem('business') as HTMLInputElement
+      ).value.trim();
+
+      const email = (
+        popupForm.elements.namedItem('email') as HTMLInputElement
+      ).value.trim();
+
+      const phone = (
+        popupForm.elements.namedItem('phone') as HTMLInputElement
+      ).value.trim();
+
+      const details = (
+        popupForm.elements.namedItem('details') as HTMLTextAreaElement
+      ).value.trim();
+
+      if (!name || !business || !email || !details) {
+        alert('Please complete all required fields.');
+        return;
+      }
+
+      const selectedServices = Array.from(
+        popupForm.querySelectorAll<HTMLInputElement>(
+          'input[name="services"]:checked'
+        )
+      ).map((input) => input.value);
+
+      if (popupForm.dataset.mode === 'formspree') {
+        const submitButton = popupForm.querySelector<HTMLButtonElement>(
+          '.popup-submit'
+        );
+        const buttonHtml = submitButton ? submitButton.innerHTML : '';
+
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Sending...';
+        }
+
+        const gotcha = (
+          popupForm.elements.namedItem('_gotcha') as HTMLInputElement | null
+        )?.value;
+
+        const payload: Record<string, string> = {
+          name,
+          business,
+          email,
+          phone: phone || 'Not provided',
+          services: selectedServices.join(', ') || 'Not specified',
+          details,
+          _subject: 'Quote request — ' + business,
+        };
+        if (gotcha) payload._gotcha = gotcha;
+
+        fetch(popupForm.dataset.endpoint || '', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(payload),
+        })
+          .then((response) => {
+            if (!response.ok) throw new Error('bad response');
+            const heading = popupSuccess.querySelector('[data-popup-success-heading]');
+            const text = popupSuccess.querySelector('[data-popup-success-text]');
+            if (heading) heading.textContent = 'Inquiry sent.';
+            if (text) text.textContent = "Thanks for telling us about your project. We'll get back to you within one business day.";
+            showPopupSuccess();
+          })
+          .catch(() => {
+            let error = popupForm.querySelector('.popup-form-error');
+            if (!error) {
+              error = document.createElement('p');
+              error.className = 'popup-form-error';
+              popupForm.appendChild(error);
+            }
+            error.textContent =
+              'Something went wrong sending your inquiry. Please email us directly at ' +
+              recipient +
+              ' or call (407) 764-0241.';
+            if (submitButton) {
+              submitButton.disabled = false;
+              submitButton.innerHTML = buttonHtml;
+            }
+          });
+
+        return;
+      }
+
+      const subject = 'Quote request — ' + business;
+
+      const body = [
+        'Name: ' + name,
+        'Business: ' + business,
+        'Email: ' + email,
+        'Phone: ' + (phone || 'Not provided'),
+        'Services needed: ' + (
+          selectedServices.join(', ') || 'Not specified'
+        ),
+        '',
+        'Project details:',
+        details,
+      ].join('\n');
+
+      const mailto =
+        `mailto:${recipient}` +
+        `?subject=${encodeURIComponent(subject)}` +
+        `&body=${encodeURIComponent(body)}`;
+
+      if (popupEmailLink) popupEmailLink.href = mailto;
+
+      window.location.href = mailto;
+
+      showPopupSuccess();
+    });
+  }
+
+  popupReset?.addEventListener('click', () => {
+    if (!popupForm || !popupFormPanel || !popupSuccess) {
+      return;
+    }
+
+    popupForm.reset();
+    popupFormPanel.hidden = false;
+    popupSuccess.hidden = true;
+    popupSuccess.classList.remove('show');
+    if (popupEmailLink) popupEmailLink.href = `mailto:${recipient}`;
+
+    const nameInput = popupForm.querySelector<HTMLInputElement>(
+      '#p-name'
+    );
+
+    nameInput?.focus();
+  });
+</script>

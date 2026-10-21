@@ -915,3 +915,8 @@ button {
     transition: none;
   }
 }
+
+/* ---------- contact popup scroll lock ---------- */
+body.popup-open {
+  overflow: hidden;
+}

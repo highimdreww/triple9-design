@@ -27,7 +27,7 @@ const principles = Array.isArray(home.why) ? home.why : [];
         <div class="hero-bottom">
           <p class="hero-description">{home.sub}</p>
           <div class="hero-ctas">
-            <a class="btn btn-accent" href={`${base}contact/`}>{home.primaryCtaLabel}</a>
+            <a class="btn btn-accent" href={`${base}contact/`} data-open-contact>{home.primaryCtaLabel}</a>
             <a class="btn btn-white" href={`${base}services/`}>{home.secondaryCtaLabel}</a>
           </div>
         </div>
@@ -105,7 +105,7 @@ const principles = Array.isArray(home.why) ? home.why : [];
       </div>
       <div class="statement-bottom reveal">
         <p>A strong identity gets noticed. A clear website builds trust. Good marketing keeps the conversation going. We make all three work together.</p>
-        <a class="btn btn-accent" href={`${base}contact/`}>Let's talk about your brand</a>
+        <a class="btn btn-accent" href={`${base}contact/`} data-open-contact>Let's talk about your brand</a>
       </div>
       <div class="statement-signature" aria-hidden="true">TRIPLE9 / DESIGN WITH INTENT</div>
     </div>
