@@ -4,61 +4,959 @@ import CtaBand from '../components/CtaBand.astro';
 import home from '../content/home.json';
 
 const base = import.meta.env.BASE_URL;
+
+const services = Array.isArray(home.services) ? home.services : [];
+const principles = Array.isArray(home.why) ? home.why : [];
 ---
+
 <BaseLayout
-  title="Triple9 Design — Websites, Branding & Marketing"
-  description="Triple9 is a digital agency for local businesses. We design websites, brands, and marketing that make customers choose you."
+  title="Triple9 Design | Websites, Branding & Marketing"
+  description="Triple9 Design builds websites, brand identities, and marketing for businesses ready to stand out."
 >
-  <section class="hero">
-    <div class="nine-motif" aria-hidden="true"><span class="n1">9</span><span class="n2">9</span><span class="n3">9</span></div>
-    <div class="wrap">
-      <p class="kicker reveal">{home.eyebrow}</p>
-      <h1 class="display reveal" set:html={home.headline}></h1>
-      <p class="sub reveal">{home.sub}</p>
-      <div class="hero-ctas reveal">
-        <a class="btn btn-accent" href={`${base}contact/`}>{home.primaryCtaLabel}</a>
-        <a class="btn btn-white" href={`${base}services/`}>{home.secondaryCtaLabel}</a>
+  <!-- HERO -->
+  <section class="hero home-hero">
+    <div class="nine-motif" aria-hidden="true">
+      <span class="n1">9</span>
+      <span class="n2">9</span>
+      <span class="n3">9</span>
+    </div>
+    <div class="wrap hero-inner">
+      <div class="hero-content">
+        <p class="kicker reveal">{home.eyebrow}</p>
+        <h1 class="display hero-headline reveal" set:html={home.headline} />
+        <div class="hero-bottom">
+          <p class="hero-description">{home.sub}</p>
+          <div class="hero-ctas">
+            <a class="btn btn-accent" href={`${base}contact/`}>{home.primaryCtaLabel}</a>
+            <a class="btn btn-white" href={`${base}services/`}>{home.secondaryCtaLabel}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-baseline" aria-hidden="true"></div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="home-intro">
+    <div class="wrap intro-layout">
+      <div class="intro-aside reveal">
+        <span class="small-rule" aria-hidden="true"></span>
+        <p>Triple9 Design</p>
+      </div>
+      <div class="intro-statement">
+        <h2 class="reveal">Looking good <span>isn't enough.</span></h2>
+        <div class="intro-detail">
+          <p>People make decisions fast. Your brand needs to look the part, say the right thing, and make the next step obvious.</p>
+          <p>We bring the design, the website, and the marketing together. Nothing feels disconnected. Nothing is there just to fill space.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Web Design</span><i></i><span>Rebrands</span><i></i><span>Social Media</span><i></i><span>Advertising</span><i></i><span>SEO</span><i></i><span>Care Plans</span><i></i>
-      <span>Web Design</span><i></i><span>Rebrands</span><i></i><span>Social Media</span><i></i><span>Advertising</span><i></i><span>SEO</span><i></i><span>Care Plans</span><i></i>
-    </div>
-  </div>
-
-  <section class="section section-soft">
+  <!-- SERVICES -->
+  <section class="home-services" id="services">
     <div class="wrap">
-      <p class="kicker reveal">{home.servicesEyebrow}</p>
-      <h2 class="display section-h reveal">{home.servicesHeading}</h2>
-      <div class="cards">
-        {home.services.map((s) => (
-          <div class="card reveal">
-            <span class="tick" aria-hidden="true"></span>
-            <h3>{s.name}</h3>
-            <p>{s.text}</p>
-          </div>
+      <div class="services-heading reveal">
+        <div>
+          <p class="kicker">{home.servicesEyebrow}</p>
+          <h2 class="display">{home.servicesHeading}</h2>
+        </div>
+        <a class="text-action" href={`${base}services/`}>
+          Explore all services
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="service-list">
+        {services.map((service) => (
+          <a class="service-list-item reveal" href={`${base}services/`}>
+            <div class="service-list-title">
+              <h3>{service.name}</h3>
+            </div>
+            <div class="service-list-description">
+              <p>{service.text}</p>
+            </div>
+            <span class="service-list-end" aria-hidden="true"><span></span></span>
+          </a>
+        ))}
+      </div>
+      <div class="services-footnote reveal">
+        <span>ONE BRAND. ONE CLEAR DIRECTION.</span>
+        <p>Start with one service or bring the whole picture together. We'll build around what your business needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DARK FEATURE -->
+  <section class="brand-statement">
+    <div class="brand-statement-texture" aria-hidden="true"></div>
+    <div class="brand-statement-art" aria-hidden="true">
+      <div class="art-disc disc-outer"></div>
+      <div class="art-disc disc-middle"></div>
+      <div class="art-disc disc-inner"></div>
+      <span class="art-nine">9</span>
+    </div>
+    <div class="wrap brand-statement-inner">
+      <div class="statement-top reveal">
+        <span class="statement-line"></span>
+        <p>GOOD DESIGN HAS A JOB TO DO.</p>
+      </div>
+      <div class="statement-main reveal">
+        <h2>Make them <span>look twice.</span> <em>Give them a reason to stay.</em></h2>
+      </div>
+      <div class="statement-bottom reveal">
+        <p>A strong identity gets noticed. A clear website builds trust. Good marketing keeps the conversation going. We make all three work together.</p>
+        <a class="btn btn-accent" href={`${base}contact/`}>Let's talk about your brand</a>
+      </div>
+      <div class="statement-signature" aria-hidden="true">TRIPLE9 / DESIGN WITH INTENT</div>
+    </div>
+  </section>
+
+  <!-- OUR APPROACH -->
+  <section class="home-approach">
+    <div class="wrap approach-layout">
+      <div class="approach-lead reveal">
+        <p class="kicker">{home.whyEyebrow}</p>
+        <h2 class="display">{home.whyHeading}</h2>
+        <p class="approach-lead-copy">We care about how it looks. We care just as much about what it does.</p>
+      </div>
+      <div class="approach-principles">
+        {principles.map((principle) => (
+          <article class="approach-principle reveal">
+            <h3>{principle.title}</h3>
+            <p>{principle.text}</p>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap">
-      <p class="kicker reveal">{home.whyEyebrow}</p>
-      <h2 class="display section-h reveal">{home.whyHeading}</h2>
-      <div class="why-grid">
-        {home.why.map((w) => (
-          <div class="reveal">
-            <h3>{w.title}</h3>
-            <p>{w.text}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
+  <!-- FINAL CTA -->
   <CtaBand />
 </BaseLayout>
+
+<style>
+  /* HERO */
+
+  .home-hero {
+    position: relative;
+    isolation: isolate;
+    min-height: min(920px, 100svh);
+    min-height: max(730px, min(920px, 100svh));
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+    padding: 0;
+    background: #fafafa;
+    color: #0b0b0c;
+  }
+
+  .home-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(
+        ellipse at 85% 50%,
+        rgba(245, 174, 144, .11),
+        transparent 50%
+      ),
+      #fafafa;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 185px;
+    padding-bottom: 32px;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding-bottom: clamp(95px, 12vh, 150px);
+  }
+
+  .hero-headline {
+    position: relative;
+    max-width: 1150px;
+    margin: 34px 0 55px;
+    font-size: clamp(70px, 10.2vw, 165px);
+    line-height: .94;
+    letter-spacing: -.075em;
+  }
+
+  .hero-headline :global(.accent) {
+    color: #ff4d00;
+  }
+
+  .nine-motif {
+    position: absolute;
+    z-index: -1;
+    top: 1%;
+    right: -5%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(390px, 46vw, 850px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -.145em;
+    transform: none;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .nine-motif .n1 {
+    color: #efeff1;
+  }
+
+  .nine-motif .n2 {
+    color: #f5ae90;
+  }
+
+  .nine-motif .n3 {
+    color: #ff4d00;
+  }
+
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 60px;
+    max-width: 1050px;
+  }
+
+  .hero-description {
+    max-width: 460px;
+    margin: 0;
+    color: #505054;
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.65;
+  }
+
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 0;
+  }
+
+  .hero-baseline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding-top: 24px;
+    border-top: 1px solid #dcdcdf;
+    color: #77777b;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .12em;
+  }
+
+  /* INTRO */
+
+  .home-intro {
+    padding: clamp(120px, 13vw, 215px) 0;
+    background: #fff;
+  }
+
+  .intro-layout {
+    display: grid;
+    grid-template-columns: .32fr 1fr;
+    gap: clamp(40px, 7vw, 125px);
+  }
+
+  .intro-aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-top: 20px;
+  }
+
+  .small-rule {
+    display: block;
+    width: 38px;
+    height: 3px;
+    background: #ff4d00;
+  }
+
+  .intro-aside p {
+    max-width: 180px;
+    margin: 0;
+    color: #66666a;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.7;
+    letter-spacing: .1em;
+  }
+
+  .intro-statement h2 {
+    max-width: 1080px;
+    margin: 0;
+    font-size: clamp(60px, 8.2vw, 135px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -.075em;
+  }
+
+  .intro-statement h2 span {
+    display: block;
+    color: #ff4d00;
+  }
+
+  .intro-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(30px, 5vw, 90px);
+    max-width: 850px;
+    margin-top: 65px;
+    margin-left: auto;
+  }
+
+  .intro-detail p {
+    margin: 0;
+    color: #626267;
+    font-size: clamp(16px, 1.35vw, 19px);
+    line-height: 1.85;
+  }
+
+  /* SERVICES */
+
+  .home-services {
+    padding: clamp(110px, 11vw, 175px) 0;
+    background: #f4f4f5;
+    color: #0b0b0c;
+  }
+
+  .services-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 45px;
+    margin-bottom: 75px;
+  }
+
+  .services-heading h2 {
+    max-width: 920px;
+    margin: 25px 0 0;
+    font-size: clamp(58px, 7.3vw, 115px);
+    line-height: 1.03;
+  }
+
+  .text-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 22px;
+    flex-shrink: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ff4d00;
+    color: #0b0b0c;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .text-action > span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #ff4d00;
+    transition: width .25s ease;
+  }
+
+  .text-action:hover > span {
+    width: 42px;
+  }
+
+  .service-list {
+    border-top: 1px solid #ceced1;
+  }
+
+  .service-list-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, .65fr) 52px;
+    align-items: center;
+    gap: clamp(20px, 4vw, 70px);
+    min-height: 155px;
+    padding: 27px 8px;
+    border-bottom: 1px solid #ceced1;
+    color: #0b0b0c;
+    transition: padding .3s ease, background .3s ease;
+  }
+
+  .service-list-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    background: #ff4d00;
+    transition: width .3s ease;
+  }
+
+  .service-list-item:hover {
+    padding-left: 28px;
+    background: rgba(255, 255, 255, .55);
+  }
+
+  .service-list-item:hover::before {
+    width: 4px;
+  }
+
+  .service-list-title h3 {
+    margin: 0;
+    font-size: clamp(30px, 3.8vw, 62px);
+    font-weight: 750;
+    line-height: 1.12;
+    letter-spacing: -.055em;
+    transition: color .25s ease;
+  }
+
+  .service-list-item:hover h3 {
+    color: #ff4d00;
+  }
+
+  .service-list-description p {
+    max-width: 340px;
+    margin: 0;
+    color: #68686c;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .service-list-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .service-list-end > span {
+    display: block;
+    width: 34px;
+    height: 34px;
+    border: 1px solid #b9b9bd;
+    border-radius: 50%;
+    background:
+      linear-gradient(#ff4d00, #ff4d00) center / 13px 2px no-repeat;
+    transition:
+      background-color .25s ease,
+      border-color .25s ease,
+      transform .25s ease;
+  }
+
+  .service-list-item:hover .service-list-end > span {
+    transform: scale(1.1);
+    border-color: #ff4d00;
+    background-color: #fff0e9;
+  }
+
+  .services-footnote {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 50px;
+    padding-top: 45px;
+  }
+
+  .services-footnote > span {
+    color: #ff4d00;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .12em;
+  }
+
+  .services-footnote p {
+    max-width: 430px;
+    margin: 0;
+    color: #6b6b6e;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  /* DARK FEATURE */
+
+  .brand-statement {
+    position: relative;
+    isolation: isolate;
+    min-height: 850px;
+    overflow: hidden;
+    background: #0b0b0c;
+    color: #fff;
+  }
+
+  .brand-statement-texture {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    opacity: .65;
+    background:
+      radial-gradient(
+        ellipse at 85% 45%,
+        rgba(255, 77, 0, .16),
+        transparent 45%
+      ),
+      radial-gradient(
+        ellipse at 10% 95%,
+        rgba(255, 255, 255, .06),
+        transparent 45%
+      );
+  }
+
+  .brand-statement-texture::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: .22;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 3px,
+        rgba(255, 255, 255, .025) 4px
+      );
+  }
+
+  .brand-statement-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    min-height: 850px;
+    padding-top: 75px;
+    padding-bottom: 35px;
+  }
+
+  .statement-top {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+
+  .statement-line {
+    width: 44px;
+    height: 3px;
+    background: #ff4d00;
+  }
+
+  .statement-top p {
+    margin: 0;
+    color: #b7b7ba;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+  }
+
+  .statement-main {
+    position: relative;
+    z-index: 2;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 100px 0 70px;
+  }
+
+  .statement-main h2 {
+    max-width: 1250px;
+    margin: 0;
+    font-size: clamp(67px, 9.4vw, 150px);
+    font-weight: 800;
+    line-height: .99;
+    letter-spacing: -.075em;
+  }
+
+  .statement-main h2 > span {
+    display: block;
+    color: #ff4d00;
+  }
+
+  .statement-main h2 em {
+    display: block;
+    max-width: 950px;
+    margin-top: 30px;
+    color: #c4c4c7;
+    font-size: clamp(27px, 3.7vw, 58px);
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -.055em;
+  }
+
+  .statement-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 60px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, .22);
+  }
+
+  .statement-bottom p {
+    max-width: 520px;
+    margin: 0;
+    color: #a8a8ac;
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  .statement-signature {
+    margin-top: 90px;
+    color: #77777c;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .16em;
+  }
+
+  .brand-statement-art {
+    position: absolute;
+    z-index: -1;
+    top: 5%;
+    right: -15%;
+    width: min(850px, 80vw);
+    aspect-ratio: 1;
+    opacity: .7;
+    pointer-events: none;
+  }
+
+  .art-disc {
+    position: absolute;
+    border: 1px solid rgba(255, 77, 0, .28);
+    border-radius: 50%;
+  }
+
+  .disc-outer {
+    inset: 0;
+    box-shadow: 0 0 100px rgba(255, 77, 0, .04);
+  }
+
+  .disc-middle {
+    inset: 12%;
+    border-color: rgba(255, 77, 0, .45);
+  }
+
+  .disc-inner {
+    inset: 27%;
+    border-color: rgba(255, 77, 0, .7);
+    background:
+      radial-gradient(
+        circle,
+        rgba(255, 77, 0, .15),
+        transparent 70%
+      );
+  }
+
+  .art-nine {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: rgba(255, 77, 0, .16);
+    font-size: clamp(260px, 34vw, 600px);
+    font-weight: 900;
+    letter-spacing: -.1em;
+  }
+
+  /* APPROACH */
+
+  .home-approach {
+    padding: clamp(120px, 12vw, 190px) 0;
+    background: #fff;
+    color: #0b0b0c;
+  }
+
+  .approach-layout {
+    display: grid;
+    grid-template-columns: .95fr 1fr;
+    gap: clamp(65px, 10vw, 170px);
+    align-items: start;
+  }
+
+  .approach-lead {
+    position: sticky;
+    top: 125px;
+  }
+
+  .approach-lead h2 {
+    max-width: 600px;
+    margin: 30px 0;
+    font-size: clamp(65px, 7.5vw, 120px);
+    line-height: 1.02;
+  }
+
+  .approach-lead-copy {
+    max-width: 380px;
+    margin: 35px 0 0;
+    color: #6b6b6e;
+    font-size: 19px;
+    line-height: 1.75;
+  }
+
+  .approach-principles {
+    border-top: 1px solid #d8d8da;
+  }
+
+  .approach-principle {
+    padding: 48px 0 55px;
+    border-bottom: 1px solid #d8d8da;
+  }
+
+  .approach-principle h3 {
+    margin: 0 0 20px;
+    font-size: clamp(30px, 3.2vw, 50px);
+    font-weight: 750;
+    line-height: 1.2;
+    letter-spacing: -.055em;
+  }
+
+  .approach-principle p {
+    max-width: 440px;
+    margin: 0;
+    color: #6b6b6e;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  /* RESPONSIVE */
+
+  @media (max-width: 1100px) {
+    .hero-bottom {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .nine-motif {
+      right: -20%;
+      opacity: .8;
+    }
+
+    .service-list-item {
+      grid-template-columns: 1fr .8fr 38px;
+    }
+  }
+
+  @media (max-width: 960px) {
+    .home-hero {
+      min-height: 740px;
+    }
+
+    .hero-inner {
+      padding-top: 155px;
+    }
+
+    .nine-motif {
+      top: 12%;
+      right: -35%;
+      font-size: 55vw;
+      opacity: .45;
+    }
+
+    .intro-layout,
+    .approach-layout {
+      grid-template-columns: 1fr;
+      gap: 55px;
+    }
+
+    .intro-aside {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .intro-aside p {
+      max-width: none;
+    }
+
+    .approach-lead {
+      position: static;
+    }
+
+    .services-heading {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .brand-statement,
+    .brand-statement-inner {
+      min-height: 760px;
+    }
+
+    .brand-statement-art {
+      right: -35%;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .home-hero {
+      min-height: 730px;
+    }
+
+    .hero-inner {
+      padding-top: 135px;
+      padding-bottom: 25px;
+    }
+
+    .hero-content {
+      padding-bottom: 85px;
+    }
+
+    .hero-headline {
+      margin: 28px 0 35px;
+      font-size: clamp(58px, 13vw, 85px);
+    }
+
+    .nine-motif {
+      top: 14%;
+      right: -42%;
+      font-size: 80vw;
+      opacity: .32;
+    }
+
+    .hero-description {
+      font-size: 17px;
+    }
+
+    .hero-ctas {
+      width: 100%;
+    }
+
+    .hero-ctas .btn {
+      flex: 1 1 auto;
+      justify-content: center;
+    }
+
+    .hero-baseline {
+      font-size: 9px;
+      letter-spacing: .07em;
+    }
+
+    .home-intro {
+      padding: 100px 0;
+    }
+
+    .intro-statement h2 {
+      font-size: clamp(49px, 11vw, 72px);
+    }
+
+    .intro-detail {
+      grid-template-columns: 1fr;
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    .home-services {
+      padding: 95px 0;
+    }
+
+    .services-heading {
+      margin-bottom: 45px;
+    }
+
+    .services-heading h2 {
+      font-size: clamp(50px, 11vw, 75px);
+    }
+
+    .service-list-item {
+      grid-template-columns: 1fr 35px;
+      gap: 12px;
+      min-height: 0;
+      padding: 29px 0;
+    }
+
+    .service-list-title h3 {
+      font-size: clamp(28px, 7.2vw, 43px);
+    }
+
+    .service-list-description {
+      grid-column: 1;
+      grid-row: 2;
+    }
+
+    .service-list-description p {
+      font-size: 14px;
+    }
+
+    .service-list-end {
+      grid-column: 2;
+      grid-row: 1 / 3;
+    }
+
+    .service-list-item:hover {
+      padding-left: 12px;
+    }
+
+    .services-footnote {
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .brand-statement,
+    .brand-statement-inner {
+      min-height: 770px;
+    }
+
+    .brand-statement-inner {
+      padding-top: 55px;
+    }
+
+    .statement-main {
+      padding: 85px 0 55px;
+    }
+
+    .statement-main h2 {
+      font-size: clamp(57px, 12vw, 82px);
+    }
+
+    .statement-main h2 em {
+      font-size: clamp(25px, 6vw, 39px);
+    }
+
+    .statement-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 30px;
+    }
+
+    .statement-bottom p {
+      font-size: 15px;
+    }
+
+    .statement-signature {
+      margin-top: 55px;
+    }
+
+    .brand-statement-art {
+      top: 18%;
+      right: -75%;
+      width: 700px;
+      opacity: .45;
+    }
+
+    .home-approach {
+      padding: 100px 0;
+    }
+
+    .approach-lead h2 {
+      font-size: clamp(55px, 12vw, 85px);
+    }
+
+    .approach-principle {
+      padding: 35px 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-list-item,
+    .service-list-title h3,
+    .service-list-end > span,
+    .text-action > span {
+      transition: none;
+    }
+  }
+</style>
