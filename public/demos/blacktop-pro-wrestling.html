@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#100c14">
+  <meta name="description" content="BLACKTOP Pro Wrestling. Hard nights, bad blood, and live independent wrestling in Central Florida.">
+  <title>BLACKTOP Pro Wrestling | Central Florida</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --night: #100c14;
+      --black: #09070b;
+      --panel: #19131e;
+      --purple: #7b3bb2;
+      --deep-purple: #412058;
+      --chalk: #f0ede9;
+      --dim: #a9a0ab;
+      --hair: rgba(240, 237, 233, .23);
+      --display: 'Barlow Condensed', Impact, sans-serif;
+      --body: Inter, Arial, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { margin: 0; background: var(--night); color: var(--chalk); font-family: var(--body); }
+    body::before { content: ''; position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: .14; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.09) 4px, transparent 5px); }
+    body.menu-open { overflow: hidden; }
+    ::selection { background: var(--purple); color: white; }
+    a { color: inherit; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; }
+    :focus-visible { outline: 3px solid #b982e9; outline-offset: 4px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    .wrap { width: min(100% - 48px, 1480px); margin-inline: auto; }
+    .eyebrow { margin: 0; color: #c4b6ca; font-size: .7rem; font-weight: 800; letter-spacing: .19em; text-transform: uppercase; }
+    .display { font-family: var(--display); font-weight: 900; text-transform: uppercase; line-height: .81; letter-spacing: -.025em; }
+    .block-button { display: inline-flex; align-items: center; justify-content: center; min-height: 55px; padding: 15px 27px; border: 2px solid var(--purple); border-radius: 1px; background: var(--purple); color: #fff; font-family: var(--body); font-size: .78rem; font-weight: 900; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; transition: background .18s, border-color .18s, transform .18s; }
+    .block-button:hover { background: #9855cf; border-color: #9855cf; transform: translateY(-2px); }
+    .block-button.light { background: var(--chalk); color: var(--black); border-color: var(--chalk); }
+    .block-button.light:hover { background: #fff; border-color: #fff; }
+    .site-header { position: sticky; top: 0; z-index: 40; height: 79px; background: rgba(9,7,11,.97); border-bottom: 1px solid var(--hair); }
+    .header-inner { display: flex; height: 100%; align-items: center; gap: 29px; }
+    .brand { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .brand-cut { display: block; width: 9px; height: 35px; background: var(--purple); transform: skew(-16deg); }
+    .brand-name { font: 900 2rem/.77 var(--display); letter-spacing: -.035em; }
+    .brand-name small { display: block; margin-top: 5px; font: 800 .5rem/1 var(--body); letter-spacing: .33em; }
+    .site-nav { display: flex; align-items: center; gap: clamp(14px, 2.1vw, 36px); margin-left: auto; }
+    .site-nav a, .footer-nav a { font-size: .71rem; font-weight: 800; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; transition: color .18s; }
+    .site-nav a:hover, .footer-nav a:hover { color: #c18dec; }
+    .header-ticket { min-height: 43px; padding: 11px 18px; font-size: .7rem; }
+    .menu-button { display: none; border: 1px solid var(--hair); background: none; color: var(--chalk); padding: 10px; }
+    .menu-button span { display: block; width: 23px; height: 2px; margin: 5px 0; background: currentColor; transition: transform .2s, opacity .2s; }
+    .menu-scrim { display: none; }
+    .hero { position: relative; overflow: hidden; min-height: 700px; padding: 50px 0 63px; background: var(--black); }
+    .hero::after { content: ''; position: absolute; top: 105px; right: -90px; width: 29vw; height: 29vw; border: min(5vw,75px) solid var(--deep-purple); transform: rotate(-19deg); opacity: .4; pointer-events: none; }
+    .hero > .wrap { position: relative; z-index: 1; }
+    .hero-topline { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 26px; border-bottom: 1px solid var(--hair); }
+    .hero-status { display: inline-flex; align-items: center; gap: 9px; }
+    .status-dot { width: 7px; height: 7px; background: #b37ce0; box-shadow: 0 0 0 4px rgba(123,59,178,.24); }
+    .hero-title { position: relative; width: 100%; margin: 27px 0 0; font: 900 clamp(5rem, 20.5vw, 22rem)/.73 var(--display); letter-spacing: -.052em; white-space: nowrap; }
+    .hero-title span { display: block; }
+    .hero-title .title-underside { margin-top: 11px; padding-left: 2px; color: var(--purple); font-size: .27em; line-height: 1; letter-spacing: .26em; }
+    .hero-bottom { display: grid; grid-template-columns: 1fr minmax(340px, .7fr); gap: 60px; align-items: end; margin-top: 85px; }
+    .hero-statement { max-width: 660px; margin: 0; font: 800 clamp(2.8rem, 5.1vw, 5.9rem)/.9 var(--display); text-transform: uppercase; }
+    .hero-statement em { color: #b67ae8; font-style: normal; }
+    .hero-lede { margin: 20px 0 0; max-width: 430px; color: var(--dim); font-size: .92rem; line-height: 1.65; }
+    .event-panel { padding: 25px 0 0 30px; border-left: 3px solid var(--purple); }
+    .event-panel h2 { margin: 13px 0 5px; font: 900 clamp(3.5rem, 5.2vw, 6.5rem)/.85 var(--display); text-transform: uppercase; }
+    .event-meta { margin: 12px 0 20px; color: #ddd3df; font-size: .8rem; line-height: 1.9; font-weight: 600; }
+    .event-panel .block-button { width: 100%; }
+    .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 28px; padding-top: 17px; border-top: 1px solid var(--hair); }
+    .count-unit strong { display: block; font: 800 clamp(2rem, 3.6vw, 3.5rem)/1 var(--display); font-variant-numeric: tabular-nums; }
+    .count-unit span { display: block; margin-top: 6px; color: var(--dim); font-size: .58rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .section { padding-block: clamp(76px, 9vw, 145px); }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 39px; }
+    .section-heading h2 { margin: 13px 0 0; font: 900 clamp(4.4rem, 10vw, 10rem)/.78 var(--display); text-transform: uppercase; }
+    .section-heading p:last-child { max-width: 290px; margin: 0; font-size: .85rem; line-height: 1.6; color: var(--dim); }
+    .shows { background: #151019; }
+    .show-row { display: grid; grid-template-columns: 125px minmax(0, 1fr) minmax(180px, .55fr) auto; align-items: center; column-gap: clamp(16px, 3vw, 44px); min-height: 147px; padding: 24px 4px; border-top: 1px solid var(--hair); transition: padding-left .18s, background .18s; }
+    .show-row:last-child { border-bottom: 1px solid var(--hair); }
+    .show-row:hover { background: rgba(123,59,178,.10); padding-left: 15px; }
+    .show-date strong { display: block; font: 900 3.8rem/.74 var(--display); }
+    .show-date span { display: block; margin-top: 9px; color: #cbb7d3; font-size: .65rem; font-weight: 800; letter-spacing: .18em; }
+    .show-name { margin: 0; font: 900 clamp(2rem, 3.6vw, 4.4rem)/.88 var(--display); text-transform: uppercase; }
+    .show-note { margin: 8px 0 0; color: var(--purple); font-size: .65rem; letter-spacing: .13em; font-weight: 900; text-transform: uppercase; }
+    .show-place { color: var(--chalk); font-size: .81rem; font-weight: 700; }
+    .show-place span { display: block; margin-top: 7px; color: var(--dim); font-size: .73rem; font-weight: 500; }
+    .text-ticket { border: 0; border-bottom: 2px solid var(--purple); padding: 7px 0; background: none; color: var(--chalk); font-size: .68rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; transition: color .18s, border-color .18s; }
+    .text-ticket:hover { color: #ca9ef0; border-color: #ca9ef0; }
+    .feud { overflow: hidden; background: var(--black); }
+    .feud-top { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; align-items: end; }
+    .feud-headline { max-width: 900px; margin: 22px 0 0; font: 900 clamp(4.8rem, 10.3vw, 11rem)/.79 var(--display); text-transform: uppercase; }
+    .feud-headline em { color: var(--purple); font-style: normal; }
+    .feud-intro { max-width: 370px; margin: 0 0 9px auto; color: var(--dim); line-height: 1.7; font-size: .9rem; }
+    .feud-spread { display: grid; grid-template-columns: 1fr 1fr; margin-top: 58px; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
+    .feud-side { position: relative; min-height: 365px; padding: 35px clamp(22px, 4vw, 60px) 45px 0; }
+    .feud-side + .feud-side { padding-left: clamp(22px, 4vw, 60px); padding-right: 0; border-left: 1px solid var(--hair); }
+    .feud-side h3 { margin: 16px 0 25px; font: 900 clamp(4rem, 7.1vw, 8rem)/.79 var(--display); text-transform: uppercase; }
+    .feud-side blockquote { max-width: 500px; margin: 0; font: 700 clamp(1.5rem, 2.5vw, 2.8rem)/1.05 var(--display); text-transform: uppercase; }
+    .feud-side cite { display: block; margin-top: 24px; font: normal 700 .67rem var(--body); color: var(--dim); letter-spacing: .1em; text-transform: uppercase; }
+    .feud-side:nth-child(2) h3 { color: #b17ad8; }
+    .feud-stip { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 24px 32px; margin-top: 0; background: var(--deep-purple); }
+    .feud-stip strong { font: 900 clamp(2.3rem, 4.8vw, 5rem)/.86 var(--display); text-transform: uppercase; }
+    .feud-stip span { font-size: .75rem; font-weight: 800; letter-spacing: .09em; text-align: right; text-transform: uppercase; }
+    .roster { background: #17111b; }
+    .roster-header { padding-bottom: 23px; border-bottom: 2px solid var(--chalk); }
+    .roster-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(325px, .72fr); align-items: center; gap: 30px; padding: 27px 0; border-bottom: 1px solid var(--hair); transition: padding-left .2s, background .2s; }
+    .roster-row:hover { padding-left: 12px; background: rgba(123,59,178,.09); }
+    .roster-row:nth-child(even) .roster-main { padding-left: clamp(0px, 3vw, 45px); }
+    .roster-row:hover h3 { color: #c38deb; }
+    .roster-main h3 { margin: 5px 0 0; font: 900 clamp(2.7rem, 5.5vw, 6.5rem)/.8 var(--display); text-transform: uppercase; transition: color .2s; }
+    .roster-nickname { display: block; min-height: 14px; color: #a885c0; font-size: .6rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+    .roster-facts { display: grid; grid-template-columns: 1.15fr .8fr 1fr; gap: 16px; margin: 0; }
+    .roster-facts div { min-width: 0; }
+    .roster-facts dt { margin-bottom: 7px; color: var(--dim); font-size: .57rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .roster-facts dd { margin: 0; font-size: .72rem; font-weight: 700; line-height: 1.45; }
+    .titles { background: var(--deep-purple); }
+    .titles .eyebrow, .titles .section-heading p:last-child { color: #e0cbe8; }
+    .title-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(210px, .7fr); gap: 30px; align-items: center; padding: 30px 0; border-top: 1px solid rgba(255,255,255,.32); }
+    .title-row:last-child { border-bottom: 1px solid rgba(255,255,255,.32); }
+    .belt-name { margin: 0; font: 900 clamp(2.9rem, 5.4vw, 6.2rem)/.85 var(--display); text-transform: uppercase; }
+    .belt-owner { justify-self: end; width: min(100%, 380px); }
+    .belt-owner span { display: block; margin-bottom: 8px; font-size: .6rem; font-weight: 800; letter-spacing: .15em; opacity: .8; text-transform: uppercase; }
+    .belt-owner strong { font: 900 clamp(1.8rem, 3.1vw, 3.6rem)/.92 var(--display); text-transform: uppercase; }
+    .belt-owner small { display: block; margin-top: 8px; font-size: .67rem; line-height: 1.5; }
+    .watch { padding: 100px 0; background: var(--black); }
+    .watch-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(230px, .5fr); gap: 60px; align-items: end; }
+    .watch-title { max-width: 970px; margin: 22px 0 0; font: 900 clamp(5rem, 12vw, 13rem)/.76 var(--display); text-transform: uppercase; }
+    .watch-title span { color: #a361d5; }
+    .watch-aside { padding: 0 0 5px 22px; border-left: 3px solid var(--purple); }
+    .watch-aside h3 { margin: 7px 0 10px; font: 900 2.5rem/.9 var(--display); text-transform: uppercase; }
+    .watch-aside p { color: var(--dim); font-size: .83rem; line-height: 1.7; }
+    .watch-aside a { display: inline-block; margin-top: 9px; padding-bottom: 5px; border-bottom: 2px solid var(--purple); font-size: .7rem; font-weight: 900; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
+    .watch-aside a:hover { color: #c593ed; }
+    .site-footer { padding: 42px 0 28px; border-top: 1px solid var(--hair); background: #130e17; }
+    .footer-top { display: flex; justify-content: space-between; gap: 30px; align-items: start; }
+    .footer-lockup { font: 900 clamp(3rem, 5vw, 6rem)/.8 var(--display); text-transform: uppercase; }
+    .footer-lockup span { display: block; color: #ae76d8; }
+    .footer-right { display: flex; gap: 55px; }
+    .footer-nav, .footer-social { display: flex; flex-direction: column; gap: 14px; }
+    .footer-social a { color: var(--dim); font-size: .7rem; font-weight: 700; text-decoration: none; }
+    .footer-social a:hover { color: var(--chalk); }
+    .footer-bottom { display: flex; justify-content: space-between; gap: 15px; margin-top: 70px; padding-top: 19px; border-top: 1px solid var(--hair); color: var(--dim); font-size: .64rem; line-height: 1.5; }
+    .footer-bottom p { margin: 0; }
+    .ticket-dialog { width: min(100% - 30px, 550px); max-height: min(92vh, 780px); border: 1px solid #a56bc8; padding: 0; background: #17111c; color: var(--chalk); box-shadow: 0 40px 120px rgba(0,0,0,.75); }
+    .ticket-dialog::backdrop { background: rgba(0,0,0,.82); }
+    .dialog-inner { padding: clamp(24px, 5vw, 42px); }
+    .dialog-head { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
+    .dialog-head h2 { margin: 10px 0 24px; font: 900 4rem/.85 var(--display); text-transform: uppercase; }
+    .dialog-close { flex: 0 0 auto; width: 38px; height: 38px; border: 1px solid var(--hair); background: none; color: var(--chalk); font-size: 1.7rem; line-height: 1; }
+    .ticket-form { display: grid; gap: 17px; }
+    .ticket-field { display: grid; gap: 7px; color: var(--dim); font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .ticket-field select { width: 100%; min-height: 48px; border: 1px solid #685570; border-radius: 0; padding: 10px; background: #24182b; color: #fff; font-size: .85rem; letter-spacing: 0; }
+    .ticket-total { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 17px; border-top: 1px solid var(--hair); font-size: .8rem; font-weight: 800; text-transform: uppercase; }
+    .ticket-total strong { font: 900 2.7rem/1 var(--display); }
+    .demo-note { margin: 0; color: var(--dim); font-size: .72rem; line-height: 1.6; }
+    .dialog-status { min-height: 1.2em; margin: 0; color: #d8b3ef; font-size: .8rem; line-height: 1.5; }
+    @media (max-width: 1050px) {
+      .header-inner { gap: 18px; }
+      .site-nav { gap: 16px; }
+      .hero-bottom { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .show-row { grid-template-columns: 85px minmax(0, 1fr) minmax(145px, .5fr) auto; }
+      .roster-row { grid-template-columns: 1fr; gap: 17px; }
+      .roster-facts { max-width: 650px; }
+    }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 36px, 1480px); }
+      .site-header { height: 66px; }
+      .brand-name { font-size: 1.73rem; }
+      .brand-cut { height: 30px; }
+      .header-inner { gap: 12px; }
+      .header-ticket { margin-left: auto; min-height: 36px; padding: 8px 11px; font-size: .62rem; }
+      .menu-button { display: block; padding: 6px 8px; }
+      .site-nav { position: fixed; z-index: 43; top: 66px; right: 0; left: 0; display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 20px 24px 32px; background: #18101e; border-bottom: 2px solid var(--purple); transform: translateY(-125%); visibility: hidden; opacity: 0; transition: transform .23s, opacity .23s, visibility .23s; }
+      .site-nav.is-open { transform: translateY(0); opacity: 1; visibility: visible; }
+      .site-nav a { padding: 16px 0; border-bottom: 1px solid var(--hair); font: 900 2.5rem/.9 var(--display); }
+      .menu-scrim.is-open { position: fixed; z-index: 39; inset: 66px 0 0; display: block; background: rgba(0,0,0,.72); }
+      .menu-button[aria-expanded="true"] span:first-child { transform: translateY(7px) rotate(45deg); }
+      .menu-button[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .menu-button[aria-expanded="true"] span:last-child { transform: translateY(-7px) rotate(-45deg); }
+      .hero { min-height: auto; padding: 28px 0 68px; }
+      .hero::after { top: 150px; right: -70px; width: 210px; height: 210px; border-width: 28px; }
+      .hero-topline { padding-bottom: 19px; }
+      .hero-topline .eyebrow { font-size: .57rem; }
+      .hero-title { margin-top: 35px; font-size: 21vw; }
+      .hero-title .title-underside { margin-top: 12px; font-size: .3em; }
+      .hero-bottom { grid-template-columns: 1fr; gap: 39px; margin-top: 58px; }
+      .hero-statement { font-size: clamp(3.8rem, 10vw, 6rem); }
+      .event-panel { padding-left: 22px; }
+      .event-panel h2 { font-size: clamp(3.5rem, 13vw, 6rem); }
+      .count-unit strong { font-size: clamp(2.3rem, 8vw, 3rem); }
+      .section-heading { align-items: start; flex-direction: column; gap: 20px; }
+      .section-heading h2 { font-size: clamp(4.5rem, 15vw, 8rem); }
+      .show-row { grid-template-columns: 78px minmax(0, 1fr) auto; row-gap: 13px; min-height: 0; padding: 22px 0; }
+      .show-date strong { font-size: 3.25rem; }
+      .show-name { font-size: clamp(2.2rem, 7vw, 3.8rem); }
+      .show-place { grid-column: 2; }
+      .text-ticket { grid-column: 3; grid-row: 1 / 3; }
+      .feud-top, .feud-spread, .watch-layout { grid-template-columns: 1fr; }
+      .feud-headline { font-size: clamp(5rem, 15vw, 8rem); }
+      .feud-intro { max-width: 500px; margin: 0; }
+      .feud-spread { margin-top: 35px; }
+      .feud-side { min-height: 0; padding: 28px 0 34px; }
+      .feud-side + .feud-side { padding: 32px 0 38px; border-left: 0; border-top: 1px solid var(--hair); }
+      .feud-side h3 { font-size: clamp(4.4rem, 14vw, 7rem); }
+      .feud-side blockquote { font-size: clamp(1.9rem, 5.8vw, 2.7rem); }
+      .feud-stip { align-items: start; flex-direction: column; padding: 25px; }
+      .feud-stip span { text-align: left; }
+      .roster-row:nth-child(even) .roster-main { padding-left: 0; }
+      .title-row { grid-template-columns: 1fr; gap: 16px; }
+      .belt-owner { justify-self: start; }
+      .watch { padding-block: 77px; }
+      .watch-layout { gap: 40px; }
+      .watch-title { font-size: clamp(5.2rem, 16vw, 9rem); }
+      .footer-top { flex-direction: column; gap: 45px; }
+      .footer-bottom { margin-top: 50px; }
+    }
+    @media (max-width: 430px) {
+      .hero-title { font-size: 20.7vw; }
+      .hero-topline { gap: 12px; }
+      .hero-topline .eyebrow:last-child { text-align: right; }
+      .hero-statement { font-size: clamp(2.8rem, 12.4vw, 3.4rem); }
+      .feud-headline { font-size: clamp(3.8rem, 15vw, 5rem); }
+      .watch-title { font-size: clamp(4.3rem, 16vw, 5.2rem); }
+      .show-row { grid-template-columns: 55px minmax(0, 1fr); gap: 13px; }
+      .show-date strong { font-size: 2.7rem; }
+      .show-date span { font-size: .58rem; }
+      .show-name { font-size: 2.5rem; }
+      .show-place { grid-column: 2; }
+      .text-ticket { grid-column: 2; grid-row: auto; justify-self: start; }
+      .roster-main h3 { font-size: clamp(2.8rem, 10vw, 4rem); }
+      .roster-facts { grid-template-columns: 1.25fr .8fr; row-gap: 12px; }
+      .roster-facts div:last-child { grid-column: 1 / -1; }
+      .footer-right { gap: 42px; }
+      .footer-bottom { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="BLACKTOP Pro Wrestling, home">
+        <span class="brand-cut" aria-hidden="true"></span>
+        <span class="brand-name">BLACKTOP<small>PRO WRESTLING</small></span>
+      </a>
+      <nav class="site-nav" id="primary-nav" aria-label="Main navigation">
+        <a href="#events">Events</a>
+        <a href="#roster">Roster</a>
+        <a href="#titles">Titles</a>
+        <a href="#watch">Watch</a>
+      </nav>
+      <button class="block-button header-ticket" type="button" data-event="NO SAFE GROUND">Tickets</button>
+      <button class="menu-button" type="button" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="menu-scrim" aria-hidden="true"></div>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <div class="hero-topline">
+          <p class="eyebrow hero-status"><span class="status-dot" aria-hidden="true"></span> Central Florida independent wrestling</p>
+          <p class="eyebrow">Hard nights since 2022</p>
+        </div>
+        <h1 class="hero-title" id="hero-title"><span>BLACKTOP</span><span class="title-underside">PRO WRESTLING</span></h1>
+        <div class="hero-bottom">
+          <div>
+            <p class="hero-statement">NO EASY WINS.<br><em>NO QUIET NIGHTS.</em></p>
+            <p class="hero-lede">No giant screens. No safe distance. Just a ring, a crowd, and people with something to prove.</p>
+          </div>
+          <div class="event-panel">
+            <p class="eyebrow">Next fight night</p>
+            <h2>NO SAFE<br>GROUND</h2>
+            <p class="event-meta"><time datetime="2026-11-14T19:30:00-05:00">Saturday, November 14, 2026 · 7:30 PM</time><br>Foundry Hall · Orlando, FL</p>
+            <button class="block-button" type="button" data-event="NO SAFE GROUND">Buy tickets</button>
+            <div class="countdown" id="countdown" aria-label="Time until No Safe Ground" aria-live="off">
+              <div class="count-unit"><strong id="days">00</strong><span>Days</span></div>
+              <div class="count-unit"><strong id="hours">00</strong><span>Hours</span></div>
+              <div class="count-unit"><strong id="minutes">00</strong><span>Mins</span></div>
+              <div class="count-unit"><strong id="seconds">00</strong><span>Secs</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shows" id="events" aria-labelledby="events-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><p class="eyebrow">On the calendar</p><h2 id="events-title">NEXT UP.</h2></div>
+          <p>Four nights on the books. Every one of them has a reason to show up.</p>
+        </div>
+        <div class="show-list">
+          <article class="show-row">
+            <div class="show-date"><strong>14</strong><span>NOV 2026</span></div>
+            <div><h3 class="show-name">No Safe Ground</h3><p class="show-note">Steel cage main event</p></div>
+            <div class="show-place">Foundry Hall<span>Orlando, FL</span></div>
+            <button class="text-ticket" type="button" data-event="NO SAFE GROUND">Tickets</button>
+          </article>
+          <article class="show-row">
+            <div class="show-date"><strong>28</strong><span>NOV 2026</span></div>
+            <div><h3 class="show-name">Nothing Left</h3><p class="show-note">Thanksgiving weekend</p></div>
+            <div class="show-place">The Freight Room<span>Sanford, FL</span></div>
+            <button class="text-ticket" type="button" data-event="NOTHING LEFT">Tickets</button>
+          </article>
+          <article class="show-row">
+            <div class="show-date"><strong>19</strong><span>DEC 2026</span></div>
+            <div><h3 class="show-name">Final Warning</h3><p class="show-note">Year-end blowoff</p></div>
+            <div class="show-place">Mill House<span>Lakeland, FL</span></div>
+            <button class="text-ticket" type="button" data-event="FINAL WARNING">Tickets</button>
+          </article>
+          <article class="show-row">
+            <div class="show-date"><strong>16</strong><span>JAN 2027</span></div>
+            <div><h3 class="show-name">Four Years Deep</h3><p class="show-note">Anniversary night</p></div>
+            <div class="show-place">Foundry Hall<span>Orlando, FL</span></div>
+            <button class="text-ticket" type="button" data-event="FOUR YEARS DEEP">Tickets</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section feud" aria-labelledby="feud-title">
+      <div class="wrap">
+        <div class="feud-top">
+          <div><p class="eyebrow">The score isn't settled</p><h2 class="feud-headline" id="feud-title">BAD BLOOD.<br><em>STEEL WALLS.</em></h2></div>
+          <p class="feud-intro">Voss stole the win in September. Creed put him through a table in October. On November 14, there's nowhere left to run.</p>
+        </div>
+        <div class="feud-spread">
+          <article class="feud-side">
+            <p class="eyebrow">Blacktop World Champion</p>
+            <h3>MASON<br>VOSS</h3>
+            <blockquote>“He couldn't beat me with the door open. What changes when it's locked?”</blockquote>
+            <cite>Mason Voss</cite>
+          </article>
+          <article class="feud-side">
+            <p class="eyebrow">The challenger</p>
+            <h3>JONAH<br>CREED</h3>
+            <blockquote>“Lock it. Chain it. Throw the key in the damn lake.”</blockquote>
+            <cite>Jonah Creed</cite>
+          </article>
+        </div>
+        <div class="feud-stip">
+          <div><p class="eyebrow">World title on the line</p><strong>STEEL CAGE MATCH.</strong></div>
+          <span>NO SAFE GROUND<br>SATURDAY, NOVEMBER 14</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section roster" id="roster" aria-labelledby="roster-title">
+      <div class="wrap">
+        <div class="section-heading roster-header">
+          <div><p class="eyebrow">The people who make it hurt</p><h2 id="roster-title">THE ROSTER.</h2></div>
+          <p>Different towns. Different fights. Same ring.</p>
+        </div>
+        <div class="roster-list">
+          <article class="roster-row">
+            <div class="roster-main"><span class="roster-nickname">The Last Word</span><h3>Mason Voss</h3></div>
+            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Daytona Beach, FL</dd></div><div><dt>Height / Weight</dt><dd>6'2" / 228 lb</dd></div><div><dt>Finisher</dt><dd>Dead Letter</dd></div></dl>
+          </article>
+          <article class="roster-row">
+            <div class="roster-main"><span class="roster-nickname">The Wrecking Ball</span><h3>Jonah Creed</h3></div>
+            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Jacksonville, FL</dd></div><div><dt>Height / Weight</dt><dd>6'4" / 247 lb</dd></div><div><dt>Finisher</dt><dd>County Line</dd></div></dl>
+          </article>
+          <article class="roster-row">
+            <div class="roster-main"><h3>Drew Robinson</h3></div>
+            <dl class="roster-facts"><div><dt>Billed from</dt><dd>St. Cloud, FL</dd></div><div><dt>Height / Weight</dt><dd>5'11" / 190 lb</dd></div><div><dt>Finisher</dt><dd>Running Knee</dd></div></dl>
+          </article>
+          <article class="roster-row">
+            <div class="roster-main"><span class="roster-nickname">The Blackout</span><h3>Sable Knox</h3></div>
+            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Tampa, FL</dd></div><div><dt>Height / Weight</dt><dd>5'8" / 145 lb</dd></div><div><dt>Finisher</dt><dd>Lights Out</dd></div></dl>
+          </article>
+          <article class="roster-row">
+            <div class="roster-main"><span class="roster-nickname">The Cold Front</span><h3>Lex Calder</h3></div>
+            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Winter Haven, FL</dd></div><div><dt>Height / Weight</dt><dd>6'0" / 212 lb</dd></div><div><dt>Finisher</dt><dd>Cold Snap</dd></div></dl>
+          </article>
+          <article class="roster-row">
+            <div class="roster-main"><span class="roster-nickname">The Mean Streak</span><h3>Veda Vice</h3></div>
+            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Orlando, FL</dd></div><div><dt>Height / Weight</dt><dd>5'7" / 138 lb</dd></div><div><dt>Finisher</dt><dd>Vice Grip</dd></div></dl>
+          </article>
+          <article class="roster-row">
+            <div class="roster-main"><span class="roster-nickname">The Fixer</span><h3>Rafe Mercer</h3></div>
+            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Lakeland, FL</dd></div><div><dt>Height / Weight</dt><dd>6'1" / 220 lb</dd></div><div><dt>Finisher</dt><dd>Final Notice</dd></div></dl>
+          </article>
+          <article class="roster-row">
+            <div class="roster-main"><span class="roster-nickname">No Remorse</span><h3>Nico Graves</h3></div>
+            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Kissimmee, FL</dd></div><div><dt>Height / Weight</dt><dd>5'11" / 196 lb</dd></div><div><dt>Finisher</dt><dd>Graveside</dd></div></dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section titles" id="titles" aria-labelledby="titles-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div><p class="eyebrow">Nothing is given</p><h2 id="titles-title">THE GOLD.</h2></div>
+          <p>Four championships. Every defense means something.</p>
+        </div>
+        <div class="title-list">
+          <article class="title-row"><h3 class="belt-name">Blacktop World<br>Championship</h3><div class="belt-owner"><span>Current champion</span><strong>Mason Voss</strong></div></article>
+          <article class="title-row"><h3 class="belt-name">Florida State<br>Championship</h3><div class="belt-owner"><span>Current champion</span><strong>Lex Calder</strong></div></article>
+          <article class="title-row"><h3 class="belt-name">Tag Team<br>Championship</h3><div class="belt-owner"><span>Current champions</span><strong>The Night Crew</strong><small>Rafe Mercer &amp; Nico Graves</small></div></article>
+          <article class="title-row"><h3 class="belt-name">Openweight<br>Championship</h3><div class="belt-owner"><span>Current champion</span><strong>Sable Knox</strong></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="watch" id="watch" aria-labelledby="watch-title">
+      <div class="wrap watch-layout">
+        <div><p class="eyebrow">Missed the bell?</p><h2 class="watch-title" id="watch-title">THE FIGHT<br><span>STAYS ON.</span></h2></div>
+        <div class="watch-aside">
+          <p class="eyebrow">Blacktop Vault</p>
+          <h3>EVERY BELL.<br>EVERY GRUDGE.</h3>
+          <p>Full shows, match replays, and the stuff that didn't make it onto the poster. Live nights on Blacktop Live. Replays in the Vault.</p>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit YouTube, sample streaming link">Explore watch options</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="footer-lockup">BLACKTOP<span>WRESTLING.</span></div>
+        <div class="footer-right">
+          <nav class="footer-nav" aria-label="Footer navigation"><a href="#events">Events</a><a href="#roster">Roster</a><a href="#titles">Titles</a><a href="#watch">Watch</a></nav>
+          <div class="footer-social"><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+        </div>
+      </div>
+      <div class="footer-bottom"><p>© <span id="year">2026</span> Blacktop Pro Wrestling. Central Florida.</p><p>Concept demo by Triple9 Design</p></div>
+    </div>
+  </footer>
+
+  <dialog class="ticket-dialog" id="ticket-dialog" aria-labelledby="ticket-heading">
+    <div class="dialog-inner">
+      <div class="dialog-head"><div><p class="eyebrow">Blacktop box office</p><h2 id="ticket-heading">YOUR NIGHT.<br>YOUR SEAT.</h2></div><button class="dialog-close" type="button" aria-label="Close ticket window">×</button></div>
+      <form class="ticket-form" id="ticket-form">
+        <label class="ticket-field">Event
+          <select id="ticket-event" name="event">
+            <option value="NO SAFE GROUND">No Safe Ground | Nov 14, 2026</option>
+            <option value="NOTHING LEFT">Nothing Left | Nov 28, 2026</option>
+            <option value="FINAL WARNING">Final Warning | Dec 19, 2026</option>
+            <option value="FOUR YEARS DEEP">Four Years Deep | Jan 16, 2027</option>
+          </select>
+        </label>
+        <label class="ticket-field">Admission
+          <select id="ticket-tier" name="tier"><option value="25">General admission | $25</option><option value="45">Ringside | $45</option></select>
+        </label>
+        <label class="ticket-field">Tickets
+          <select id="ticket-quantity" name="quantity"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select>
+        </label>
+        <div class="ticket-total"><span>Estimated total</span><strong id="ticket-total">$25</strong></div>
+        <button class="block-button" type="submit">Continue</button>
+        <p class="demo-note">Concept demo only. Prices are illustrative and no payments are collected.</p>
+        <p class="dialog-status" id="dialog-status" role="status"></p>
+      </form>
+    </div>
+  </dialog>
+
+  <script>
+    (() => {
+      const eventTime = new Date('2026-11-14T19:30:00-05:00').getTime();
+      const countdown = {
+        days: document.getElementById('days'),
+        hours: document.getElementById('hours'),
+        minutes: document.getElementById('minutes'),
+        seconds: document.getElementById('seconds')
+      };
+      function updateCountdown() {
+        let remaining = Math.max(0, Math.floor((eventTime - Date.now()) / 1000));
+        const days = Math.floor(remaining / 86400);
+        remaining %= 86400;
+        const hours = Math.floor(remaining / 3600);
+        remaining %= 3600;
+        const minutes = Math.floor(remaining / 60);
+        const seconds = remaining % 60;
+        Object.entries({ days, hours, minutes, seconds }).forEach(([key, value]) => {
+          countdown[key].textContent = String(value).padStart(2, '0');
+        });
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const menuButton = document.querySelector('.menu-button');
+      const siteNav = document.getElementById('primary-nav');
+      const scrim = document.querySelector('.menu-scrim');
+      function setMenu(open) {
+        menuButton.setAttribute('aria-expanded', String(open));
+        menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        siteNav.classList.toggle('is-open', open);
+        scrim.classList.toggle('is-open', open);
+        document.body.classList.toggle('menu-open', open);
+      }
+      menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
+      scrim.addEventListener('click', () => setMenu(false));
+      siteNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
+      window.addEventListener('resize', () => { if (window.innerWidth > 760) setMenu(false); });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
+
+      const dialog = document.getElementById('ticket-dialog');
+      const form = document.getElementById('ticket-form');
+      const eventSelect = document.getElementById('ticket-event');
+      const tierSelect = document.getElementById('ticket-tier');
+      const quantitySelect = document.getElementById('ticket-quantity');
+      const total = document.getElementById('ticket-total');
+      const status = document.getElementById('dialog-status');
+      function updateTotal() {
+        const amount = Number(tierSelect.value) * Number(quantitySelect.value);
+        total.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(amount);
+      }
+      document.querySelectorAll('[data-event]').forEach(button => {
+        button.addEventListener('click', () => {
+          setMenu(false);
+          eventSelect.value = button.dataset.event;
+          status.textContent = '';
+          updateTotal();
+          dialog.showModal();
+        });
+      });
+      [eventSelect, tierSelect, quantitySelect].forEach(select => select.addEventListener('change', () => { updateTotal(); status.textContent = ''; }));
+      document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+      form.addEventListener('submit', event => {
+        event.preventDefault();
+        status.textContent = 'This is a concept demo. Ticket checkout is not connected.';
+      });
+    })();
+  </script>
+</body>
+</html>
