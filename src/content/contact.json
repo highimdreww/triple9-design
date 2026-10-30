@@ -1,1 +1,21 @@
-{"email": "asaunders995@gmail.com", "eyebrow": "Contact", "headline": "Tell us what you're <span class=\"accent\">building</span>.", "phone": "(407) 764-0241", "phoneHref": "tel:+14077640241", "services": ["Web Design", "Full Rebrand", "Social Media Marketing", "Digital Advertising", "SEO", "Hosting & Care", "Other"], "sub": "Request a quote or a consultation. We'll get back to you within one business day.", "successHeading": "Inquiry ready.", "successText": "Your email app should open with everything filled in. Hit send and we'll take it from there.", "quoteFormEndpoint": ""}
+{
+  "email": "asaunders995@gmail.com",
+  "eyebrow": "Contact",
+  "headline": "Tell us what you're <span class=\"accent\">building</span>.",
+  "phone": "(407) 764-0241",
+  "phoneHref": "tel:+14077640241",
+  "services": [
+    "Web Design",
+    "Full Rebrand",
+    "Social Media Marketing",
+    "Digital Advertising",
+    "SEO",
+    "Hosting & Care",
+    "App Development",
+    "Other"
+  ],
+  "sub": "Request a quote or a consultation. We'll get back to you within one business day.",
+  "successHeading": "Inquiry ready.",
+  "successText": "Your email app should open with everything filled in. Hit send and we'll take it from there.",
+  "quoteFormEndpoint": ""
+}

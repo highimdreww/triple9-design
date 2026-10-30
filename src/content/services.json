@@ -1,1 +1,42 @@
-{"eyebrow":"Services","headline":"Everything your brand <span class=\"accent\">needs</span>.","items":[{"bullets":["Custom design, no templates","Mobile-first build","Words that sell","Launch and handoff"],"description":"Custom websites designed around your business — not a template with your logo pasted in. Fast, mobile-first, and built to turn visitors into customers.","name":"Web Design & Development"},{"bullets":["Logo and identity system","Brand guidelines","Business cards, signage, social kits"],"description":"When your look is holding you back. New logo, colors, fonts, and the rules for using them — a complete identity your whole business can stand behind.","name":"Full Rebrands"},{"bullets":["Content calendar","Custom graphics and copy","Publishing and management","Monthly report"],"description":"We plan it, design it, and post it. Three posts a week on the platforms your customers actually use.","name":"Social Media Marketing"},{"bullets":["Campaign setup","Daily monitoring","Monthly reporting","Ad spend billed separately"],"description":"Meta and Google ads managed by people who check them every day. You set the budget. We make it work.","name":"Digital Advertising"},{"bullets":["On-page SEO","Google Business Profile","Local search"],"description":"The unglamorous work that gets you found: site structure, local listings, and content that answers what customers search.","name":"SEO"},{"bullets":["Hosting and SSL","Updates and backups","Content changes"],"description":"Hosting, security, updates, and small changes — handled quietly in the background.","name":"Care Plans"}],"sub":"One team for your website, your look, and your marketing."}
+{
+  "eyebrow": "Services",
+  "headline": "Everything your brand <span class=\"accent\">needs</span>.",
+  "sub": "One team for your website, your look, your app, and your marketing.",
+  "items": [
+    {
+      "name": "Web Design & Development",
+      "description": "Custom websites designed around your business. Not a template with your logo pasted in. Fast, mobile-first, and built to turn visitors into customers.",
+      "bullets": ["Custom design, no templates", "Mobile-first build", "Words that sell", "Launch and handoff"]
+    },
+    {
+      "name": "Full Rebrands",
+      "description": "When your look is holding you back. New logo, colors, fonts, and the rules for using them. A complete identity your whole business can stand behind.",
+      "bullets": ["Logo and identity system", "Brand guidelines", "Business cards, signage, social kits"]
+    },
+    {
+      "name": "Social Media Marketing",
+      "description": "We plan it, design it, and post it. Three posts a week on the platforms your customers actually use.",
+      "bullets": ["Content calendar", "Custom graphics and copy", "Publishing and management", "Monthly report"]
+    },
+    {
+      "name": "Digital Advertising",
+      "description": "Meta and Google ads managed by people who check them every day. You set the budget. We make it work.",
+      "bullets": ["Campaign setup", "Daily monitoring", "Monthly reporting", "Ad spend billed separately"]
+    },
+    {
+      "name": "SEO",
+      "description": "The unglamorous work that gets you found: site structure, local listings, and content that answers what customers search.",
+      "bullets": ["On-page SEO", "Google Business Profile", "Local search"]
+    },
+    {
+      "name": "App Development",
+      "description": "We design and build iOS apps people can actually use. From the screens and flows to the features that make them worth opening. E11VN is one we built ourselves.",
+      "bullets": ["iOS app design and development", "SwiftUI interfaces", "Apple Watch companion features", "Testing and launch preparation"]
+    },
+    {
+      "name": "Care Plans",
+      "description": "Hosting, security, updates, and small changes. Handled quietly in the background.",
+      "bullets": ["Hosting and SSL", "Updates and backups", "Content changes"]
+    }
+  ]
+}

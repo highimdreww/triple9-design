@@ -1,1 +1,25 @@
-{"eyebrow":"Web design · Branding · Marketing","headline":"Good businesses deserve <span class=\"accent\">great</span> websites.","primaryCtaLabel":"Get a quote","secondaryCtaLabel":"Our services","services":[{"name":"Web Design","text":"Sharp, fast websites built to turn visits into conversations."},{"name":"Full Rebrands","text":"Logos, visual identity, and brand guidelines. A look that feels like you."},{"name":"Social Media","text":"Content and management that keep your business in front of people."},{"name":"Digital Advertising","text":"Meta and Google campaigns with a clear plan behind every dollar."},{"name":"SEO","text":"Better search visibility so customers can find you."},{"name":"Hosting & Care","text":"Hosting, updates, and website maintenance without the hassle."}],"servicesEyebrow":"What we do","servicesHeading":"The whole picture. Done right.","sub":"We're Triple9. We build brands, websites, and marketing that give people a reason to choose your business.","why":[{"text":"Every choice has a reason. The layout, the type, the colors, and the words all need to work together.","title":"Design comes first."},{"text":"Clear conversations. Direct answers. We know the work and keep you in the loop.","title":"We stay involved."},{"text":"A good-looking website is only the start. It also needs to be fast, easy to use, and easy to maintain.","title":"Built for real use."}],"whyEyebrow":"How we work","whyHeading":"The details matter."}
+{
+  "eyebrow": "",
+  "headline": "<span class=\"v5-line\">LOOK LIKE</span><span class=\"v5-line\">YOU MEAN</span><span class=\"v5-line accent\">BUSINESS.</span>",
+  "primaryCtaLabel": "Get a quote",
+  "secondaryCtaLabel": "Our services",
+  "sub": "We're Triple9. We build websites, brands, apps, and marketing that make your business hard to overlook.",
+  "servicesEyebrow": "",
+  "servicesHeading": "THE <em>WORK.</em>",
+  "services": [
+    { "name": "Web Design", "text": "Fast, sharp websites that get to the point and make it easy to reach you." },
+    { "name": "Full Rebrands", "text": "The logo, the type, the colors, the whole look. Done with intent." },
+    { "name": "Social Media", "text": "Content and management that keep your name in the conversation." },
+    { "name": "Digital Advertising", "text": "Meta and Google campaigns built around what you want to achieve." },
+    { "name": "SEO", "text": "Help the right customers find you when they search." },
+    { "name": "App Development", "text": "Real iOS apps built around how people use them." },
+    { "name": "Hosting & Care", "text": "Hosting, updates, and maintenance. We handle the upkeep." }
+  ],
+  "whyEyebrow": "",
+  "whyHeading": "THE DETAILS<br /><span>ARE THE POINT.</span>",
+  "why": [
+    { "title": "Design comes first.", "text": "Every choice has a reason. The layout, the type, the colors, and the words need to work together." },
+    { "title": "We stay involved.", "text": "Clear conversations and direct answers. You speak to the people making the work." },
+    { "title": "Built for real use.", "text": "Good-looking is a start. What we make also needs to be fast, useful, and maintainable." }
+  ]
+}
