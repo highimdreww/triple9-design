@@ -1,8 +1,10 @@
-/* TRIPLE9 V5. Plain CSS. Shared page and popup hooks retained. */
+/* TRIPLE9 | BRASS AND INK
+   V5 layout stays intact. Shared selectors and popup behavior are preserved.
+   Homepage scoped V5 colors are deliberately retuned at the end of this file. */
 :root {
-  --paper:#FAFAFA; --white:#FFFFFF; --ink:#0B0B0C; --gray:#6B6B6E;
-  --line:#E8E8EA; --soft:#F4F4F5; --accent:#FF4D00;
-  --accent-dark:#D63E00; --radius:20px;
+  --paper:#F4F1EC; --white:#FBFAF7; --ink:#0B0B0C; --gray:#625F5A;
+  --line:#DCD5CA; --soft:#ECE7DF; --accent:#B49A72;
+  --accent-dark:#806747; --radius:20px;
   --shadow:0 8px 30px rgba(0,0,0,.06);
   --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
 }
@@ -19,7 +21,7 @@ button,input,textarea,select { font-family:var(--font); }
 button { cursor:pointer; }
 [hidden] { display:none!important; }
 ::selection { background:var(--accent); color:#fff; }
-:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+:focus-visible { outline:2px solid var(--accent-dark); outline-offset:4px; }
 .wrap { max-width:1200px; margin:0 auto; padding-inline:24px; }
 .display { font-weight:800; letter-spacing:-.06em; line-height:1.02; }
 .display .accent { color:var(--accent); }
@@ -29,7 +31,7 @@ button { cursor:pointer; }
 /* Header */
 .site-header {
   position:fixed; inset:0 0 auto 0; z-index:50;
-  background:rgba(255,255,255,.91); backdrop-filter:blur(16px);
+  background:rgba(244,241,236,.94); backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px); border-bottom:1px solid var(--line);
 }
 .site-header .wrap { display:flex; align-items:center; justify-content:space-between; height:72px; }
@@ -48,13 +50,13 @@ button { cursor:pointer; }
   transition:transform .15s ease,box-shadow .15s ease,background .15s ease,border-color .15s ease;
 }
 .btn:active { transform:scale(.98); }
-.btn-accent { background:var(--accent); color:#fff; }
-.btn-accent:hover { background:var(--accent-dark); box-shadow:0 10px 26px rgba(255,77,0,.25); }
+.btn-accent { background:var(--accent); color:var(--ink); }
+.btn-accent:hover { background:var(--accent-dark); color:#fff; box-shadow:0 6px 20px rgba(11,11,12,.11); }
 .btn-dark { background:var(--ink); color:#fff; }
 .btn-dark:hover { background:#262629; }
 .btn-ghost { background:transparent; color:var(--ink); border:1px solid var(--line); }
 .btn-ghost:hover { border-color:var(--ink); }
-.btn-white { background:#fff; color:var(--ink); border:1px solid var(--line); }
+.btn-white { background:var(--white); color:var(--ink); border:1px solid var(--line); }
 .btn-white:hover { border-color:var(--ink); box-shadow:0 8px 22px rgba(0,0,0,.08); }
 .nav .btn { padding:12px 26px; font-size:15px; }
 
@@ -67,15 +69,15 @@ button { cursor:pointer; }
 .nine-motif {
   position:absolute; right:-4rem; top:46%; transform:translateY(-50%);
   font-size:clamp(13rem,24vw,24rem); font-weight:800; line-height:.78;
-  letter-spacing:-.06em; color:#EFEFF1; user-select:none;
+  letter-spacing:-.06em; color:#E4DDD3; user-select:none;
   pointer-events:none; white-space:nowrap;
 }
-.nine-motif .n1 { color:#EFEFF1; }
-.nine-motif .n2 { color:#F5AE90; }
-.nine-motif .n3 { color:var(--accent); opacity:.9; }
+.nine-motif .n1 { color:#E4DDD3; }
+.nine-motif .n2 { color:#A8A095; }
+.nine-motif .n3 { color:var(--accent); opacity:.85; }
 
 /* Shared sections and old card hooks. */
-.section { padding:120px 0; }
+.section { padding:136px 0; }
 .section-soft { background:var(--soft); }
 .section-h { font-size:clamp(2rem,4.6vw,3.5rem); margin:18px 0 14px; }
 .section-sub { color:var(--gray); font-size:18px; max-width:640px; }
@@ -86,7 +88,7 @@ button { cursor:pointer; }
   transition:transform .2s ease,box-shadow .2s ease;
 }
 .card:hover { transform:translateY(-5px); box-shadow:0 18px 44px rgba(0,0,0,.1); }
-.card .tick { display:block; width:10px; height:10px; background:var(--accent); border-radius:2px; margin-bottom:22px; }
+.card .tick { display:block; width:18px; height:1px; background:var(--accent); border-radius:0; margin-bottom:22px; }
 .card h3 { font-size:22px; letter-spacing:-.02em; margin-bottom:10px; }
 .card p { color:var(--gray); font-size:16px; }
 .why-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:48px; margin-top:64px; }
@@ -96,7 +98,7 @@ button { cursor:pointer; }
 /* Shared CTA. The component and data-open-contact stay unchanged. */
 .cta-band {
   position:relative; isolation:isolate; overflow:hidden; background:var(--ink);
-  color:#fff; padding:140px 0; text-align:center; border-top:12px solid var(--accent);
+  color:var(--paper); padding:165px 0; text-align:center; border-top:1px solid #62584B;
 }
 .cta-band::before {
   content:'9'; position:absolute; z-index:-1; right:-1vw; bottom:-.25em;
@@ -107,24 +109,24 @@ button { cursor:pointer; }
 .cta-band p { color:#c0c0c3; margin:30px 0 38px; font-size:19px; }
 
 /* Page heroes: bold, plain backgrounds, no decorative label above heading. */
-.page-hero { position:relative; overflow:hidden; padding:192px 0 105px; background:var(--paper); border-bottom:4px solid var(--ink); }
-.page-hero h1 { max-width:1070px; margin-top:0; font-size:clamp(3.5rem,9vw,8.4rem); font-weight:900; letter-spacing:-.08em; line-height:.94; }
-.page-hero .sub { max-width:680px; margin-top:32px; color:#4f4f53; font-size:20px; }
+.page-hero { position:relative; overflow:hidden; padding:210px 0 125px; background:var(--paper); border-bottom:1px solid var(--line); }
+.page-hero h1 { max-width:1070px; margin-top:0; font-size:clamp(3.5rem,9vw,8.4rem); font-weight:900; letter-spacing:-.083em; line-height:.94; }
+.page-hero .sub { max-width:680px; margin-top:32px; color:#55514C; font-size:20px; }
 
 /* Services page editorial rows, same original selectors. */
-.service-row { display:grid; grid-template-columns:1fr 1.25fr; gap:64px; padding:84px 0; border-top:2px solid var(--ink); }
-.service-row:last-child { border-bottom:2px solid var(--ink); }
+.service-row { display:grid; grid-template-columns:1fr 1.25fr; gap:64px; padding:96px 0; border-top:1px solid var(--ink); }
+.service-row:last-child { border-bottom:1px solid var(--ink); }
 .service-row h3 { position:sticky; top:120px; align-self:start; font-size:clamp(2.4rem,4.3vw,4.25rem); font-weight:800; letter-spacing:-.065em; line-height:1.04; }
-.service-row .lead { max-width:590px; margin-bottom:29px; color:#444448; font-size:20px; line-height:1.65; }
+.service-row .lead { max-width:590px; margin-bottom:29px; color:#504C47; font-size:20px; line-height:1.65; }
 .check-list { list-style:none; display:grid; gap:12px; }
 .check-list li { position:relative; padding-left:28px; font-size:16px; color:var(--ink); }
-.check-list li::before { content:''; position:absolute; left:0; top:9px; width:8px; height:8px; background:var(--accent); border-radius:2px; }
+.check-list li::before { content:''; position:absolute; left:0; top:14px; width:15px; height:1px; background:var(--accent); border-radius:0; }
 
 /* About page. Same .cards/.card markup, editorial presentation. */
 .about-body { max-width:880px; margin-top:42px; font-size:clamp(1.25rem,2.6vw,1.75rem); line-height:1.5; letter-spacing:-.015em; }
-.values { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 45px; margin-top:72px; }
+.values { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:0 60px; margin-top:82px; }
 .values.cards { margin-top:0; }
-.values .card { padding:36px 0 45px; border:0; border-top:2px solid var(--ink); border-radius:0; background:transparent; box-shadow:none; }
+.values .card { padding:36px 0 45px; border:0; border-top:1px solid var(--ink); border-radius:0; background:transparent; box-shadow:none; }
 .values .card:hover { transform:none; box-shadow:none; }
 .values .card .tick { display:none; }
 .values .card h3 { font-size:clamp(30px,3.5vw,47px); font-weight:800; letter-spacing:-.06em; }
@@ -136,7 +138,7 @@ button { cursor:pointer; }
 .field input[type="text"],.field input[type="email"],.field input[type="tel"],.field textarea {
   width:100%; padding:14px 16px; border:1px solid var(--line);
   border-radius:12px; font-size:16px; font-family:var(--font);
-  background:#fff; color:var(--ink);
+  background:var(--white); color:var(--ink);
   transition:border-color .2s ease,box-shadow .2s ease;
 }
 .field input:focus,.field textarea:focus { outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent); }
@@ -145,16 +147,16 @@ button { cursor:pointer; }
 .checks label {
   display:flex; gap:10px; align-items:center; font-weight:400; font-size:15px;
   border:1px solid var(--line); border-radius:12px; padding:12px 14px;
-  cursor:pointer; background:#fff; transition:border-color .2s ease,background .2s ease;
+  cursor:pointer; background:var(--white); transition:border-color .2s ease,background .2s ease;
 }
 .checks label:hover { border-color:var(--ink); }
-.checks label:has(input:checked) { border-color:var(--accent); background:#fff3ed; }
+.checks label:has(input:checked) { border-color:var(--accent); background:#EEE8DF; }
 .checks input { width:18px; height:18px; accent-color:var(--accent); flex-shrink:0; }
 .form-note { font-size:14px; color:var(--gray); margin-top:18px; }
-.form-success { display:none; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:16px; padding:36px 32px; }
+.form-success { display:none; background:var(--soft); border:1px solid var(--line); border-radius:16px; padding:36px 32px; }
 .form-success.show { display:block; }
 .form-success h3 { font-size:24px; letter-spacing:-.02em; margin-bottom:10px; }
-.form-success p { color:#166534; }
+.form-success p { color:var(--gray); }
 .contact-card { background:var(--soft); border-radius:var(--radius); padding:40px 32px; }
 .contact-card h3 { font-size:20px; letter-spacing:-.02em; margin-bottom:18px; }
 .contact-card p { margin-bottom:10px; color:var(--gray); }
@@ -164,7 +166,7 @@ button { cursor:pointer; }
 /* Footer. Original markup and links remain intact. */
 .site-footer { background:var(--ink); color:#fff; padding:88px 0 40px; }
 .footer-grid { display:flex; justify-content:space-between; gap:48px; flex-wrap:wrap; }
-.logo-box { background:#fff; border-radius:12px; padding:10px 20px; display:inline-block; }
+.logo-box { background:var(--white); border-radius:12px; padding:10px 20px; display:inline-block; }
 .logo-box img { height:34px; width:auto; }
 .footer-tag { color:#a1a1a6; margin-top:22px; max-width:320px; font-size:15px; }
 .footer-links { display:flex; gap:30px; align-items:flex-start; }
@@ -182,7 +184,7 @@ button { cursor:pointer; }
 }
 
 /* Existing IntersectionObserver adds .in. */
-.reveal { opacity:0; transform:translateY(26px); transition:opacity .7s ease,transform .7s ease; }
+.reveal { opacity:0; transform:translateY(18px); transition:opacity 1s cubic-bezier(.22,.61,.36,1),transform 1s cubic-bezier(.22,.61,.36,1); }
 .reveal.in { opacity:1; transform:none; }
 body.popup-open { overflow:hidden; }
 
@@ -195,7 +197,7 @@ body.popup-open { overflow:hidden; }
   .checks { grid-template-columns:1fr; }
   .nav {
     display:none; position:absolute; top:72px; left:0; right:0;
-    background:#fff; flex-direction:column; align-items:stretch;
+    background:var(--white); flex-direction:column; align-items:stretch;
     padding:12px 24px 28px; border-bottom:1px solid var(--line); gap:4px;
   }
   .nav.open { display:flex; }
@@ -204,8 +206,8 @@ body.popup-open { overflow:hidden; }
   .menu-btn { display:block; }
   .hero { padding:132px 0 88px; }
   .section { padding:84px 0; }
-  .cta-band { padding:100px 0; }
-  .page-hero { padding:154px 0 72px; }
+  .cta-band { padding:115px 0; }
+  .page-hero { padding:160px 0 85px; }
   .nine-motif { font-size:10rem; right:-2rem; top:auto; bottom:0; transform:none; }
   .hero .wrap { position:relative; z-index:1; }
   .footer-grid { flex-direction:column; }
@@ -229,4 +231,90 @@ body.popup-open { overflow:hidden; }
   html { scroll-behavior:auto; }
   .reveal { opacity:1; transform:none; transition:none; }
   .btn,.card,.nav a,.footer-links a { transition:none; }
+}
+
+/* ---------------------------------------------------------
+   V5 color direction
+   The V5 homepage has Astro-scoped hardcoded colors. These
+   overrides ensure the reskin works without touching markup,
+   the component CSS, or data-open-contact behavior.
+   --------------------------------------------------------- */
+
+/* Poster hero: bone field, matte three-tone graphic. */
+.v5-hero { background:var(--paper) !important; border-bottom:1px solid var(--ink) !important; }
+.v5-hero-ink { background:var(--ink) !important; }
+.v5-nine span:nth-child(1) { color:#E4DDD3 !important; }
+.v5-nine span:nth-child(2) { color:#A8A095 !important; }
+.v5-nine span:nth-child(3) { color:var(--accent) !important; }
+.v5-hero-title .accent { color:var(--accent) !important; }
+.v5-hero-title { letter-spacing:-.088em !important; }
+.v5-hero-bottom { border-top:1px solid var(--ink) !important; }
+.v5-hero-edge { height:1px !important; background:var(--ink) !important; }
+
+/* The manifesto is ink, not a wall of brass. Only the
+   emphasized headline takes the accent. */
+.v5-manifesto { background:var(--ink) !important; color:var(--paper) !important; padding-top:150px !important; padding-bottom:82px !important; }
+.v5-manifesto h2 { letter-spacing:-.085em !important; }
+.v5-manifesto h2 span { color:var(--accent) !important; }
+.v5-manifesto-bottom { border-top:1px solid #65605A !important; }
+.v5-manifesto-bottom span { color:var(--paper) !important; opacity:.18 !important; }
+
+/* Preserve seven service rows; remove thick bar treatments. */
+.v5-services { background:var(--white) !important; padding-top:160px !important; padding-bottom:155px !important; }
+.v5-services-heading h2 { letter-spacing:-.088em !important; }
+.v5-services-list { border-top:1px solid var(--ink) !important; }
+.v5-service { border-bottom:1px solid var(--line) !important; min-height:152px !important; }
+.v5-service h3 { letter-spacing:-.068em !important; }
+.v5-service p { color:var(--gray) !important; }
+.v5-service-line { height:1px !important; background:var(--accent) !important; }
+.v5-service:hover, .v5-service:focus-visible { background:var(--ink) !important; color:var(--paper) !important; }
+.v5-service:hover p, .v5-service:focus-visible p { color:#CEC8BF !important; }
+.v5-service:hover .v5-service-line, .v5-service:focus-visible .v5-service-line { background:var(--paper) !important; }
+
+/* The dark statement remains the visual anchor. */
+.v5-statement { background:var(--ink) !important; color:var(--paper) !important; border-bottom:1px solid var(--accent) !important; }
+.v5-statement-inner { min-height:800px !important; padding-top:145px !important; padding-bottom:85px !important; }
+.v5-statement h2 { letter-spacing:-.088em !important; }
+.v5-statement h2 span { color:var(--accent) !important; }
+.v5-statement-bottom { border-top:1px solid #625F59 !important; }
+.v5-statement-bottom p { color:#C7C1B8 !important; }
+
+/* E11VN belongs to its own brand. Its red is not brass. */
+.v5-app { background:#151516 !important; color:#fff !important; padding-top:140px !important; padding-bottom:135px !important; }
+.v5-app h2 { letter-spacing:-.09em !important; }
+.v5-app h2 span { color:#FF2828 !important; }
+.v5-app::before { background:#FF1F1F !important; width:3px !important; }
+.v5-app-art::before { border-color:#FF2828 !important; }
+.v5-app .btn-accent { background:#FF2828 !important; color:#fff !important; }
+.v5-app .btn-accent:hover { background:#D91D1D !important; box-shadow:none !important; }
+.v5-app :focus-visible { outline-color:#FF2828 !important; }
+.v5-app ::selection { background:#FF2828; color:#fff; }
+
+/* Warm closing surface and softer editorial rules. */
+.v5-approach { background:var(--paper) !important; padding-top:165px !important; padding-bottom:165px !important; }
+.v5-approach h2 { letter-spacing:-.083em !important; }
+.v5-principles { border-top:1px solid var(--ink) !important; }
+.v5-principle { border-bottom:1px solid var(--line) !important; padding-top:45px !important; padding-bottom:55px !important; }
+.v5-principle p { color:var(--gray) !important; }
+
+/* The popup component remains unchanged. Only old orange
+   hover and checked-state tints get neutralized by the theme. */
+.contact-modal .contact-close:hover { background:var(--soft) !important; }
+.contact-modal .checks label:has(input:checked) { background:var(--soft) !important; }
+
+@media (max-width:960px) {
+  .v5-manifesto { padding-top:120px !important; padding-bottom:72px !important; }
+  .v5-services { padding-top:128px !important; padding-bottom:125px !important; }
+  .v5-statement-inner { min-height:690px !important; padding-top:120px !important; padding-bottom:70px !important; }
+  .v5-app { padding-top:120px !important; padding-bottom:115px !important; }
+  .v5-approach { padding-top:130px !important; padding-bottom:130px !important; }
+}
+@media (max-width:520px) {
+  .v5-manifesto { padding-top:95px !important; padding-bottom:48px !important; }
+  .v5-services { padding-top:102px !important; padding-bottom:102px !important; }
+  .v5-service { min-height:0 !important; }
+  .v5-statement-inner { min-height:615px !important; padding-top:96px !important; padding-bottom:52px !important; }
+  .v5-app { padding-top:95px !important; padding-bottom:105px !important; }
+  .v5-approach { padding-top:108px !important; padding-bottom:108px !important; }
+  .v5-principle { padding-top:34px !important; padding-bottom:38px !important; }
 }
