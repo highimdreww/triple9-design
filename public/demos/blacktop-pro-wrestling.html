@@ -3,508 +3,572 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#100c14">
-  <meta name="description" content="BLACKTOP Pro Wrestling. Hard nights, bad blood, and live independent wrestling in Central Florida.">
-  <title>BLACKTOP Pro Wrestling | Central Florida</title>
+  <meta name="theme-color" content="#09070d">
+  <meta name="description" content="BLACKTOP Pro Wrestling. Central Florida fights back. Get in the room for No Safe Ground, November 14, 2026.">
+  <title>BLACKTOP | Central Florida Pro Wrestling</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --night: #100c14;
-      --black: #09070b;
-      --panel: #19131e;
-      --purple: #7b3bb2;
-      --deep-purple: #412058;
-      --chalk: #f0ede9;
-      --dim: #a9a0ab;
-      --hair: rgba(240, 237, 233, .23);
-      --display: 'Barlow Condensed', Impact, sans-serif;
-      --body: Inter, Arial, sans-serif;
+      color-scheme: dark;
+      --black: #09070d;
+      --ink: #100b16;
+      --ink-2: #1b1024;
+      --violet: #873ac4;
+      --violet-deep: #502269;
+      --paper: #f4efed;
+      --muted: #afa3b2;
+      --rule: rgba(244, 239, 237, .23);
+      --display: "Barlow Condensed", Impact, "Arial Narrow", sans-serif;
+      --body: "Inter", Arial, sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
-    body { margin: 0; background: var(--night); color: var(--chalk); font-family: var(--body); }
-    body::before { content: ''; position: fixed; inset: 0; z-index: 50; pointer-events: none; opacity: .14; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.09) 4px, transparent 5px); }
+    html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+    body { margin: 0; min-width: 0; background: var(--black); color: var(--paper); font-family: var(--body); }
+    body::before { content: ""; position: fixed; inset: 0; z-index: 90; pointer-events: none; opacity: .095; background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(255,255,255,.08) 4px, transparent 5px); }
     body.menu-open { overflow: hidden; }
-    ::selection { background: var(--purple); color: white; }
     a { color: inherit; }
-    button, input, select { font: inherit; }
+    button, select { font: inherit; }
     button { cursor: pointer; }
-    button:disabled { cursor: not-allowed; }
-    :focus-visible { outline: 3px solid #b982e9; outline-offset: 4px; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-    .wrap { width: min(100% - 48px, 1480px); margin-inline: auto; }
-    .eyebrow { margin: 0; color: #c4b6ca; font-size: .7rem; font-weight: 800; letter-spacing: .19em; text-transform: uppercase; }
-    .display { font-family: var(--display); font-weight: 900; text-transform: uppercase; line-height: .81; letter-spacing: -.025em; }
-    .block-button { display: inline-flex; align-items: center; justify-content: center; min-height: 55px; padding: 15px 27px; border: 2px solid var(--purple); border-radius: 1px; background: var(--purple); color: #fff; font-family: var(--body); font-size: .78rem; font-weight: 900; letter-spacing: .08em; text-decoration: none; text-transform: uppercase; transition: background .18s, border-color .18s, transform .18s; }
-    .block-button:hover { background: #9855cf; border-color: #9855cf; transform: translateY(-2px); }
-    .block-button.light { background: var(--chalk); color: var(--black); border-color: var(--chalk); }
-    .block-button.light:hover { background: #fff; border-color: #fff; }
-    .site-header { position: sticky; top: 0; z-index: 40; height: 79px; background: rgba(9,7,11,.97); border-bottom: 1px solid var(--hair); }
-    .header-inner { display: flex; height: 100%; align-items: center; gap: 29px; }
-    .brand { flex: 0 0 auto; display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .brand-cut { display: block; width: 9px; height: 35px; background: var(--purple); transform: skew(-16deg); }
-    .brand-name { font: 900 2rem/.77 var(--display); letter-spacing: -.035em; }
-    .brand-name small { display: block; margin-top: 5px; font: 800 .5rem/1 var(--body); letter-spacing: .33em; }
-    .site-nav { display: flex; align-items: center; gap: clamp(14px, 2.1vw, 36px); margin-left: auto; }
-    .site-nav a, .footer-nav a { font-size: .71rem; font-weight: 800; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; transition: color .18s; }
-    .site-nav a:hover, .footer-nav a:hover { color: #c18dec; }
-    .header-ticket { min-height: 43px; padding: 11px 18px; font-size: .7rem; }
-    .menu-button { display: none; border: 1px solid var(--hair); background: none; color: var(--chalk); padding: 10px; }
-    .menu-button span { display: block; width: 23px; height: 2px; margin: 5px 0; background: currentColor; transition: transform .2s, opacity .2s; }
+    ::selection { background: var(--violet); color: white; }
+    :focus-visible { outline: 3px solid #c791f1; outline-offset: 4px; }
+    .skip { position: fixed; z-index: 100; top: -100px; left: 12px; padding: 13px 18px; background: var(--paper); color: var(--black); font-weight: 800; }
+    .skip:focus { top: 12px; }
+    .shell { width: min(100% - 64px, 1500px); margin-inline: auto; }
+    .eyebrow { margin: 0; font-size: .67rem; line-height: 1.4; font-weight: 900; letter-spacing: .17em; text-transform: uppercase; }
+    .section-label { color: #c8a5e1; }
+    .condensed { font-family: var(--display); font-weight: 900; text-transform: uppercase; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 54px; padding: 13px 27px; border: 2px solid var(--violet); border-radius: 0; background: var(--violet); color: #fff; text-decoration: none; font-size: .78rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; transition: transform .17s ease, background .17s ease, color .17s ease; }
+    .button:hover { transform: translateY(-3px); background: #a452d9; }
+    .button.inverse { background: var(--paper); border-color: var(--paper); color: var(--black); }
+    .button.inverse:hover { background: #fff; }
+    .underlink { display: inline-block; border: 0; border-bottom: 2px solid var(--violet); padding: 4px 0 6px; background: transparent; color: inherit; text-decoration: none; font-size: .73rem; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; transition: color .2s, padding-left .2s; }
+    .underlink:hover { padding-left: 6px; color: #c68ff1; }
+    .site-header { position: sticky; top: 0; z-index: 50; height: 76px; border-bottom: 1px solid var(--rule); background: rgba(9, 7, 13, .97); }
+    .header-inner { display: flex; align-items: center; gap: 30px; height: 100%; }
+    .logo { display: inline-flex; align-items: center; gap: 12px; flex: 0 0 auto; text-decoration: none; }
+    .logo-slashes { display: flex; gap: 4px; height: 34px; overflow: hidden; transform: skew(-14deg); }
+    .logo-slashes i { width: 7px; height: 100%; background: var(--violet); }
+    .logo-name { font: 900 2.12rem/.73 var(--display); letter-spacing: -.025em; }
+    .logo-name small { display: block; margin-top: 7px; font: 900 .47rem/1 var(--body); letter-spacing: .39em; }
+    .nav { display: flex; align-items: center; gap: clamp(16px, 2.6vw, 44px); margin-left: auto; }
+    .nav a, .footer-nav a { font-size: .71rem; font-weight: 900; text-decoration: none; text-transform: uppercase; letter-spacing: .12em; transition: color .2s; }
+    .nav a:hover, .footer-nav a:hover { color: #c491e6; }
+    .header-ticket { min-height: 44px; padding: 9px 20px; font-size: .7rem; }
+    .menu-toggle { display: none; flex: 0 0 auto; width: 43px; height: 42px; padding: 10px 9px; border: 1px solid var(--rule); background: transparent; color: var(--paper); }
+    .menu-toggle span { display: block; height: 2px; background: currentColor; margin-block: 4px; transition: transform .2s, opacity .2s; }
     .menu-scrim { display: none; }
-    .hero { position: relative; overflow: hidden; min-height: 700px; padding: 50px 0 63px; background: var(--black); }
-    .hero::after { content: ''; position: absolute; top: 105px; right: -90px; width: 29vw; height: 29vw; border: min(5vw,75px) solid var(--deep-purple); transform: rotate(-19deg); opacity: .4; pointer-events: none; }
-    .hero > .wrap { position: relative; z-index: 1; }
-    .hero-topline { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 26px; border-bottom: 1px solid var(--hair); }
-    .hero-status { display: inline-flex; align-items: center; gap: 9px; }
-    .status-dot { width: 7px; height: 7px; background: #b37ce0; box-shadow: 0 0 0 4px rgba(123,59,178,.24); }
-    .hero-title { position: relative; width: 100%; margin: 27px 0 0; font: 900 clamp(5rem, 20.5vw, 22rem)/.73 var(--display); letter-spacing: -.052em; white-space: nowrap; }
-    .hero-title span { display: block; }
-    .hero-title .title-underside { margin-top: 11px; padding-left: 2px; color: var(--purple); font-size: .27em; line-height: 1; letter-spacing: .26em; }
-    .hero-bottom { display: grid; grid-template-columns: 1fr minmax(340px, .7fr); gap: 60px; align-items: end; margin-top: 85px; }
-    .hero-statement { max-width: 660px; margin: 0; font: 800 clamp(2.8rem, 5.1vw, 5.9rem)/.9 var(--display); text-transform: uppercase; }
-    .hero-statement em { color: #b67ae8; font-style: normal; }
-    .hero-lede { margin: 20px 0 0; max-width: 430px; color: var(--dim); font-size: .92rem; line-height: 1.65; }
-    .event-panel { padding: 25px 0 0 30px; border-left: 3px solid var(--purple); }
-    .event-panel h2 { margin: 13px 0 5px; font: 900 clamp(3.5rem, 5.2vw, 6.5rem)/.85 var(--display); text-transform: uppercase; }
-    .event-meta { margin: 12px 0 20px; color: #ddd3df; font-size: .8rem; line-height: 1.9; font-weight: 600; }
-    .event-panel .block-button { width: 100%; }
-    .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 28px; padding-top: 17px; border-top: 1px solid var(--hair); }
-    .count-unit strong { display: block; font: 800 clamp(2rem, 3.6vw, 3.5rem)/1 var(--display); font-variant-numeric: tabular-nums; }
-    .count-unit span { display: block; margin-top: 6px; color: var(--dim); font-size: .58rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
-    .section { padding-block: clamp(76px, 9vw, 145px); }
-    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 39px; }
-    .section-heading h2 { margin: 13px 0 0; font: 900 clamp(4.4rem, 10vw, 10rem)/.78 var(--display); text-transform: uppercase; }
-    .section-heading p:last-child { max-width: 290px; margin: 0; font-size: .85rem; line-height: 1.6; color: var(--dim); }
-    .shows { background: #151019; }
-    .show-row { display: grid; grid-template-columns: 125px minmax(0, 1fr) minmax(180px, .55fr) auto; align-items: center; column-gap: clamp(16px, 3vw, 44px); min-height: 147px; padding: 24px 4px; border-top: 1px solid var(--hair); transition: padding-left .18s, background .18s; }
-    .show-row:last-child { border-bottom: 1px solid var(--hair); }
-    .show-row:hover { background: rgba(123,59,178,.10); padding-left: 15px; }
-    .show-date strong { display: block; font: 900 3.8rem/.74 var(--display); }
-    .show-date span { display: block; margin-top: 9px; color: #cbb7d3; font-size: .65rem; font-weight: 800; letter-spacing: .18em; }
-    .show-name { margin: 0; font: 900 clamp(2rem, 3.6vw, 4.4rem)/.88 var(--display); text-transform: uppercase; }
-    .show-note { margin: 8px 0 0; color: var(--purple); font-size: .65rem; letter-spacing: .13em; font-weight: 900; text-transform: uppercase; }
-    .show-place { color: var(--chalk); font-size: .81rem; font-weight: 700; }
-    .show-place span { display: block; margin-top: 7px; color: var(--dim); font-size: .73rem; font-weight: 500; }
-    .text-ticket { border: 0; border-bottom: 2px solid var(--purple); padding: 7px 0; background: none; color: var(--chalk); font-size: .68rem; font-weight: 900; letter-spacing: .09em; text-transform: uppercase; transition: color .18s, border-color .18s; }
-    .text-ticket:hover { color: #ca9ef0; border-color: #ca9ef0; }
-    .feud { overflow: hidden; background: var(--black); }
-    .feud-top { display: grid; grid-template-columns: 1fr 1fr; gap: 45px; align-items: end; }
-    .feud-headline { max-width: 900px; margin: 22px 0 0; font: 900 clamp(4.8rem, 10.3vw, 11rem)/.79 var(--display); text-transform: uppercase; }
-    .feud-headline em { color: var(--purple); font-style: normal; }
-    .feud-intro { max-width: 370px; margin: 0 0 9px auto; color: var(--dim); line-height: 1.7; font-size: .9rem; }
-    .feud-spread { display: grid; grid-template-columns: 1fr 1fr; margin-top: 58px; border-top: 1px solid var(--hair); border-bottom: 1px solid var(--hair); }
-    .feud-side { position: relative; min-height: 365px; padding: 35px clamp(22px, 4vw, 60px) 45px 0; }
-    .feud-side + .feud-side { padding-left: clamp(22px, 4vw, 60px); padding-right: 0; border-left: 1px solid var(--hair); }
-    .feud-side h3 { margin: 16px 0 25px; font: 900 clamp(4rem, 7.1vw, 8rem)/.79 var(--display); text-transform: uppercase; }
-    .feud-side blockquote { max-width: 500px; margin: 0; font: 700 clamp(1.5rem, 2.5vw, 2.8rem)/1.05 var(--display); text-transform: uppercase; }
-    .feud-side cite { display: block; margin-top: 24px; font: normal 700 .67rem var(--body); color: var(--dim); letter-spacing: .1em; text-transform: uppercase; }
-    .feud-side:nth-child(2) h3 { color: #b17ad8; }
-    .feud-stip { display: flex; align-items: center; justify-content: space-between; gap: 25px; padding: 24px 32px; margin-top: 0; background: var(--deep-purple); }
-    .feud-stip strong { font: 900 clamp(2.3rem, 4.8vw, 5rem)/.86 var(--display); text-transform: uppercase; }
-    .feud-stip span { font-size: .75rem; font-weight: 800; letter-spacing: .09em; text-align: right; text-transform: uppercase; }
-    .roster { background: #17111b; }
-    .roster-header { padding-bottom: 23px; border-bottom: 2px solid var(--chalk); }
-    .roster-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(325px, .72fr); align-items: center; gap: 30px; padding: 27px 0; border-bottom: 1px solid var(--hair); transition: padding-left .2s, background .2s; }
-    .roster-row:hover { padding-left: 12px; background: rgba(123,59,178,.09); }
-    .roster-row:nth-child(even) .roster-main { padding-left: clamp(0px, 3vw, 45px); }
-    .roster-row:hover h3 { color: #c38deb; }
-    .roster-main h3 { margin: 5px 0 0; font: 900 clamp(2.7rem, 5.5vw, 6.5rem)/.8 var(--display); text-transform: uppercase; transition: color .2s; }
-    .roster-nickname { display: block; min-height: 14px; color: #a885c0; font-size: .6rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
-    .roster-facts { display: grid; grid-template-columns: 1.15fr .8fr 1fr; gap: 16px; margin: 0; }
-    .roster-facts div { min-width: 0; }
-    .roster-facts dt { margin-bottom: 7px; color: var(--dim); font-size: .57rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
-    .roster-facts dd { margin: 0; font-size: .72rem; font-weight: 700; line-height: 1.45; }
-    .titles { background: var(--deep-purple); }
-    .titles .eyebrow, .titles .section-heading p:last-child { color: #e0cbe8; }
-    .title-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(210px, .7fr); gap: 30px; align-items: center; padding: 30px 0; border-top: 1px solid rgba(255,255,255,.32); }
-    .title-row:last-child { border-bottom: 1px solid rgba(255,255,255,.32); }
-    .belt-name { margin: 0; font: 900 clamp(2.9rem, 5.4vw, 6.2rem)/.85 var(--display); text-transform: uppercase; }
-    .belt-owner { justify-self: end; width: min(100%, 380px); }
-    .belt-owner span { display: block; margin-bottom: 8px; font-size: .6rem; font-weight: 800; letter-spacing: .15em; opacity: .8; text-transform: uppercase; }
-    .belt-owner strong { font: 900 clamp(1.8rem, 3.1vw, 3.6rem)/.92 var(--display); text-transform: uppercase; }
-    .belt-owner small { display: block; margin-top: 8px; font-size: .67rem; line-height: 1.5; }
-    .watch { padding: 100px 0; background: var(--black); }
-    .watch-layout { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(230px, .5fr); gap: 60px; align-items: end; }
-    .watch-title { max-width: 970px; margin: 22px 0 0; font: 900 clamp(5rem, 12vw, 13rem)/.76 var(--display); text-transform: uppercase; }
-    .watch-title span { color: #a361d5; }
-    .watch-aside { padding: 0 0 5px 22px; border-left: 3px solid var(--purple); }
-    .watch-aside h3 { margin: 7px 0 10px; font: 900 2.5rem/.9 var(--display); text-transform: uppercase; }
-    .watch-aside p { color: var(--dim); font-size: .83rem; line-height: 1.7; }
-    .watch-aside a { display: inline-block; margin-top: 9px; padding-bottom: 5px; border-bottom: 2px solid var(--purple); font-size: .7rem; font-weight: 900; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
-    .watch-aside a:hover { color: #c593ed; }
-    .site-footer { padding: 42px 0 28px; border-top: 1px solid var(--hair); background: #130e17; }
-    .footer-top { display: flex; justify-content: space-between; gap: 30px; align-items: start; }
-    .footer-lockup { font: 900 clamp(3rem, 5vw, 6rem)/.8 var(--display); text-transform: uppercase; }
-    .footer-lockup span { display: block; color: #ae76d8; }
-    .footer-right { display: flex; gap: 55px; }
-    .footer-nav, .footer-social { display: flex; flex-direction: column; gap: 14px; }
-    .footer-social a { color: var(--dim); font-size: .7rem; font-weight: 700; text-decoration: none; }
-    .footer-social a:hover { color: var(--chalk); }
-    .footer-bottom { display: flex; justify-content: space-between; gap: 15px; margin-top: 70px; padding-top: 19px; border-top: 1px solid var(--hair); color: var(--dim); font-size: .64rem; line-height: 1.5; }
-    .footer-bottom p { margin: 0; }
-    .ticket-dialog { width: min(100% - 30px, 550px); max-height: min(92vh, 780px); border: 1px solid #a56bc8; padding: 0; background: #17111c; color: var(--chalk); box-shadow: 0 40px 120px rgba(0,0,0,.75); }
-    .ticket-dialog::backdrop { background: rgba(0,0,0,.82); }
-    .dialog-inner { padding: clamp(24px, 5vw, 42px); }
-    .dialog-head { display: flex; align-items: start; justify-content: space-between; gap: 20px; }
-    .dialog-head h2 { margin: 10px 0 24px; font: 900 4rem/.85 var(--display); text-transform: uppercase; }
-    .dialog-close { flex: 0 0 auto; width: 38px; height: 38px; border: 1px solid var(--hair); background: none; color: var(--chalk); font-size: 1.7rem; line-height: 1; }
-    .ticket-form { display: grid; gap: 17px; }
-    .ticket-field { display: grid; gap: 7px; color: var(--dim); font-size: .65rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-    .ticket-field select { width: 100%; min-height: 48px; border: 1px solid #685570; border-radius: 0; padding: 10px; background: #24182b; color: #fff; font-size: .85rem; letter-spacing: 0; }
-    .ticket-total { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 17px; border-top: 1px solid var(--hair); font-size: .8rem; font-weight: 800; text-transform: uppercase; }
-    .ticket-total strong { font: 900 2.7rem/1 var(--display); }
-    .demo-note { margin: 0; color: var(--dim); font-size: .72rem; line-height: 1.6; }
-    .dialog-status { min-height: 1.2em; margin: 0; color: #d8b3ef; font-size: .8rem; line-height: 1.5; }
-    @media (max-width: 1050px) {
-      .header-inner { gap: 18px; }
-      .site-nav { gap: 16px; }
-      .hero-bottom { grid-template-columns: 1fr 1fr; gap: 30px; }
-      .show-row { grid-template-columns: 85px minmax(0, 1fr) minmax(145px, .5fr) auto; }
-      .roster-row { grid-template-columns: 1fr; gap: 17px; }
-      .roster-facts { max-width: 650px; }
+    .hero { position: relative; overflow: hidden; background: var(--black); }
+    .hero::before { content: ""; position: absolute; top: 0; right: clamp(12px, 8.5vw, 170px); width: clamp(60px, 10vw, 150px); height: 58%; background: var(--violet-deep); transform: skew(-13deg); opacity: .46; pointer-events: none; }
+    .hero-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 30px; padding-bottom: 20px; border-bottom: 1px solid var(--rule); }
+    .live-dot { display: inline-block; width: 7px; height: 7px; margin-right: 10px; background: #b36fe3; box-shadow: 0 0 0 4px rgba(135,58,196,.22); vertical-align: 1px; }
+    .hero-stage { display: grid; grid-template-columns: minmax(0, 1.36fr) minmax(305px, .64fr); align-items: end; column-gap: clamp(35px, 5vw, 95px); position: relative; padding: clamp(45px, 7vw, 105px) 0 74px; }
+    .hero-identity { position: relative; min-width: 0; }
+    .hero-name { position: relative; z-index: 1; margin: 0; font: 900 clamp(8rem, 19vw, 22rem)/.635 var(--display); letter-spacing: -.062em; text-transform: uppercase; }
+    .hero-name span { display: block; width: fit-content; }
+    .hero-name .hero-top-word { position: relative; }
+    .hero-name .hero-bottom-word { margin: .09em 0 0 clamp(25px, 6vw, 110px); color: var(--violet); }
+    .hero-side-print { position: absolute; right: -12px; top: 9%; z-index: 2; writing-mode: vertical-rl; color: #be96d9; font-size: .63rem; font-weight: 900; letter-spacing: .31em; text-transform: uppercase; }
+    .hero-baseline { display: flex; justify-content: space-between; align-items: start; gap: 28px; margin-top: 49px; padding-top: 22px; border-top: 3px solid var(--paper); }
+    .hero-manifesto { max-width: 530px; margin: 0; font: 900 clamp(2.3rem, 4.4vw, 5rem)/.91 var(--display); text-transform: uppercase; }
+    .hero-manifesto em { color: #ba79e5; font-style: normal; }
+    .hero-stamp { flex: 0 0 auto; max-width: 110px; font-size: .6rem; line-height: 1.75; text-align: right; color: var(--muted); font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+    .fight-bill { position: relative; z-index: 2; padding: 22px 0 0 27px; border-left: 3px solid var(--violet); }
+    .fight-date { display: flex; align-items: end; gap: 11px; margin-top: 24px; padding-bottom: 17px; border-bottom: 1px solid var(--rule); }
+    .fight-date strong { font: 900 clamp(6rem, 10vw, 10rem)/.68 var(--display); letter-spacing: -.05em; }
+    .fight-date span { font: 900 clamp(2rem, 3.1vw, 3.4rem)/.84 var(--display); text-transform: uppercase; }
+    .fight-date small { display: block; margin-top: 9px; color: #c49bdc; font: 900 .66rem/1.3 var(--body); letter-spacing: .12em; }
+    .bill-title { margin: 31px 0 16px; font: 900 clamp(4.8rem, 7.3vw, 8rem)/.79 var(--display); text-transform: uppercase; }
+    .bill-venue { margin: 0 0 27px; color: #d9cddd; font-size: .81rem; line-height: 1.7; font-weight: 700; }
+    .fight-bill .button { width: 100%; }
+    .count-strip { position: relative; background: #2e173d; border-top: 1px solid #6a3386; border-bottom: 1px solid #6a3386; }
+    .count-inner { display: grid; grid-template-columns: minmax(150px, 1.15fr) repeat(4, minmax(0, .62fr)); gap: 0; align-items: stretch; }
+    .count-label { display: flex; flex-direction: column; justify-content: center; gap: 8px; padding: 25px 12px 23px 0; }
+    .count-label strong { font: 900 clamp(1.8rem, 3.5vw, 3.8rem)/.86 var(--display); text-transform: uppercase; }
+    .count-unit { padding: 17px 10px 19px 22px; border-left: 1px solid rgba(255,255,255,.27); }
+    .count-unit strong { display: block; font: 900 clamp(3.2rem, 6vw, 6.5rem)/.9 var(--display); font-variant-numeric: tabular-nums; }
+    .count-unit span { display: block; margin-top: 6px; color: #dbc7e6; font-size: .62rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .events { padding: clamp(78px, 9vw, 138px) 0; background: #17101d; }
+    .section-intro { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 45px; }
+    .section-intro h2 { margin: 12px 0 0; font: 900 clamp(5rem, 10vw, 11rem)/.77 var(--display); letter-spacing: -.025em; text-transform: uppercase; }
+    .section-intro > p { max-width: 265px; margin: 0 0 4px; color: var(--muted); font-size: .85rem; line-height: 1.65; }
+    .show-row { display: grid; grid-template-columns: clamp(100px, 12vw, 170px) minmax(0, 1.2fr) minmax(160px, .7fr) auto; gap: clamp(20px, 3vw, 48px); align-items: center; min-height: 158px; padding: 23px 8px 23px 0; border-top: 1px solid var(--rule); transition: padding-left .18s, background .18s; }
+    .show-row:last-child { border-bottom: 1px solid var(--rule); }
+    .show-row:hover { padding-left: 16px; background: rgba(135, 58, 196, .13); }
+    .show-date strong { display: block; font: 900 clamp(3.8rem, 6vw, 6.2rem)/.75 var(--display); letter-spacing: -.03em; }
+    .show-date span { display: block; margin-top: 11px; font-size: .68rem; font-weight: 900; letter-spacing: .14em; color: #ba8ad2; }
+    .show-title { margin: 0; font: 900 clamp(2.9rem, 4.8vw, 5.3rem)/.86 var(--display); text-transform: uppercase; }
+    .show-caption { margin: 9px 0 0; color: #b989da; font-size: .63rem; font-weight: 900; letter-spacing: .17em; text-transform: uppercase; }
+    .show-location { font-size: .82rem; line-height: 1.5; font-weight: 800; }
+    .show-location small { display: block; margin-top: 5px; color: var(--muted); font-size: .72rem; font-weight: 500; }
+    .feud { padding: clamp(85px, 10vw, 160px) 0; overflow: hidden; background: var(--black); }
+    .feud-intro { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(230px, .55fr); align-items: end; gap: 45px; }
+    .feud-intro h2 { margin: 16px 0 0; font: 900 clamp(5.5rem, 11vw, 12rem)/.77 var(--display); letter-spacing: -.023em; text-transform: uppercase; }
+    .feud-intro h2 span { color: var(--violet); }
+    .feud-intro > p { margin: 0 0 6px; color: var(--muted); font-size: .91rem; line-height: 1.7; }
+    .matchup { position: relative; display: grid; grid-template-columns: 1fr 1fr; margin-top: 64px; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+    .matchup::after { content: 'VS'; position: absolute; top: 50%; left: 50%; z-index: 1; color: #48205b; font: 900 clamp(6rem, 15vw, 18rem)/1 var(--display); transform: translate(-50%, -50%) rotate(-10deg); pointer-events: none; }
+    .fighter { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: start; min-height: 425px; padding: 36px clamp(22px, 4vw, 68px) 37px 0; }
+    .fighter + .fighter { align-items: end; padding: 88px 0 35px clamp(22px, 4vw, 68px); border-left: 1px solid var(--rule); text-align: right; }
+    .fighter h3 { margin: 28px 0 26px; font: 900 clamp(5.8rem, 9vw, 10.5rem)/.73 var(--display); text-transform: uppercase; }
+    .fighter:nth-child(2) h3 { color: #bc80e8; }
+    .fighter blockquote { max-width: 420px; margin: auto 0 0; font: 800 clamp(2rem, 2.75vw, 3.1rem)/1.01 var(--display); text-transform: uppercase; }
+    .fighter cite { display: block; margin-top: 17px; color: var(--muted); font: normal 900 .64rem/1.4 var(--body); letter-spacing: .14em; text-transform: uppercase; }
+    .stipulation { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 28px 37px; background: var(--violet); }
+    .stipulation strong { display: block; margin-top: 7px; font: 900 clamp(3.3rem, 6vw, 7rem)/.82 var(--display); text-transform: uppercase; }
+    .stipulation > span { flex: 0 0 auto; max-width: 240px; font-size: .77rem; line-height: 1.65; text-align: right; font-weight: 900; letter-spacing: .1em; text-transform: uppercase; }
+    .roster { padding: clamp(85px, 9vw, 145px) 0; background: #19111f; }
+    .roster .section-intro { margin-bottom: 32px; }
+    .roster-head { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(200px, .55fr); gap: 24px; padding: 13px 0; border-top: 3px solid var(--paper); border-bottom: 1px solid var(--rule); }
+    .roster-head span { font-size: .62rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
+    .roster-head span:last-child { text-align: right; }
+    .talent { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(200px, .55fr); gap: 24px; align-items: center; min-height: 127px; padding: 23px 0; border-bottom: 1px solid var(--rule); transition: padding-left .19s, background .19s; }
+    .talent:hover { padding-left: 14px; background: rgba(135,58,196,.10); }
+    .talent-name { margin: 0; font: 900 clamp(3.3rem, 5.3vw, 6.1rem)/.81 var(--display); text-transform: uppercase; transition: color .17s; }
+    .talent:hover .talent-name { color: #d5a5f2; }
+    .talent:nth-of-type(even) .talent-name { padding-left: clamp(0px, 4vw, 64px); }
+    .talent-nick { margin: 0 0 10px; color: #ba85d7; font-size: .61rem; font-weight: 900; letter-spacing: .15em; text-transform: uppercase; }
+    .talent-data { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 22px; margin: 0; }
+    .talent-data div { min-width: 0; }
+    .talent-data dt { margin-bottom: 7px; color: var(--muted); font-size: .57rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .talent-data dd { margin: 0; font-size: .77rem; line-height: 1.45; font-weight: 700; }
+    .talent-data .finisher { grid-column: 1 / -1; }
+    .talent-data .finisher dd { color: #e5bbff; }
+    .talent.drew .talent-name { padding-left: 0; color: var(--paper); }
+    .titles { padding: clamp(85px, 9vw, 145px) 0; background: #54226e; }
+    .titles .section-label { color: #e8c9f5; }
+    .titles .section-intro > p { color: #e1d0e6; }
+    .belt { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(220px, .55fr); gap: 28px; align-items: center; min-height: 147px; padding: 28px 0; border-top: 1px solid rgba(255,255,255,.36); }
+    .belt:last-child { border-bottom: 1px solid rgba(255,255,255,.36); }
+    .belt h3 { margin: 0; font: 900 clamp(3.1rem, 5.5vw, 6.3rem)/.81 var(--display); text-transform: uppercase; }
+    .belt-right { justify-self: end; width: min(100%, 320px); }
+    .belt-right span { display: block; margin-bottom: 11px; font-size: .62rem; letter-spacing: .17em; font-weight: 900; text-transform: uppercase; color: #ead5f1; }
+    .belt-right strong { font: 900 clamp(2.4rem, 3.7vw, 4.4rem)/.85 var(--display); text-transform: uppercase; }
+    .belt-right small { display: block; margin-top: 12px; font-size: .7rem; font-weight: 700; }
+    .watch { position: relative; overflow: hidden; padding: clamp(100px, 11vw, 170px) 0; background: var(--black); }
+    .watch::after { content: ""; position: absolute; right: -80px; bottom: -150px; width: 34vw; height: 34vw; border: min(6vw, 80px) solid #3b184d; transform: rotate(-13deg); pointer-events: none; }
+    .watch-inner { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(250px, .5fr); gap: clamp(35px, 7vw, 95px); align-items: end; }
+    .watch h2 { margin: 17px 0 0; font: 900 clamp(6rem, 13vw, 15rem)/.73 var(--display); letter-spacing: -.035em; text-transform: uppercase; }
+    .watch h2 span { color: #ad67dc; }
+    .watch-info { padding: 2px 0 2px 24px; border-left: 3px solid var(--violet); }
+    .watch-info h3 { margin: 10px 0 15px; font: 900 clamp(2.7rem, 4vw, 4.6rem)/.87 var(--display); text-transform: uppercase; }
+    .watch-info p:not(.eyebrow) { max-width: 340px; color: var(--muted); font-size: .84rem; line-height: 1.7; }
+    .watch-info .underlink { margin-top: 14px; }
+    .footer { padding: 53px 0 27px; background: #17101c; border-top: 1px solid var(--rule); }
+    .footer-top { display: flex; justify-content: space-between; gap: 60px; }
+    .footer-word { margin: 0; font: 900 clamp(4rem, 8vw, 10rem)/.75 var(--display); letter-spacing: -.025em; text-transform: uppercase; }
+    .footer-word span { display: block; color: #a95cda; }
+    .footer-links { display: flex; gap: clamp(35px, 5vw, 85px); }
+    .footer-nav, .footer-social { display: flex; flex-direction: column; align-items: start; gap: 17px; }
+    .footer-social a { color: var(--muted); font-size: .72rem; text-decoration: none; font-weight: 700; }
+    .footer-social a:hover { color: var(--paper); }
+    .footer-bottom { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-top: 95px; padding-top: 17px; border-top: 1px solid var(--rule); }
+    .footer-bottom p { margin: 0; color: var(--muted); font-size: .65rem; line-height: 1.5; }
+    dialog { width: min(540px, calc(100vw - 30px)); max-height: min(90vh, 760px); padding: 0; border: 1px solid #9958c0; border-radius: 0; color: var(--paper); background: #191020; box-shadow: 0 25px 120px #000; }
+    dialog::backdrop { background: rgba(3, 1, 5, .86); }
+    .dialog-body { padding: clamp(22px, 5vw, 40px); }
+    .dialog-head { display: flex; align-items: start; justify-content: space-between; gap: 15px; }
+    .dialog-head h2 { margin: 10px 0 28px; font: 900 4.6rem/.81 var(--display); text-transform: uppercase; }
+    .dialog-close { flex: 0 0 auto; width: 41px; height: 41px; border: 1px solid var(--rule); background: transparent; color: var(--paper); font-size: 1.7rem; }
+    .ticket-form { display: grid; gap: 18px; }
+    .field { display: grid; gap: 7px; font-size: .65rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; color: #c5acD0; }
+    .field select { width: 100%; min-height: 48px; padding: 10px; border: 1px solid #786087; border-radius: 0; background: #2a1935; color: var(--paper); font-size: .8rem; letter-spacing: normal; font-weight: 600; }
+    .total { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 18px; border-top: 1px solid var(--rule); text-transform: uppercase; font-size: .72rem; font-weight: 900; }
+    .total strong { font: 900 3rem/1 var(--display); }
+    .ticket-form .button { width: 100%; }
+    .demo-disclaimer { color: var(--muted); font-size: .72rem; line-height: 1.65; margin: 0; }
+    .ticket-response { min-height: 1.3em; color: #dcb3f6; margin: 0; font-size: .76rem; line-height: 1.5; }
+    @media (max-width: 1100px) {
+      .hero-stage { grid-template-columns: minmax(0, 1.1fr) minmax(290px, .9fr); gap: 25px; }
+      .hero-name { font-size: clamp(7rem, 19vw, 13rem); }
+      .hero-side-print { right: -4px; }
+      .show-row { grid-template-columns: 95px minmax(0, 1.1fr) minmax(140px, .6fr) auto; gap: 19px; }
+      .show-title { font-size: clamp(2.6rem, 4.5vw, 4rem); }
     }
-    @media (max-width: 760px) {
-      .wrap { width: min(100% - 36px, 1480px); }
-      .site-header { height: 66px; }
-      .brand-name { font-size: 1.73rem; }
-      .brand-cut { height: 30px; }
+    @media (max-width: 780px) {
+      .shell { width: min(100% - 38px, 1500px); }
+      .site-header { height: 67px; }
       .header-inner { gap: 12px; }
-      .header-ticket { margin-left: auto; min-height: 36px; padding: 8px 11px; font-size: .62rem; }
-      .menu-button { display: block; padding: 6px 8px; }
-      .site-nav { position: fixed; z-index: 43; top: 66px; right: 0; left: 0; display: flex; flex-direction: column; align-items: stretch; gap: 0; padding: 20px 24px 32px; background: #18101e; border-bottom: 2px solid var(--purple); transform: translateY(-125%); visibility: hidden; opacity: 0; transition: transform .23s, opacity .23s, visibility .23s; }
-      .site-nav.is-open { transform: translateY(0); opacity: 1; visibility: visible; }
-      .site-nav a { padding: 16px 0; border-bottom: 1px solid var(--hair); font: 900 2.5rem/.9 var(--display); }
-      .menu-scrim.is-open { position: fixed; z-index: 39; inset: 66px 0 0; display: block; background: rgba(0,0,0,.72); }
-      .menu-button[aria-expanded="true"] span:first-child { transform: translateY(7px) rotate(45deg); }
-      .menu-button[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-      .menu-button[aria-expanded="true"] span:last-child { transform: translateY(-7px) rotate(-45deg); }
-      .hero { min-height: auto; padding: 28px 0 68px; }
-      .hero::after { top: 150px; right: -70px; width: 210px; height: 210px; border-width: 28px; }
-      .hero-topline { padding-bottom: 19px; }
-      .hero-topline .eyebrow { font-size: .57rem; }
-      .hero-title { margin-top: 35px; font-size: 21vw; }
-      .hero-title .title-underside { margin-top: 12px; font-size: .3em; }
-      .hero-bottom { grid-template-columns: 1fr; gap: 39px; margin-top: 58px; }
-      .hero-statement { font-size: clamp(3.8rem, 10vw, 6rem); }
-      .event-panel { padding-left: 22px; }
-      .event-panel h2 { font-size: clamp(3.5rem, 13vw, 6rem); }
-      .count-unit strong { font-size: clamp(2.3rem, 8vw, 3rem); }
-      .section-heading { align-items: start; flex-direction: column; gap: 20px; }
-      .section-heading h2 { font-size: clamp(4.5rem, 15vw, 8rem); }
-      .show-row { grid-template-columns: 78px minmax(0, 1fr) auto; row-gap: 13px; min-height: 0; padding: 22px 0; }
-      .show-date strong { font-size: 3.25rem; }
-      .show-name { font-size: clamp(2.2rem, 7vw, 3.8rem); }
-      .show-place { grid-column: 2; }
-      .text-ticket { grid-column: 3; grid-row: 1 / 3; }
-      .feud-top, .feud-spread, .watch-layout { grid-template-columns: 1fr; }
-      .feud-headline { font-size: clamp(5rem, 15vw, 8rem); }
-      .feud-intro { max-width: 500px; margin: 0; }
-      .feud-spread { margin-top: 35px; }
-      .feud-side { min-height: 0; padding: 28px 0 34px; }
-      .feud-side + .feud-side { padding: 32px 0 38px; border-left: 0; border-top: 1px solid var(--hair); }
-      .feud-side h3 { font-size: clamp(4.4rem, 14vw, 7rem); }
-      .feud-side blockquote { font-size: clamp(1.9rem, 5.8vw, 2.7rem); }
-      .feud-stip { align-items: start; flex-direction: column; padding: 25px; }
-      .feud-stip span { text-align: left; }
-      .roster-row:nth-child(even) .roster-main { padding-left: 0; }
-      .title-row { grid-template-columns: 1fr; gap: 16px; }
-      .belt-owner { justify-self: start; }
-      .watch { padding-block: 77px; }
-      .watch-layout { gap: 40px; }
-      .watch-title { font-size: clamp(5.2rem, 16vw, 9rem); }
-      .footer-top { flex-direction: column; gap: 45px; }
-      .footer-bottom { margin-top: 50px; }
+      .logo-name { font-size: 1.85rem; }
+      .logo-slashes { height: 28px; }
+      .header-ticket { margin-left: auto; min-height: 40px; padding: 8px 12px; font-size: .67rem; }
+      .menu-toggle { display: block; }
+      .nav { position: fixed; z-index: 52; top: 67px; left: 0; right: 0; display: flex; align-items: stretch; flex-direction: column; gap: 0; margin: 0; padding: 14px 24px 26px; background: #1e1228; border-bottom: 2px solid var(--violet); visibility: hidden; opacity: 0; transform: translateY(-120%); transition: transform .22s, opacity .22s, visibility .22s; }
+      .nav.open { visibility: visible; opacity: 1; transform: translateY(0); }
+      .nav a { padding: 13px 0; border-bottom: 1px solid var(--rule); font: 900 2.7rem/.96 var(--display); }
+      .menu-scrim.open { position: fixed; inset: 67px 0 0; z-index: 49; display: block; background: rgba(0,0,0,.74); }
+      .menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(6px) rotate(45deg); }
+      .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+      .menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-6px) rotate(-45deg); }
+      .hero-top { padding-top: 22px; }
+      .hero-stage { display: block; padding: 66px 0 46px; }
+      .hero-name { font-size: clamp(7rem, 23vw, 12rem); }
+      .hero-side-print { right: 3%; }
+      .hero-baseline { margin-top: 43px; }
+      .hero-manifesto { font-size: clamp(2.7rem, 8vw, 4.2rem); }
+      .fight-bill { margin-top: 63px; padding: 20px 0 0 22px; }
+      .fight-date strong { font-size: clamp(7.5rem, 19vw, 10rem); }
+      .fight-date span { font-size: clamp(2.8rem, 7vw, 4rem); }
+      .bill-title { font-size: clamp(5rem, 12vw, 8rem); }
+      .count-inner { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+      .count-label { grid-column: 1 / -1; padding: 20px 0 14px; flex-direction: row; align-items: baseline; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.25); }
+      .count-unit { padding: 15px 10px 20px 12px; }
+      .count-unit:first-of-type { border-left: 0; padding-left: 0; }
+      .count-unit strong { font-size: clamp(3.2rem, 10vw, 5rem); }
+      .section-intro { display: block; }
+      .section-intro h2 { font-size: clamp(4rem, 13vw, 9rem); }
+      .section-intro > p { margin-top: 22px; }
+      .show-row { grid-template-columns: 90px minmax(0, 1fr) auto; row-gap: 11px; }
+      .show-title { font-size: clamp(2.8rem, 6vw, 4.5rem); }
+      .show-location { grid-column: 2; }
+      .show-row .underlink { grid-column: 3; grid-row: 1 / 3; }
+      .feud-intro { display: block; }
+      .feud-intro h2 { font-size: clamp(5.8rem, 15vw, 10rem); }
+      .feud-intro > p { max-width: 430px; margin-top: 35px; }
+      .matchup { margin-top: 40px; }
+      .matchup::after { font-size: 17vw; }
+      .fighter { min-height: 380px; }
+      .fighter h3 { font-size: clamp(5rem, 10vw, 8rem); }
+      .fighter blockquote { font-size: clamp(1.7rem, 3.9vw, 2.4rem); }
+      .watch-inner { display: block; }
+      .watch h2 { font-size: clamp(6rem, 15vw, 11rem); }
+      .watch-info { max-width: 390px; margin-top: 57px; }
     }
-    @media (max-width: 430px) {
-      .hero-title { font-size: 20.7vw; }
-      .hero-topline { gap: 12px; }
-      .hero-topline .eyebrow:last-child { text-align: right; }
-      .hero-statement { font-size: clamp(2.8rem, 12.4vw, 3.4rem); }
-      .feud-headline { font-size: clamp(3.8rem, 15vw, 5rem); }
-      .watch-title { font-size: clamp(4.3rem, 16vw, 5.2rem); }
-      .show-row { grid-template-columns: 55px minmax(0, 1fr); gap: 13px; }
-      .show-date strong { font-size: 2.7rem; }
-      .show-date span { font-size: .58rem; }
-      .show-name { font-size: 2.5rem; }
-      .show-place { grid-column: 2; }
-      .text-ticket { grid-column: 2; grid-row: auto; justify-self: start; }
-      .roster-main h3 { font-size: clamp(2.8rem, 10vw, 4rem); }
-      .roster-facts { grid-template-columns: 1.25fr .8fr; row-gap: 12px; }
-      .roster-facts div:last-child { grid-column: 1 / -1; }
-      .footer-right { gap: 42px; }
-      .footer-bottom { flex-direction: column; }
+    @media (max-width: 540px) {
+      .hero-top .eyebrow { font-size: .52rem; }
+      .hero-top .eyebrow:last-child { text-align: right; }
+      .hero-stage { padding-top: 62px; }
+      .hero-name { font-size: 24vw; }
+      .hero-name .hero-bottom-word { margin-left: 9vw; }
+      .hero-side-print { right: 0; top: 1%; font-size: .54rem; }
+      .hero-manifesto { font-size: clamp(2.5rem, 10.5vw, 4rem); }
+      .hero-stamp { max-width: 75px; font-size: .52rem; }
+      .fight-date strong { font-size: 30vw; }
+      .fight-date span { font-size: 10vw; }
+      .bill-title { font-size: 17vw; }
+      .count-label { gap: 10px; }
+      .count-label strong { font-size: 1.8rem; }
+      .count-label .eyebrow { font-size: .55rem; }
+      .count-unit { padding: 13px 5px 17px 8px; }
+      .count-unit strong { font-size: 13vw; }
+      .count-unit span { font-size: .51rem; }
+      .events .section-intro h2 { font-size: 11vw; }
+      .show-row { grid-template-columns: 61px minmax(0, 1fr); gap: 11px 15px; min-height: 0; padding: 25px 0; }
+      .show-date strong { font-size: 3rem; }
+      .show-date span { font-size: .56rem; letter-spacing: .05em; }
+      .show-title { font-size: clamp(2.4rem, 10.8vw, 3.5rem); }
+      .show-location { grid-column: 2; }
+      .show-row .underlink { grid-column: 2; grid-row: auto; justify-self: start; }
+      .feud-intro h2 { font-size: 16.5vw; }
+      .matchup { display: block; }
+      .matchup::after { display: none; }
+      .fighter, .fighter + .fighter { min-height: 0; padding: 31px 0 35px; border-left: 0; text-align: left; align-items: start; }
+      .fighter + .fighter { padding-top: 41px; border-top: 1px solid var(--rule); }
+      .fighter h3 { margin-top: 19px; font-size: 19vw; }
+      .fighter blockquote { margin-top: 5px; font-size: 7.4vw; }
+      .stipulation { flex-direction: column; align-items: start; padding: 24px; }
+      .stipulation strong { font-size: 12vw; }
+      .stipulation > span { text-align: left; }
+      .roster-head { grid-template-columns: 1fr; }
+      .roster-head span:last-child { display: none; }
+      .talent { display: block; min-height: 0; padding: 25px 0; }
+      .talent:nth-of-type(even) .talent-name { padding-left: 0; }
+      .talent-name { font-size: clamp(3.4rem, 13vw, 5.5rem); }
+      .talent-data { margin-top: 22px; gap: 17px; }
+      .belt { display: block; min-height: 0; padding: 29px 0; }
+      .belt h3 { font-size: 9vw; letter-spacing: -.035em; }
+      .belt-right { margin-top: 23px; }
+      .belt-right strong { font-size: 2.75rem; }
+      .watch h2 { font-size: 12vw; }
+      .footer-top { display: block; }
+      .footer-word { font-size: 13vw; }
+      .footer-links { justify-content: space-between; max-width: 350px; margin-top: 45px; }
+      .footer-bottom { align-items: start; flex-direction: column; margin-top: 64px; }
+    }
+    @media (max-width: 360px) {
+      .shell { width: min(100% - 28px, 1500px); }
+      .logo-name { font-size: 1.6rem; }
+      .logo-slashes { gap: 3px; }
+      .logo-slashes i { width: 5px; }
+      .header-ticket { padding-inline: 9px; font-size: .59rem; }
+      .hero-name { font-size: 23vw; }
+      .hero-stamp { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
   </style>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
   <header class="site-header" id="top">
-    <div class="wrap header-inner">
-      <a class="brand" href="#top" aria-label="BLACKTOP Pro Wrestling, home">
-        <span class="brand-cut" aria-hidden="true"></span>
-        <span class="brand-name">BLACKTOP<small>PRO WRESTLING</small></span>
+    <div class="shell header-inner">
+      <a class="logo" href="#top" aria-label="BLACKTOP Pro Wrestling, home">
+        <span class="logo-slashes" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="logo-name">BLACKTOP<small>PRO WRESTLING</small></span>
       </a>
-      <nav class="site-nav" id="primary-nav" aria-label="Main navigation">
+      <nav class="nav" id="main-nav" aria-label="Main navigation">
         <a href="#events">Events</a>
         <a href="#roster">Roster</a>
         <a href="#titles">Titles</a>
         <a href="#watch">Watch</a>
       </nav>
-      <button class="block-button header-ticket" type="button" data-event="NO SAFE GROUND">Tickets</button>
-      <button class="menu-button" type="button" aria-label="Open menu" aria-controls="primary-nav" aria-expanded="false">
+      <button class="button header-ticket" type="button" data-ticket="NO SAFE GROUND">Tickets</button>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="main-nav">
         <span></span><span></span><span></span>
       </button>
     </div>
   </header>
   <div class="menu-scrim" aria-hidden="true"></div>
 
-  <main>
+  <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="wrap">
-        <div class="hero-topline">
-          <p class="eyebrow hero-status"><span class="status-dot" aria-hidden="true"></span> Central Florida independent wrestling</p>
-          <p class="eyebrow">Hard nights since 2022</p>
-        </div>
-        <h1 class="hero-title" id="hero-title"><span>BLACKTOP</span><span class="title-underside">PRO WRESTLING</span></h1>
-        <div class="hero-bottom">
-          <div>
-            <p class="hero-statement">NO EASY WINS.<br><em>NO QUIET NIGHTS.</em></p>
-            <p class="hero-lede">No giant screens. No safe distance. Just a ring, a crowd, and people with something to prove.</p>
-          </div>
-          <div class="event-panel">
-            <p class="eyebrow">Next fight night</p>
-            <h2>NO SAFE<br>GROUND</h2>
-            <p class="event-meta"><time datetime="2026-11-14T19:30:00-05:00">Saturday, November 14, 2026 · 7:30 PM</time><br>Foundry Hall · Orlando, FL</p>
-            <button class="block-button" type="button" data-event="NO SAFE GROUND">Buy tickets</button>
-            <div class="countdown" id="countdown" aria-label="Time until No Safe Ground" aria-live="off">
-              <div class="count-unit"><strong id="days">00</strong><span>Days</span></div>
-              <div class="count-unit"><strong id="hours">00</strong><span>Hours</span></div>
-              <div class="count-unit"><strong id="minutes">00</strong><span>Mins</span></div>
-              <div class="count-unit"><strong id="seconds">00</strong><span>Secs</span></div>
+      <div class="shell">
+        <div class="hero-stage">
+          <div class="hero-identity">
+            <h1 class="hero-name" id="hero-title"><span class="hero-top-word">BLACK</span><span class="hero-bottom-word">TOP</span></h1>
+            <span class="hero-side-print" aria-hidden="true">Pro wrestling. No shortcuts.</span>
+            <div class="hero-baseline">
+              <p class="hero-manifesto">THE ROOM IS SMALL.<br><em>THE GRUDGE ISN'T.</em></p>
+              <span class="hero-stamp">No velvet ropes.<br>No quiet seats.</span>
             </div>
           </div>
+          <div class="fight-bill">
+            <div class="fight-date"><strong>14</strong><span>NOV<br>2026<small>7:30 PM EST</small></span></div>
+            <h2 class="bill-title">NO SAFE<br>GROUND.</h2>
+            <p class="bill-venue">Foundry Hall<br>Orlando, Florida</p>
+            <button class="button inverse" type="button" data-ticket="NO SAFE GROUND">Buy tickets</button>
+          </div>
+        </div>
+      </div>
+      <div class="count-strip">
+        <div class="shell count-inner" role="timer" aria-label="Time remaining until No Safe Ground" aria-live="off">
+          <div class="count-label"><strong id="count-message">Time to settle it.</strong></div>
+          <div class="count-unit"><strong id="days">00</strong><span>Days</span></div>
+          <div class="count-unit"><strong id="hours">00</strong><span>Hours</span></div>
+          <div class="count-unit"><strong id="minutes">00</strong><span>Minutes</span></div>
+          <div class="count-unit"><strong id="seconds">00</strong><span>Seconds</span></div>
         </div>
       </div>
     </section>
 
-    <section class="section shows" id="events" aria-labelledby="events-title">
-      <div class="wrap">
-        <div class="section-heading">
-          <div><p class="eyebrow">On the calendar</p><h2 id="events-title">NEXT UP.</h2></div>
-          <p>Four nights on the books. Every one of them has a reason to show up.</p>
+    <section class="events" id="events" aria-labelledby="events-title">
+      <div class="shell">
+        <div class="section-intro">
+          <div><h2 id="events-title">FOUR NIGHTS.<br>NO EXCUSES.</h2></div>
+          <p>Get close enough to hear the ring move. Bring your voice. Leave it there.</p>
         </div>
         <div class="show-list">
           <article class="show-row">
-            <div class="show-date"><strong>14</strong><span>NOV 2026</span></div>
-            <div><h3 class="show-name">No Safe Ground</h3><p class="show-note">Steel cage main event</p></div>
-            <div class="show-place">Foundry Hall<span>Orlando, FL</span></div>
-            <button class="text-ticket" type="button" data-event="NO SAFE GROUND">Tickets</button>
+            <div class="show-date"><strong>14</strong><span>NOV / SAT</span></div>
+            <div><h3 class="show-title">No Safe Ground</h3><p class="show-caption">World title / Steel cage</p></div>
+            <div class="show-location">Foundry Hall<small>Orlando, FL</small></div>
+            <button class="underlink" type="button" data-ticket="NO SAFE GROUND" aria-label="Tickets for No Safe Ground">Tickets</button>
           </article>
           <article class="show-row">
-            <div class="show-date"><strong>28</strong><span>NOV 2026</span></div>
-            <div><h3 class="show-name">Nothing Left</h3><p class="show-note">Thanksgiving weekend</p></div>
-            <div class="show-place">The Freight Room<span>Sanford, FL</span></div>
-            <button class="text-ticket" type="button" data-event="NOTHING LEFT">Tickets</button>
+            <div class="show-date"><strong>28</strong><span>NOV / SAT</span></div>
+            <div><h3 class="show-title">Nothing Left</h3><p class="show-caption">Thanksgiving weekend</p></div>
+            <div class="show-location">The Freight Room<small>Sanford, FL</small></div>
+            <button class="underlink" type="button" data-ticket="NOTHING LEFT" aria-label="Tickets for Nothing Left">Tickets</button>
           </article>
           <article class="show-row">
-            <div class="show-date"><strong>19</strong><span>DEC 2026</span></div>
-            <div><h3 class="show-name">Final Warning</h3><p class="show-note">Year-end blowoff</p></div>
-            <div class="show-place">Mill House<span>Lakeland, FL</span></div>
-            <button class="text-ticket" type="button" data-event="FINAL WARNING">Tickets</button>
+            <div class="show-date"><strong>19</strong><span>DEC / SAT</span></div>
+            <div><h3 class="show-title">Final Warning</h3><p class="show-caption">The year ends ugly</p></div>
+            <div class="show-location">Mill House<small>Lakeland, FL</small></div>
+            <button class="underlink" type="button" data-ticket="FINAL WARNING" aria-label="Tickets for Final Warning">Tickets</button>
           </article>
           <article class="show-row">
-            <div class="show-date"><strong>16</strong><span>JAN 2027</span></div>
-            <div><h3 class="show-name">Four Years Deep</h3><p class="show-note">Anniversary night</p></div>
-            <div class="show-place">Foundry Hall<span>Orlando, FL</span></div>
-            <button class="text-ticket" type="button" data-event="FOUR YEARS DEEP">Tickets</button>
+            <div class="show-date"><strong>16</strong><span>JAN / SAT</span></div>
+            <div><h3 class="show-title">Four Years Deep</h3><p class="show-caption">Anniversary night / 2027</p></div>
+            <div class="show-location">Foundry Hall<small>Orlando, FL</small></div>
+            <button class="underlink" type="button" data-ticket="FOUR YEARS DEEP" aria-label="Tickets for Four Years Deep">Tickets</button>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section feud" aria-labelledby="feud-title">
-      <div class="wrap">
-        <div class="feud-top">
-          <div><p class="eyebrow">The score isn't settled</p><h2 class="feud-headline" id="feud-title">BAD BLOOD.<br><em>STEEL WALLS.</em></h2></div>
-          <p class="feud-intro">Voss stole the win in September. Creed put him through a table in October. On November 14, there's nowhere left to run.</p>
+    <section class="feud" aria-labelledby="feud-title">
+      <div class="shell">
+        <div class="feud-intro">
+          <div><h2 id="feud-title">A CAGE<br>WON'T <span>FIX IT.</span></h2></div>
+          <p>Voss stole the fall in September. Creed put him through a table in October. The title is still with Voss. The patience is gone.</p>
         </div>
-        <div class="feud-spread">
-          <article class="feud-side">
-            <p class="eyebrow">Blacktop World Champion</p>
+        <div class="matchup">
+          <article class="fighter">
             <h3>MASON<br>VOSS</h3>
-            <blockquote>“He couldn't beat me with the door open. What changes when it's locked?”</blockquote>
+            <blockquote>“I beat him with the door open. He begged them to lock it.”</blockquote>
             <cite>Mason Voss</cite>
           </article>
-          <article class="feud-side">
-            <p class="eyebrow">The challenger</p>
+          <article class="fighter">
             <h3>JONAH<br>CREED</h3>
-            <blockquote>“Lock it. Chain it. Throw the key in the damn lake.”</blockquote>
+            <blockquote>“Good. Now nobody can pull me off him.”</blockquote>
             <cite>Jonah Creed</cite>
           </article>
         </div>
-        <div class="feud-stip">
-          <div><p class="eyebrow">World title on the line</p><strong>STEEL CAGE MATCH.</strong></div>
-          <span>NO SAFE GROUND<br>SATURDAY, NOVEMBER 14</span>
+        <div class="stipulation">
+          <div><strong>STEEL CAGE.</strong></div>
+          <span>NO SAFE GROUND<br>November 14 / Orlando<br>One man walks out with the belt.</span>
         </div>
       </div>
     </section>
 
-    <section class="section roster" id="roster" aria-labelledby="roster-title">
-      <div class="wrap">
-        <div class="section-heading roster-header">
-          <div><p class="eyebrow">The people who make it hurt</p><h2 id="roster-title">THE ROSTER.</h2></div>
-          <p>Different towns. Different fights. Same ring.</p>
+    <section class="roster" id="roster" aria-labelledby="roster-title">
+      <div class="shell">
+        <div class="section-intro">
+          <div><h2 id="roster-title">THE PEOPLE<br>IN THE RING.</h2></div>
+          <p>No borrowed reputations. If they want a reaction, they earn it.</p>
         </div>
+        <div class="roster-head" aria-hidden="true"><span>BLACKTOP ROSTER</span><span>Billed from / Stats / Finish</span></div>
         <div class="roster-list">
-          <article class="roster-row">
-            <div class="roster-main"><span class="roster-nickname">The Last Word</span><h3>Mason Voss</h3></div>
-            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Daytona Beach, FL</dd></div><div><dt>Height / Weight</dt><dd>6'2" / 228 lb</dd></div><div><dt>Finisher</dt><dd>Dead Letter</dd></div></dl>
+          <article class="talent">
+            <div><p class="talent-nick">The Last Word</p><h3 class="talent-name">Mason Voss</h3></div>
+            <dl class="talent-data"><div><dt>From</dt><dd>Daytona Beach, FL</dd></div><div><dt>Height / Weight</dt><dd>6'2" / 228 lb</dd></div><div class="finisher"><dt>Finisher</dt><dd>Dead Letter</dd></div></dl>
           </article>
-          <article class="roster-row">
-            <div class="roster-main"><span class="roster-nickname">The Wrecking Ball</span><h3>Jonah Creed</h3></div>
-            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Jacksonville, FL</dd></div><div><dt>Height / Weight</dt><dd>6'4" / 247 lb</dd></div><div><dt>Finisher</dt><dd>County Line</dd></div></dl>
+          <article class="talent">
+            <div><p class="talent-nick">The Wrecking Ball</p><h3 class="talent-name">Jonah Creed</h3></div>
+            <dl class="talent-data"><div><dt>From</dt><dd>Jacksonville, FL</dd></div><div><dt>Height / Weight</dt><dd>6'4" / 247 lb</dd></div><div class="finisher"><dt>Finisher</dt><dd>County Line</dd></div></dl>
           </article>
-          <article class="roster-row">
-            <div class="roster-main"><h3>Drew Robinson</h3></div>
-            <dl class="roster-facts"><div><dt>Billed from</dt><dd>St. Cloud, FL</dd></div><div><dt>Height / Weight</dt><dd>5'11" / 190 lb</dd></div><div><dt>Finisher</dt><dd>Running Knee</dd></div></dl>
+          <article class="talent drew">
+            <div><h3 class="talent-name">Drew Robinson</h3></div>
+            <dl class="talent-data"><div><dt>From</dt><dd>St. Cloud, FL</dd></div><div><dt>Height / Weight</dt><dd>5'11" / 190 lb</dd></div><div class="finisher"><dt>Finisher</dt><dd>Running Knee</dd></div></dl>
           </article>
-          <article class="roster-row">
-            <div class="roster-main"><span class="roster-nickname">The Blackout</span><h3>Sable Knox</h3></div>
-            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Tampa, FL</dd></div><div><dt>Height / Weight</dt><dd>5'8" / 145 lb</dd></div><div><dt>Finisher</dt><dd>Lights Out</dd></div></dl>
+          <article class="talent">
+            <div><p class="talent-nick">The Blackout</p><h3 class="talent-name">Sable Knox</h3></div>
+            <dl class="talent-data"><div><dt>From</dt><dd>Tampa, FL</dd></div><div><dt>Height / Weight</dt><dd>5'8" / 145 lb</dd></div><div class="finisher"><dt>Finisher</dt><dd>Lights Out</dd></div></dl>
           </article>
-          <article class="roster-row">
-            <div class="roster-main"><span class="roster-nickname">The Cold Front</span><h3>Lex Calder</h3></div>
-            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Winter Haven, FL</dd></div><div><dt>Height / Weight</dt><dd>6'0" / 212 lb</dd></div><div><dt>Finisher</dt><dd>Cold Snap</dd></div></dl>
+          <article class="talent">
+            <div><p class="talent-nick">The Cold Front</p><h3 class="talent-name">Lex Calder</h3></div>
+            <dl class="talent-data"><div><dt>From</dt><dd>Winter Haven, FL</dd></div><div><dt>Height / Weight</dt><dd>6'0" / 212 lb</dd></div><div class="finisher"><dt>Finisher</dt><dd>Cold Snap</dd></div></dl>
           </article>
-          <article class="roster-row">
-            <div class="roster-main"><span class="roster-nickname">The Mean Streak</span><h3>Veda Vice</h3></div>
-            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Orlando, FL</dd></div><div><dt>Height / Weight</dt><dd>5'7" / 138 lb</dd></div><div><dt>Finisher</dt><dd>Vice Grip</dd></div></dl>
+          <article class="talent">
+            <div><p class="talent-nick">The Mean Streak</p><h3 class="talent-name">Veda Vice</h3></div>
+            <dl class="talent-data"><div><dt>From</dt><dd>Orlando, FL</dd></div><div><dt>Height / Weight</dt><dd>5'7" / 138 lb</dd></div><div class="finisher"><dt>Finisher</dt><dd>Vice Grip</dd></div></dl>
           </article>
-          <article class="roster-row">
-            <div class="roster-main"><span class="roster-nickname">The Fixer</span><h3>Rafe Mercer</h3></div>
-            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Lakeland, FL</dd></div><div><dt>Height / Weight</dt><dd>6'1" / 220 lb</dd></div><div><dt>Finisher</dt><dd>Final Notice</dd></div></dl>
+          <article class="talent">
+            <div><p class="talent-nick">The Fixer</p><h3 class="talent-name">Rafe Mercer</h3></div>
+            <dl class="talent-data"><div><dt>From</dt><dd>Lakeland, FL</dd></div><div><dt>Height / Weight</dt><dd>6'1" / 220 lb</dd></div><div class="finisher"><dt>Finisher</dt><dd>Final Notice</dd></div></dl>
           </article>
-          <article class="roster-row">
-            <div class="roster-main"><span class="roster-nickname">No Remorse</span><h3>Nico Graves</h3></div>
-            <dl class="roster-facts"><div><dt>Billed from</dt><dd>Kissimmee, FL</dd></div><div><dt>Height / Weight</dt><dd>5'11" / 196 lb</dd></div><div><dt>Finisher</dt><dd>Graveside</dd></div></dl>
+          <article class="talent">
+            <div><p class="talent-nick">No Remorse</p><h3 class="talent-name">Nico Graves</h3></div>
+            <dl class="talent-data"><div><dt>From</dt><dd>Kissimmee, FL</dd></div><div><dt>Height / Weight</dt><dd>5'11" / 196 lb</dd></div><div class="finisher"><dt>Finisher</dt><dd>Graveside</dd></div></dl>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section titles" id="titles" aria-labelledby="titles-title">
-      <div class="wrap">
-        <div class="section-heading">
-          <div><p class="eyebrow">Nothing is given</p><h2 id="titles-title">THE GOLD.</h2></div>
-          <p>Four championships. Every defense means something.</p>
+    <section class="titles" id="titles" aria-labelledby="titles-title">
+      <div class="shell">
+        <div class="section-intro">
+          <div><h2 id="titles-title">CARRY THE<br>WEIGHT.</h2></div>
+          <p>Four titles. No free defenses. Everyone wants what you have.</p>
         </div>
-        <div class="title-list">
-          <article class="title-row"><h3 class="belt-name">Blacktop World<br>Championship</h3><div class="belt-owner"><span>Current champion</span><strong>Mason Voss</strong></div></article>
-          <article class="title-row"><h3 class="belt-name">Florida State<br>Championship</h3><div class="belt-owner"><span>Current champion</span><strong>Lex Calder</strong></div></article>
-          <article class="title-row"><h3 class="belt-name">Tag Team<br>Championship</h3><div class="belt-owner"><span>Current champions</span><strong>The Night Crew</strong><small>Rafe Mercer &amp; Nico Graves</small></div></article>
-          <article class="title-row"><h3 class="belt-name">Openweight<br>Championship</h3><div class="belt-owner"><span>Current champion</span><strong>Sable Knox</strong></div></article>
+        <div class="belt-list">
+          <article class="belt"><h3>Blacktop World<br>Championship</h3><div class="belt-right"><span>Current champion</span><strong>Mason Voss</strong></div></article>
+          <article class="belt"><h3>Florida State<br>Championship</h3><div class="belt-right"><span>Current champion</span><strong>Lex Calder</strong></div></article>
+          <article class="belt"><h3>Tag Team<br>Championship</h3><div class="belt-right"><span>Current champions</span><strong>The Night Crew</strong><small>Rafe Mercer &amp; Nico Graves</small></div></article>
+          <article class="belt"><h3>Openweight<br>Championship</h3><div class="belt-right"><span>Current champion</span><strong>Sable Knox</strong></div></article>
         </div>
       </div>
     </section>
 
     <section class="watch" id="watch" aria-labelledby="watch-title">
-      <div class="wrap watch-layout">
-        <div><p class="eyebrow">Missed the bell?</p><h2 class="watch-title" id="watch-title">THE FIGHT<br><span>STAYS ON.</span></h2></div>
-        <div class="watch-aside">
-          <p class="eyebrow">Blacktop Vault</p>
-          <h3>EVERY BELL.<br>EVERY GRUDGE.</h3>
-          <p>Full shows, match replays, and the stuff that didn't make it onto the poster. Live nights on Blacktop Live. Replays in the Vault.</p>
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit YouTube, sample streaming link">Explore watch options</a>
+      <div class="shell watch-inner">
+        <div><h2 id="watch-title">WATCH<br>THE <span>DAMAGE.</span></h2></div>
+        <div class="watch-info">
+          <h3>THE BELL<br>STILL RINGS.</h3>
+          <p>Catch event nights on BLACKTOP LIVE. Full matches and old grudges live in the BLACKTOP VAULT. Fictional channels for this concept.</p>
+          <a class="underlink" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="Visit YouTube, demonstration watch link">Visit video platform</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="wrap">
+  <footer class="footer">
+    <div class="shell">
       <div class="footer-top">
-        <div class="footer-lockup">BLACKTOP<span>WRESTLING.</span></div>
-        <div class="footer-right">
+        <p class="footer-word">BLACKTOP<span>WRESTLING.</span></p>
+        <div class="footer-links">
           <nav class="footer-nav" aria-label="Footer navigation"><a href="#events">Events</a><a href="#roster">Roster</a><a href="#titles">Titles</a><a href="#watch">Watch</a></nav>
-          <div class="footer-social"><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">YouTube</a></div>
+          <div class="footer-social"><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram home, demo link">Instagram</a><a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook home, demo link">Facebook</a><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube home, demo link">YouTube</a></div>
         </div>
       </div>
-      <div class="footer-bottom"><p>© <span id="year">2026</span> Blacktop Pro Wrestling. Central Florida.</p><p>Concept demo by Triple9 Design</p></div>
+      <div class="footer-bottom"><p>© <span id="copyright-year">2026</span> BLACKTOP Pro Wrestling. Central Florida.</p><p>Concept demo by Triple9 Design</p></div>
     </div>
   </footer>
 
-  <dialog class="ticket-dialog" id="ticket-dialog" aria-labelledby="ticket-heading">
-    <div class="dialog-inner">
-      <div class="dialog-head"><div><p class="eyebrow">Blacktop box office</p><h2 id="ticket-heading">YOUR NIGHT.<br>YOUR SEAT.</h2></div><button class="dialog-close" type="button" aria-label="Close ticket window">×</button></div>
+  <dialog id="ticket-dialog" aria-labelledby="ticket-dialog-title">
+    <div class="dialog-body">
+      <div class="dialog-head">
+        <div><h2 id="ticket-dialog-title">GET IN<br>THE ROOM.</h2></div>
+        <button class="dialog-close" type="button" id="close-dialog" aria-label="Close ticket window">×</button>
+      </div>
       <form class="ticket-form" id="ticket-form">
-        <label class="ticket-field">Event
+        <label class="field">Show
           <select id="ticket-event" name="event">
-            <option value="NO SAFE GROUND">No Safe Ground | Nov 14, 2026</option>
-            <option value="NOTHING LEFT">Nothing Left | Nov 28, 2026</option>
-            <option value="FINAL WARNING">Final Warning | Dec 19, 2026</option>
-            <option value="FOUR YEARS DEEP">Four Years Deep | Jan 16, 2027</option>
+            <option value="NO SAFE GROUND">No Safe Ground / Nov 14, 2026</option>
+            <option value="NOTHING LEFT">Nothing Left / Nov 28, 2026</option>
+            <option value="FINAL WARNING">Final Warning / Dec 19, 2026</option>
+            <option value="FOUR YEARS DEEP">Four Years Deep / Jan 16, 2027</option>
           </select>
         </label>
-        <label class="ticket-field">Admission
-          <select id="ticket-tier" name="tier"><option value="25">General admission | $25</option><option value="45">Ringside | $45</option></select>
+        <label class="field">Section
+          <select id="ticket-tier" name="tier"><option value="25">General admission / $25</option><option value="45">Ringside / $45</option></select>
         </label>
-        <label class="ticket-field">Tickets
-          <select id="ticket-quantity" name="quantity"><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option></select>
+        <label class="field">Quantity
+          <select id="ticket-quantity" name="quantity"><option value="1">1 ticket</option><option value="2">2 tickets</option><option value="3">3 tickets</option><option value="4">4 tickets</option><option value="5">5 tickets</option><option value="6">6 tickets</option></select>
         </label>
-        <div class="ticket-total"><span>Estimated total</span><strong id="ticket-total">$25</strong></div>
-        <button class="block-button" type="submit">Continue</button>
-        <p class="demo-note">Concept demo only. Prices are illustrative and no payments are collected.</p>
-        <p class="dialog-status" id="dialog-status" role="status"></p>
+        <div class="total"><span>Estimated total</span><strong id="ticket-total">$25</strong></div>
+        <button class="button" type="submit">Continue to checkout</button>
+        <p class="demo-disclaimer">Concept demo. Pricing is illustrative. No tickets are sold, reserved, or charged here.</p>
+        <p class="ticket-response" id="ticket-response" role="status" aria-live="polite"></p>
       </form>
     </div>
   </dialog>
 
   <script>
     (() => {
-      const eventTime = new Date('2026-11-14T19:30:00-05:00').getTime();
-      const countdown = {
+      'use strict';
+      const bellTime = new Date('2026-11-14T19:30:00-05:00').getTime();
+      const fields = {
         days: document.getElementById('days'),
         hours: document.getElementById('hours'),
         minutes: document.getElementById('minutes'),
         seconds: document.getElementById('seconds')
       };
-      function updateCountdown() {
-        let remaining = Math.max(0, Math.floor((eventTime - Date.now()) / 1000));
-        const days = Math.floor(remaining / 86400);
-        remaining %= 86400;
-        const hours = Math.floor(remaining / 3600);
-        remaining %= 3600;
-        const minutes = Math.floor(remaining / 60);
-        const seconds = remaining % 60;
-        Object.entries({ days, hours, minutes, seconds }).forEach(([key, value]) => {
-          countdown[key].textContent = String(value).padStart(2, '0');
+      function updateClock() {
+        let secondsLeft = Math.max(0, Math.floor((bellTime - Date.now()) / 1000));
+        const days = Math.floor(secondsLeft / 86400);
+        secondsLeft %= 86400;
+        const hours = Math.floor(secondsLeft / 3600);
+        secondsLeft %= 3600;
+        const minutes = Math.floor(secondsLeft / 60);
+        const seconds = secondsLeft % 60;
+        Object.entries({ days, hours, minutes, seconds }).forEach(([name, value]) => {
+          fields[name].textContent = String(value).padStart(2, '0');
         });
+        if (Date.now() >= bellTime) document.getElementById('count-message').textContent = 'THE BELL HAS RUNG.';
       }
-      updateCountdown();
-      setInterval(updateCountdown, 1000);
-      document.getElementById('year').textContent = new Date().getFullYear();
+      updateClock();
+      setInterval(updateClock, 1000);
+      document.getElementById('copyright-year').textContent = new Date().getFullYear();
 
-      const menuButton = document.querySelector('.menu-button');
-      const siteNav = document.getElementById('primary-nav');
+      const menu = document.getElementById('main-nav');
+      const menuButton = document.querySelector('.menu-toggle');
       const scrim = document.querySelector('.menu-scrim');
       function setMenu(open) {
+        menu.classList.toggle('open', open);
+        scrim.classList.toggle('open', open);
         menuButton.setAttribute('aria-expanded', String(open));
-        menuButton.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
-        siteNav.classList.toggle('is-open', open);
-        scrim.classList.toggle('is-open', open);
+        menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
         document.body.classList.toggle('menu-open', open);
       }
       menuButton.addEventListener('click', () => setMenu(menuButton.getAttribute('aria-expanded') !== 'true'));
       scrim.addEventListener('click', () => setMenu(false));
-      siteNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
-      window.addEventListener('resize', () => { if (window.innerWidth > 760) setMenu(false); });
+      menu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => setMenu(false)));
       document.addEventListener('keydown', event => { if (event.key === 'Escape') setMenu(false); });
+      window.addEventListener('resize', () => { if (window.innerWidth > 780) setMenu(false); });
 
       const dialog = document.getElementById('ticket-dialog');
       const form = document.getElementById('ticket-form');
@@ -512,26 +576,29 @@
       const tierSelect = document.getElementById('ticket-tier');
       const quantitySelect = document.getElementById('ticket-quantity');
       const total = document.getElementById('ticket-total');
-      const status = document.getElementById('dialog-status');
+      const response = document.getElementById('ticket-response');
+      const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
       function updateTotal() {
-        const amount = Number(tierSelect.value) * Number(quantitySelect.value);
-        total.textContent = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(amount);
+        total.textContent = money.format(Number(tierSelect.value) * Number(quantitySelect.value));
       }
-      document.querySelectorAll('[data-event]').forEach(button => {
+      document.querySelectorAll('[data-ticket]').forEach(button => {
         button.addEventListener('click', () => {
           setMenu(false);
-          eventSelect.value = button.dataset.event;
-          status.textContent = '';
+          eventSelect.value = button.dataset.ticket;
+          response.textContent = '';
           updateTotal();
           dialog.showModal();
         });
       });
-      [eventSelect, tierSelect, quantitySelect].forEach(select => select.addEventListener('change', () => { updateTotal(); status.textContent = ''; }));
-      document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
+      [eventSelect, tierSelect, quantitySelect].forEach(select => select.addEventListener('change', () => {
+        response.textContent = '';
+        updateTotal();
+      }));
+      document.getElementById('close-dialog').addEventListener('click', () => dialog.close());
       dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
       form.addEventListener('submit', event => {
         event.preventDefault();
-        status.textContent = 'This is a concept demo. Ticket checkout is not connected.';
+        response.textContent = 'This is the end of the demo flow. A real promotion would connect ticket checkout here. Nothing has been purchased or reserved.';
       });
     })();
   </script>
