@@ -9,7 +9,7 @@ const {
   description = 'Triple9 is a digital agency for local businesses. Websites, branding, and marketing that make customers choose you.',
 } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const canonical = new URL(Astro.url.pathname.replace(/^\//, ''), 'https://highimdreww.github.io/triple9-design/').href;
+const canonical = new URL(Astro.url.pathname, 'https://highimdreww.github.io').href;
 ---
 <!DOCTYPE html>
 <html lang="en">
