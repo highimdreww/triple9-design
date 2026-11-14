@@ -1,264 +1,64 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import ServiceList from '../components/ServiceList.astro';
 import home from '../content/home.json';
 
 const base = import.meta.env.BASE_URL;
-const services = Array.isArray(home.services) ? home.services : [];
-const principles = Array.isArray(home.why) ? home.why : [];
-const e11vnImage = `${base}images/e11vn-train.jpg`;
 ---
 <BaseLayout
   title="Triple9 Design | Websites, Brands, Apps & Marketing"
-  description="Triple9 Design makes websites, brands, iOS apps, and marketing that people notice. Built with intent, not pulled from a template."
+  description="We’re a design studio in St. Cloud, Florida. We make websites, brands, iOS apps, and marketing for local businesses."
 >
-  <section class="v5-hero" aria-labelledby="v5-hero-heading">
-    <div class="v5-hero-ink" aria-hidden="true"></div>
-    <div class="v5-nine" aria-hidden="true"><span>9</span><span>9</span><span>9</span></div>
-    <div class="wrap v5-hero-inner">
-      <h1 id="v5-hero-heading" class="v5-hero-title reveal" set:html={home.headline}></h1>
-      <div class="v5-hero-bottom reveal">
-        <p>{home.sub}</p>
-        <div class="v5-buttons">
-          <a class="btn btn-accent" href={`${base}contact/`} data-open-contact>{home.primaryCtaLabel}</a>
-          <a class="btn btn-white" href={`${base}services/`}>{home.secondaryCtaLabel}</a>
-        </div>
-      </div>
-    </div>
-    <div class="v5-hero-edge" aria-hidden="true"></div>
-  </section>
-
-  <section class="v5-manifesto" aria-labelledby="v5-manifesto-heading">
-    <div class="wrap v5-manifesto-inner">
-      <h2 id="v5-manifesto-heading" class="reveal">PEOPLE CAN TELL <span>WHEN YOU SETTLED.</span></h2>
-      <div class="v5-manifesto-bottom reveal">
-        <p>Your website is not a placeholder. Your brand is not a side project. We give both the attention they deserve.</p>
-        <span aria-hidden="true">TRIPLE9</span>
-      </div>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-lockup wrap">
+      <div class="nine-mark" aria-hidden="true"><span>9</span><span>9</span><span>9</span></div>
+      <h1 id="hero-title" set:html={home.headline}></h1>
+      <a class="btn btn-accent" href={`${base}contact/`} data-open-contact>{home.primaryCtaLabel}</a>
     </div>
   </section>
 
-  <section class="v5-services" id="services" aria-labelledby="v5-services-heading">
+  <section class="manifesto chapter">
     <div class="wrap">
-      <div class="v5-services-heading reveal">
-        <h2 id="v5-services-heading" set:html={home.servicesHeading}></h2>
-        <p>From the first logo sketch to the app in someone's pocket. We build the whole picture.</p>
-      </div>
-      <div class="v5-services-list">
-        {services.map((service) => (
-          <a class="v5-service reveal" href={`${base}services/`}>
-            <h3>{service.name}</h3>
-            <p>{service.text}</p>
-            <span class="v5-service-line" aria-hidden="true"></span>
-          </a>
-        ))}
-      </div>
-      <div class="v5-services-bottom reveal">
-        <p>One focused project or everything at once. We can work either way.</p>
-        <a class="btn btn-dark" href={`${base}services/`}>See all services</a>
-      </div>
+      <h2 class="display reveal" set:html={home.manifesto}></h2>
+      <p class="reading reveal">{home.sub}</p>
     </div>
   </section>
 
-  <section class="v5-statement" aria-labelledby="v5-statement-heading">
-    <div class="wrap v5-statement-inner">
-      <h2 id="v5-statement-heading" class="reveal">YOUR FIRST<br />IMPRESSION<br /><span>IS THE JOB.</span></h2>
-      <div class="v5-statement-bottom reveal">
-        <p>Not another generic look. Not a site that disappears into the crowd. We make the work feel like the business behind it.</p>
-        <a class="btn btn-accent" href={`${base}contact/`} data-open-contact>Make something worth seeing</a>
-      </div>
-      <div class="v5-statement-stamp" aria-hidden="true">9</div>
+  <section id="services" class="work chapter">
+    <div class="wrap">
+      <h2 class="display reveal">{home.servicesHeading}</h2>
+      <ServiceList />
     </div>
   </section>
 
-  <section class="v5-app" aria-labelledby="v5-app-heading">
-    <div class="wrap v5-app-grid">
-      <div class="v5-app-copy">
-        <h2 id="v5-app-heading" class="reveal">WE BUILD<br /><span>APPS,</span><br />TOO.</h2>
-        <div class="v5-app-name reveal"><strong>E11VN</strong><span>Pushing Past 10.</span></div>
-        <p class="v5-app-intro reveal">An iOS fitness app designed and built by Triple9. Black, white, red, and built for the work people actually put in.</p>
-        <div class="v5-app-features">
-          <p class="reveal">Workout programs and training logs.</p>
-          <p class="reveal">A live Apple Watch companion.</p>
-          <p class="reveal">A muscle map showing what's fresh.</p>
-          <p class="reveal">Fuel meal planning with photo-based macro estimates.</p>
-          <p class="reveal">Progress photos and protocol reminders.</p>
-        </div>
-        <a class="btn btn-accent v5-app-cta reveal" href={`${base}contact/`} data-open-contact>Talk to us about an app</a>
-      </div>
-      <figure class="v5-app-art reveal">
-        <div class="v5-app-plate">
-          <img src={e11vnImage} alt="E11VN iOS Train screen with weekly calendar, muscle map, workout program, and bottom navigation" width="997" height="2048" loading="lazy" decoding="async" />
-        </div>
-        <figcaption>E11VN. Designed and built by Triple9.</figcaption>
+  <section class="product chapter" aria-labelledby="product-title">
+    <div class="wrap">
+      <h2 class="display reveal" id="product-title">{home.app.heading}</h2>
+      <p class="reading reveal">{home.app.description}</p>
+      <figure class="device reveal">
+        <img src={`${base}images/e11vn-train.jpg`} alt="The E11VN Train screen with a weekly calendar, muscle recovery map, and upper-body workout." width="1260" height="2586" loading="lazy" decoding="async" />
+        <figcaption><strong>{home.app.name}</strong><span>{home.app.tagline}</span></figcaption>
       </figure>
+      <dl class="product-facts">
+        {home.app.features.map((fact) => (
+          <div class="reveal"><dt>{fact.title}</dt><dd>{fact.text}</dd></div>
+        ))}
+      </dl>
+      <a class="btn btn-accent v5-app-cta reveal" href={`${base}contact/`} data-open-contact>Talk to us about an app</a>
     </div>
   </section>
 
-  <section class="v5-approach" aria-labelledby="v5-approach-heading">
-    <div class="wrap v5-approach-grid">
-      <div class="v5-approach-lead reveal">
-        <h2 id="v5-approach-heading" set:html={home.whyHeading}></h2>
-        <p>Good work is a thousand decisions that nobody has to second-guess.</p>
-      </div>
-      <div class="v5-principles">
-        {principles.map((principle) => (
-          <article class="v5-principle reveal">
-            <h3>{principle.title}</h3>
-            <p>{principle.text}</p>
-          </article>
+  <section class="chapter approach">
+    <div class="wrap approach-layout">
+      <h2 class="display reveal" set:html={home.whyHeading}></h2>
+      <div class="principles">
+        {home.why.map((point) => (
+          <article class="reveal"><h3>{point.title}</h3><p>{point.text}</p></article>
         ))}
+        <a class="btn btn-accent" href={`${base}contact/`} data-open-contact>Make something worth seeing</a>
       </div>
     </div>
   </section>
   <CtaBand />
 </BaseLayout>
-
-<style>
-  .v5-hero { position:relative; isolation:isolate; min-height:850px; overflow:hidden; background:#FAFAFA; border-bottom:10px solid var(--ink); }
-  .v5-hero-ink { position:absolute; right:0; top:0; bottom:0; width:25%; background:#0B0B0C; z-index:-2; }
-  .v5-nine { position:absolute; right:-.035em; top:126px; z-index:-1; display:flex; white-space:nowrap; font-size:clamp(255px,32vw,570px); font-weight:900; line-height:.9; letter-spacing:-.13em; transform:rotate(-90deg) translate(-3%,24%); transform-origin:center; pointer-events:none; user-select:none; }
-  .v5-nine span:nth-child(1) { color:#EFEFF1; }
-  .v5-nine span:nth-child(2) { color:#F5AE90; }
-  .v5-nine span:nth-child(3) { color:#FF4D00; }
-  .v5-hero-inner { position:relative; z-index:2; display:flex; flex-direction:column; justify-content:flex-end; min-height:850px; padding-top:180px; padding-bottom:65px; }
-  .v5-hero-title { margin:0 0 65px; max-width:1160px; font-size:clamp(75px,10.4vw,174px); font-weight:900; line-height:.88; letter-spacing:-.085em; }
-  .v5-hero-title :global(.v5-line) { display:block; width:max-content; max-width:100%; }
-  .v5-hero-title :global(.accent) { color:var(--accent); }
-  .v5-hero-bottom { display:flex; align-items:end; justify-content:space-between; gap:45px; padding-top:25px; border-top:2px solid var(--ink); max-width:900px; }
-  .v5-hero-bottom p { max-width:390px; font-size:19px; line-height:1.45; font-weight:500; }
-  .v5-buttons { display:flex; flex-wrap:wrap; gap:10px; }
-  .v5-hero-edge { position:absolute; right:0; bottom:0; left:0; height:12px; background:var(--accent); }
-
-  .v5-manifesto { position:relative; padding:125px 0 58px; background:var(--accent); color:var(--ink); overflow:hidden; }
-  .v5-manifesto h2 { margin:0; max-width:1170px; font-size:clamp(64px,10vw,160px); font-weight:900; line-height:.9; letter-spacing:-.082em; }
-  .v5-manifesto h2 span { color:#fff; }
-  .v5-manifesto-bottom { display:flex; align-items:end; justify-content:space-between; gap:30px; margin-top:120px; padding-top:30px; border-top:2px solid var(--ink); }
-  .v5-manifesto-bottom p { max-width:515px; font-size:clamp(20px,2.4vw,32px); font-weight:650; line-height:1.25; letter-spacing:-.035em; }
-  .v5-manifesto-bottom span { font-size:clamp(35px,6vw,92px); line-height:.8; font-weight:900; letter-spacing:-.08em; opacity:.22; }
-
-  .v5-services { padding:135px 0 125px; background:#fff; }
-  .v5-services-heading { display:flex; align-items:end; justify-content:space-between; gap:35px; margin-bottom:64px; }
-  .v5-services-heading h2 { font-size:clamp(80px,12vw,180px); font-weight:900; line-height:.88; letter-spacing:-.085em; }
-  .v5-services-heading h2 :global(em) { font-style:normal; color:var(--accent); }
-  .v5-services-heading > p { max-width:280px; font-size:17px; line-height:1.45; font-weight:500; }
-  .v5-services-list { border-top:3px solid var(--ink); }
-  .v5-service { position:relative; display:grid; grid-template-columns:minmax(0,1.2fr) minmax(0,.65fr) 55px; align-items:center; gap:25px; min-height:142px; padding:27px 0; border-bottom:1px solid #bbb; text-decoration:none; transition:background .2s ease, padding .2s ease; }
-  .v5-service h3 { font-size:clamp(33px,4.7vw,69px); line-height:1.02; font-weight:800; letter-spacing:-.065em; }
-  .v5-service p { max-width:340px; color:#56565A; font-size:16px; line-height:1.45; }
-  .v5-service-line { display:block; width:34px; height:4px; margin-left:auto; background:var(--accent); transition:width .2s ease, background .2s ease; }
-  .v5-service:hover, .v5-service:focus-visible { background:var(--ink); color:#fff; padding-left:24px; padding-right:24px; }
-  .v5-service:hover p, .v5-service:focus-visible p { color:#c7c7ca; }
-  .v5-service:hover .v5-service-line { width:50px; background:#fff; }
-  .v5-services-bottom { display:flex; align-items:center; justify-content:space-between; gap:28px; padding-top:35px; }
-  .v5-services-bottom p { max-width:480px; font-size:16px; font-weight:500; }
-
-  .v5-statement { position:relative; isolation:isolate; overflow:hidden; background:#0B0B0C; color:white; border-bottom:14px solid var(--accent); }
-  .v5-statement-inner { position:relative; min-height:750px; display:flex; flex-direction:column; justify-content:space-between; padding-top:115px; padding-bottom:70px; }
-  .v5-statement h2 { position:relative; z-index:1; margin:0; font-size:clamp(70px,11vw,175px); line-height:.88; font-weight:900; letter-spacing:-.085em; }
-  .v5-statement h2 span { color:var(--accent); }
-  .v5-statement-bottom { position:relative; z-index:1; display:flex; align-items:end; justify-content:space-between; gap:55px; padding-top:25px; border-top:2px solid #6c6c70; }
-  .v5-statement-bottom p { max-width:505px; font-size:19px; color:#d1d1d3; line-height:1.5; }
-  .v5-statement-stamp { position:absolute; z-index:0; top:-100px; right:-50px; color:#1c1c1e; font-size:900px; font-weight:900; line-height:1; letter-spacing:-.12em; pointer-events:none; }
-
-  .v5-app { position:relative; overflow:hidden; padding:115px 0 105px; background:#151516; color:#fff; }
-  .v5-app::before { content:''; position:absolute; inset:0 auto 0 0; width:14px; background:#ff1f1f; }
-  .v5-app-grid { display:grid; grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr); align-items:start; gap:clamp(35px,6vw,100px); }
-  .v5-app-copy { position:relative; z-index:2; padding-top:25px; }
-  .v5-app h2 { font-size:clamp(72px,9.4vw,148px); font-weight:900; letter-spacing:-.085em; line-height:.89; }
-  .v5-app h2 span { color:#ff2828; }
-  .v5-app-name { display:flex; align-items:baseline; flex-wrap:wrap; gap:12px 22px; margin-top:64px; padding-top:23px; border-top:2px solid #666; }
-  .v5-app-name strong { font-size:clamp(43px,5vw,80px); line-height:1; font-weight:900; letter-spacing:-.065em; }
-  .v5-app-name span { color:#c7c7c9; font-size:17px; font-weight:600; }
-  .v5-app-intro { max-width:525px; margin-top:25px; font-size:19px; line-height:1.5; color:#c9c9cc; }
-  .v5-app-features { margin:48px 0; border-top:1px solid #5b5b60; }
-  .v5-app-features p { max-width:540px; padding:16px 0; border-bottom:1px solid #5b5b60; font-size:clamp(16px,1.65vw,21px); font-weight:600; letter-spacing:-.02em; line-height:1.3; }
-  .v5-app-cta { margin-top:5px; }
-  .v5-app-art { position:relative; min-width:0; margin:0; padding:25px 8px 0 0; }
-  .v5-app-art::before { content:''; position:absolute; top:52px; right:-18px; bottom:20px; left:28px; border:12px solid #ff2828; }
-  .v5-app-plate { position:relative; z-index:1; padding:12px; background:#050506; border:1px solid #424246; box-shadow:35px 35px 0 #09090a; transform:rotate(2deg); }
-  .v5-app-plate img { display:block; width:100%; height:auto; }
-  .v5-app-art figcaption { position:relative; z-index:2; margin-top:42px; color:#b9b9bc; font-size:13px; font-weight:600; }
-
-  .v5-approach { padding:135px 0; background:#f4f4f5; }
-  .v5-approach-grid { display:grid; grid-template-columns:1fr .83fr; gap:clamp(40px,7vw,110px); }
-  .v5-approach-lead { position:sticky; top:115px; align-self:start; }
-  .v5-approach h2 { font-size:clamp(65px,8vw,120px); font-weight:900; letter-spacing:-.08em; line-height:.94; }
-  .v5-approach h2 :global(span) { color:var(--accent); }
-  .v5-approach-lead p { max-width:390px; margin-top:40px; font-size:20px; line-height:1.5; }
-  .v5-principles { border-top:3px solid var(--ink); }
-  .v5-principle { padding:37px 0 45px; border-bottom:1px solid #aeb0b3; }
-  .v5-principle h3 { font-size:clamp(30px,3.4vw,49px); line-height:1.05; letter-spacing:-.055em; font-weight:800; }
-  .v5-principle p { max-width:470px; margin-top:17px; color:#57575b; font-size:17px; line-height:1.55; }
-
-  @media (max-width:1100px) {
-    .v5-hero-ink { width:18%; }
-    .v5-nine { right:-17%; opacity:.7; }
-    .v5-hero-title { font-size:clamp(70px,10.3vw,130px); }
-    .v5-app-grid { grid-template-columns:1fr .9fr; gap:40px; }
-  }
-  @media (max-width:800px) {
-    .v5-hero, .v5-hero-inner { min-height:740px; }
-    .v5-hero-inner { padding-top:165px; padding-bottom:50px; }
-    .v5-hero-ink { width:15%; }
-    .v5-hero-title { font-size:clamp(65px,11.5vw,105px); }
-    .v5-nine { right:-37%; top:190px; opacity:.4; }
-    .v5-hero-bottom, .v5-services-heading, .v5-statement-bottom, .v5-services-bottom { align-items:flex-start; flex-direction:column; }
-    .v5-manifesto-bottom { margin-top:75px; }
-    .v5-service { grid-template-columns:minmax(0,1fr) minmax(0,.8fr) 36px; }
-    .v5-app-grid { grid-template-columns:1fr; }
-    .v5-app-copy { padding-top:0; }
-    .v5-app-art { width:min(510px,90%); margin:30px auto 0; }
-    .v5-approach-grid { grid-template-columns:1fr; }
-    .v5-approach-lead { position:static; }
-    .v5-statement-inner { min-height:650px; }
-    .v5-statement-stamp { font-size:650px; right:-130px; }
-  }
-  @media (max-width:520px) {
-    .v5-hero { border-bottom-width:7px; }
-    .v5-hero, .v5-hero-inner { min-height:710px; }
-    .v5-hero-inner { padding-top:143px; padding-bottom:42px; }
-    .v5-hero-ink { width:12%; }
-    .v5-nine { top:130px; right:-83%; font-size:330px; opacity:.22; }
-    .v5-hero-title { font-size:clamp(53px,12.7vw,72px); margin-bottom:48px; letter-spacing:-.082em; }
-    .v5-hero-bottom { gap:25px; padding-top:20px; }
-    .v5-hero-bottom p { max-width:320px; font-size:16px; }
-    .v5-buttons { width:100%; }
-    .v5-buttons .btn { flex:1; padding:14px 15px; font-size:13px; }
-    .v5-manifesto { padding:85px 0 40px; }
-    .v5-manifesto h2 { font-size:clamp(53px,12vw,74px); }
-    .v5-manifesto-bottom { margin-top:65px; }
-    .v5-manifesto-bottom span { display:none; }
-    .v5-services { padding:90px 0; }
-    .v5-services-heading { margin-bottom:43px; }
-    .v5-services-heading h2 { font-size:clamp(65px,16vw,95px); }
-    .v5-services-heading > p { max-width:340px; }
-    .v5-service { grid-template-columns:1fr 22px; gap:7px; padding:24px 0; }
-    .v5-service h3 { grid-column:1; font-size:clamp(30px,8vw,42px); }
-    .v5-service p { grid-column:1; grid-row:2; font-size:14px; }
-    .v5-service-line { grid-column:2; grid-row:1 / 3; width:20px; }
-    .v5-service:hover, .v5-service:focus-visible { padding-left:10px; padding-right:10px; }
-    .v5-statement-inner { min-height:590px; padding-top:88px; padding-bottom:45px; }
-    .v5-statement h2 { font-size:clamp(53px,12.4vw,80px); }
-    .v5-statement-bottom { gap:25px; }
-    .v5-statement-bottom p { font-size:16px; }
-    .v5-statement-stamp { font-size:540px; right:-180px; top:10px; }
-    .v5-app { padding:85px 0 95px; }
-    .v5-app::before { width:7px; }
-    .v5-app h2 { font-size:clamp(68px,15vw,100px); }
-    .v5-app-name { margin-top:50px; }
-    .v5-app-intro { font-size:16px; }
-    .v5-app-features { margin:32px 0; }
-    .v5-app-art { width:calc(100% - 26px); margin-top:48px; }
-    .v5-app-art::before { right:-10px; left:15px; border-width:7px; }
-    .v5-app-plate { padding:7px; box-shadow:16px 16px 0 #09090a; }
-    .v5-approach { padding:95px 0; }
-    .v5-approach h2 { font-size:clamp(52px,12vw,75px); }
-    .v5-approach-lead p { margin-top:24px; font-size:17px; }
-    .v5-principle { padding:30px 0; }
-  }
-  @media (prefers-reduced-motion:reduce) {
-    .v5-service, .v5-service-line { transition:none; }
-    .v5-app-plate { transform:none; }
-  }
-</style>

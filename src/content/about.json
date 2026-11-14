@@ -1,1 +1,18 @@
-{"body":"Triple9 is a digital agency for local businesses. Websites, branding, marketing — the whole front door of your company. We're designers and marketers, not salespeople. The people you talk to are the people who do the work.","eyebrow":"About","headline":"A small team with <span class=\"accent\">high standards</span>.","values":[{"text":"No jargon, no fluff. You'll always know where you stand.","title":"Say it plainly."},{"text":"Because it does. First impressions decide everything.","title":"Design like it matters."},{"text":"Deadlines are real. So are we.","title":"Do what you said."}]}
+{
+  "headline": "A small team.<br />High standards.",
+  "body": "We’re a design studio in St. Cloud, Florida. We build websites, brands, apps, and marketing for local businesses. The designers and marketers you talk to are the people doing the work.",
+  "values": [
+    {
+      "title": "Say it plainly.",
+      "text": "We explain what we’re making, what it costs, and where things stand."
+    },
+    {
+      "title": "Design like it matters.",
+      "text": "A customer sees your business long before they meet you. We take that first impression seriously."
+    },
+    {
+      "title": "Do what you said.",
+      "text": "We agree on the work and the deadline, then follow through."
+    }
+  ]
+}

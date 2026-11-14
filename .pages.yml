@@ -1,78 +1,84 @@
-# Pages CMS configuration for Triple9 Design
 media:
   input: public
   output: /triple9-design
+
 content:
   - name: home
     label: Homepage
-    path: src/content
     type: file
-    filename: home.json
+    path: src/content/home.json
     fields:
-      - { name: eyebrow, label: Eyebrow, type: string }
-      - { name: headline, label: Headline (HTML allowed), type: text }
-      - { name: sub, label: Subheading, type: text }
-      - { name: primaryCtaLabel, label: Primary button label, type: string }
-      - { name: secondaryCtaLabel, label: Secondary button label, type: string }
-      - { name: servicesEyebrow, label: Services eyebrow, type: string }
+      - { name: headline, label: Hero headline (HTML), type: text }
+      - { name: primaryCtaLabel, label: Quote button, type: string }
+      - { name: manifesto, label: Manifesto heading (HTML), type: text }
+      - { name: sub, label: Manifesto text, type: text }
       - { name: servicesHeading, label: Services heading, type: string }
-      - name: services
-        label: Service cards
-        type: list
+      - name: app
+        label: App showcase
+        type: object
         fields:
-          - { name: name, label: Name, type: string }
-          - { name: text, label: One-line description, type: text }
-      - { name: whyEyebrow, label: Why eyebrow, type: string }
-      - { name: whyHeading, label: Why heading, type: string }
+          - { name: heading, type: string }
+          - { name: description, type: text }
+          - { name: name, label: App name, type: string }
+          - { name: tagline, type: string }
+          - name: features
+            type: object
+            list: true
+            fields:
+              - { name: title, type: string }
+              - { name: text, type: text }
+      - { name: whyHeading, label: Approach heading, type: string }
       - name: why
-        label: Why points
-        type: list
+        label: Approach
+        type: object
+        list: true
         fields:
-          - { name: title, label: Title, type: string }
-          - { name: text, label: Text, type: text }
+          - { name: title, type: string }
+          - { name: text, type: text }
+
   - name: services
-    label: Services page
-    path: src/content
+    label: Services
     type: file
-    filename: services.json
+    path: src/content/services.json
     fields:
-      - { name: eyebrow, label: Eyebrow, type: string }
-      - { name: headline, label: Headline (HTML allowed), type: text }
-      - { name: sub, label: Subheading, type: text }
+      - { name: headline, label: Headline (HTML), type: text }
+      - { name: sub, label: Introduction, type: text }
       - name: items
-        label: Services
-        type: list
+        label: Services on Home and Services
+        type: object
+        list: true
         fields:
-          - { name: name, label: Name, type: string }
-          - { name: description, label: Description, type: text }
-          - { name: bullets, label: Bullet points (one per line), type: text }
+          - { name: id, label: Link anchor, type: string, required: true }
+          - { name: name, label: Service name, type: string }
+          - { name: description, type: text }
+          - { name: bullets, label: Included work, type: string, list: true }
+
   - name: about
-    label: About page
-    path: src/content
+    label: About
     type: file
-    filename: about.json
+    path: src/content/about.json
     fields:
-      - { name: eyebrow, label: Eyebrow, type: string }
-      - { name: headline, label: Headline (HTML allowed), type: text }
-      - { name: body, label: Body, type: text }
+      - { name: headline, label: Headline (HTML), type: text }
+      - { name: body, type: text }
       - name: values
-        label: Values
-        type: list
+        type: object
+        list: true
         fields:
-          - { name: title, label: Title, type: string }
-          - { name: text, label: Text, type: text }
+          - { name: title, type: string }
+          - { name: text, type: text }
+
   - name: contact
-    label: Contact page
-    path: src/content
+    label: Contact
     type: file
-    filename: contact.json
+    path: src/content/contact.json
     fields:
-      - { name: eyebrow, label: Eyebrow, type: string }
-      - { name: headline, label: Headline (HTML allowed), type: text }
-      - { name: sub, label: Subheading, type: text }
-      - { name: phone, label: Phone display, type: string }
-      - { name: phoneHref, label: Phone link (tel:), type: string }
-      - { name: email, label: Email, type: string }
-      - { name: services, label: Service checkboxes (one per line), type: text }
+      - { name: eyebrow, type: string, hidden: true }
+      - { name: headline, label: Headline (HTML), type: text }
+      - { name: sub, label: Introduction, type: text }
+      - { name: phone, type: string }
+      - { name: phoneHref, label: Phone link, type: string }
+      - { name: email, type: string }
+      - { name: services, label: Service checkboxes, type: string, list: true }
       - { name: successHeading, label: Success heading, type: string }
       - { name: successText, label: Success text, type: text }
+      - { name: quoteFormEndpoint, label: Quote form endpoint, type: string }

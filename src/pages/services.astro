@@ -1,37 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
+import ServiceList from '../components/ServiceList.astro';
 import services from '../content/services.json';
 ---
 <BaseLayout
-  title="Services — Triple9 Design"
-  description="Web design, full rebrands, social media marketing, digital advertising, SEO, and care plans. One team for your website, your look, and your marketing."
+  title="Services | Triple9 Design"
+  description="We design websites, brands, and iOS apps. We also handle social media, advertising, local search, hosting, and ongoing care."
 >
-  <section class="page-hero">
-    <div class="wrap">
-      <p class="kicker reveal">{services.eyebrow}</p>
-      <h1 class="display reveal" set:html={services.headline}></h1>
-      <p class="sub reveal">{services.sub}</p>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top: 0;">
-    <div class="wrap">
-      {services.items.map((item) => (
-        <div class="service-row reveal">
-          <h3>{item.name}</h3>
-          <div>
-            <p class="lead">{item.description}</p>
-            <ul class="check-list">
-              {item.bullets.map((b) => (
-                <li>{b}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
-    </div>
-  </section>
-
+  <header class="page-intro wrap">
+    <h1 class="display" set:html={services.headline}></h1>
+    <p class="reading">{services.sub}</p>
+  </header>
+  <div class="wrap service-catalog"><ServiceList detailed /></div>
   <CtaBand />
 </BaseLayout>

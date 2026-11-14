@@ -1,0 +1,29 @@
+---
+import services from '../content/services.json';
+
+interface Props {
+  detailed?: boolean;
+}
+
+const { detailed = false } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const Heading = detailed ? 'h2' : 'h3';
+---
+<ul class="service-list">
+  {services.items.map((item) => (
+    <li class="service-beat" id={detailed ? item.id : undefined}>
+      <div class="reveal">
+        <Heading class="service-name">
+          {detailed ? item.name : <a href={`${base}services/#${item.id}`}>{item.name}</a>}
+        </Heading>
+        <p>{item.description}</p>
+        {detailed && (
+          <details class="service-details">
+            <summary>What’s included<span class="visually-hidden"> in {item.name}</span></summary>
+            <ul>{item.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
+          </details>
+        )}
+      </div>
+    </li>
+  ))}
+</ul>

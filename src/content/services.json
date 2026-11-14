@@ -1,42 +1,80 @@
 {
-  "eyebrow": "Services",
-  "headline": "Everything your brand <span class=\"accent\">needs</span>.",
-  "sub": "One team for your website, your look, your app, and your marketing.",
+  "headline": "One studio.<br />Seven services.",
+  "sub": "We can take on one project or look after your website, brand, app, and marketing together.",
   "items": [
     {
-      "name": "Web Design & Development",
-      "description": "Custom websites designed around your business. Not a template with your logo pasted in. Fast, mobile-first, and built to turn visitors into customers.",
-      "bullets": ["Custom design, no templates", "Mobile-first build", "Words that sell", "Launch and handoff"]
+      "id": "web-design",
+      "name": "Web Design",
+      "description": "We build fast websites that make it easy to become a customer.",
+      "bullets": [
+        "Custom design, no templates",
+        "Mobile-first build",
+        "Words that sell",
+        "Launch and handoff"
+      ]
     },
     {
+      "id": "full-rebrands",
       "name": "Full Rebrands",
-      "description": "When your look is holding you back. New logo, colors, fonts, and the rules for using them. A complete identity your whole business can stand behind.",
-      "bullets": ["Logo and identity system", "Brand guidelines", "Business cards, signage, social kits"]
+      "description": "We give your business a look people can recognize anywhere.",
+      "bullets": [
+        "Logo and identity system",
+        "Brand guidelines",
+        "Business cards, signage, social kits"
+      ]
     },
     {
-      "name": "Social Media Marketing",
-      "description": "We plan it, design it, and post it. Three posts a week on the platforms your customers actually use.",
-      "bullets": ["Content calendar", "Custom graphics and copy", "Publishing and management", "Monthly report"]
+      "id": "social-media",
+      "name": "Social Media",
+      "description": "We plan, design, and publish three posts a week where your customers spend time.",
+      "bullets": [
+        "Content calendar",
+        "Custom graphics and copy",
+        "Publishing and management",
+        "Monthly report"
+      ]
     },
     {
+      "id": "digital-advertising",
       "name": "Digital Advertising",
-      "description": "Meta and Google ads managed by people who check them every day. You set the budget. We make it work.",
-      "bullets": ["Campaign setup", "Daily monitoring", "Monthly reporting", "Ad spend billed separately"]
+      "description": "We run Meta and Google campaigns around the goals and budget you set.",
+      "bullets": [
+        "Campaign setup",
+        "Daily monitoring",
+        "Monthly reporting",
+        "Ad spend billed separately"
+      ]
     },
     {
+      "id": "seo",
       "name": "SEO",
-      "description": "The unglamorous work that gets you found: site structure, local listings, and content that answers what customers search.",
-      "bullets": ["On-page SEO", "Google Business Profile", "Local search"]
+      "description": "We help local customers find you when they search for what you do.",
+      "bullets": [
+        "Site structure and on-page SEO",
+        "Google Business Profile and local listings",
+        "Content that answers customer searches"
+      ]
     },
     {
+      "id": "app-development",
       "name": "App Development",
-      "description": "We design and build iOS apps people can actually use. From the screens and flows to the features that make them worth opening. E11VN is one we built ourselves.",
-      "bullets": ["iOS app design and development", "SwiftUI interfaces", "Apple Watch companion features", "Testing and launch preparation"]
+      "description": "We design and build iOS apps around the way people use them.",
+      "bullets": [
+        "iOS app design and development",
+        "SwiftUI interfaces",
+        "Apple Watch companion features",
+        "Testing and launch preparation"
+      ]
     },
     {
-      "name": "Care Plans",
-      "description": "Hosting, security, updates, and small changes. Handled quietly in the background.",
-      "bullets": ["Hosting and SSL", "Updates and backups", "Content changes"]
+      "id": "hosting-and-care",
+      "name": "Hosting & Care",
+      "description": "We keep your site secure, up to date, and running after launch.",
+      "bullets": [
+        "Hosting and SSL",
+        "Updates and backups",
+        "Content changes"
+      ]
     }
   ]
 }
