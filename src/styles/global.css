@@ -327,3 +327,5 @@ body.popup-open { overflow: hidden; }
   #quoteForm .checks, .footer-grid { grid-template-columns: 1fr; }
   .product-facts > div { grid-template-columns: 4.5rem 1fr; }
 }
+
+section[id] { scroll-margin-top: 6.5rem; }
