@@ -2,34 +2,46 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import ServiceList from '../components/ServiceList.astro';
+import ProjectFigure from '../components/ProjectFigure.astro';
+import services from '../content/services.json';
 import home from '../content/home.json';
 
 const base = import.meta.env.BASE_URL;
+const [lead, ...concepts] = home.projects;
+const groups = concepts.map((project, index) => {
+  const start = Math.round(index * services.items.length / concepts.length);
+  const end = Math.round((index + 1) * services.items.length / concepts.length);
+  return { project, services: services.items.slice(start, end) };
+});
 ---
 <BaseLayout
   title="Triple9 Design | Websites, Brands, Apps & Marketing"
   description="We’re a design studio in St. Cloud, Florida. We make websites, brands, iOS apps, and marketing for local businesses."
 >
   <section class="hero" aria-labelledby="hero-title">
-    <div class="hero-lockup wrap">
-      <div class="nine-mark" aria-hidden="true"><span>9</span><span>9</span><span>9</span></div>
-      <h1 id="hero-title" set:html={home.headline}></h1>
-      <a class="btn btn-accent" href={`${base}contact/`} data-open-contact>{home.primaryCtaLabel}</a>
+    <div class="hero-layout wrap">
+      <div class="hero-copy">
+        <div class="nine-mark" aria-hidden="true"><span>9</span><span>9</span><span>9</span></div>
+        <h1 id="hero-title" set:html={home.headline}></h1>
+        <p>{home.sub}</p>
+        <a class="btn btn-accent" href={`${base}contact/`} data-open-contact>{home.primaryCtaLabel}</a>
+      </div>
+      {lead && <ProjectFigure project={lead} featured />}
     </div>
   </section>
 
-  <section class="manifesto chapter">
-    <div class="wrap">
-      <h2 class="display reveal" set:html={home.manifesto}></h2>
-      <p class="reading reveal">{home.sub}</p>
-    </div>
-  </section>
-
-  <section id="services" class="work chapter">
-    <div class="wrap">
-      <h2 class="display reveal">{home.servicesHeading}</h2>
-      <ServiceList />
-    </div>
+  <section id="services" class="work wrap" aria-labelledby="work-title">
+    <header class="work-intro">
+      <h2 id="work-title" class="display">{home.servicesHeading}</h2>
+      <p>{home.manifesto}</p>
+    </header>
+    {groups.map((group) => (
+      <div class="work-pair">
+        <ProjectFigure project={group.project} />
+        <ServiceList items={group.services} />
+      </div>
+    ))}
+    {!groups.length && <ServiceList />}
   </section>
 
   <section class="product chapter" aria-labelledby="product-title">

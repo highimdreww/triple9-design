@@ -3,14 +3,15 @@ import services from '../content/services.json';
 
 interface Props {
   detailed?: boolean;
+  items?: typeof services.items;
 }
 
-const { detailed = false } = Astro.props;
+const { detailed = false, items = services.items } = Astro.props;
 const base = import.meta.env.BASE_URL;
 const Heading = detailed ? 'h2' : 'h3';
 ---
 <ul class="service-list">
-  {services.items.map((item) => (
+  {items.map((item) => (
     <li class="service-beat" id={detailed ? item.id : undefined}>
       <div class="reveal">
         <Heading class="service-name">

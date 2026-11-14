@@ -1,8 +1,8 @@
 {
-  "headline": "Look like you<br />mean business.",
+  "headline": "Look like you mean business.",
   "primaryCtaLabel": "Get a quote",
-  "manifesto": "People can tell<br />when you settled.",
-  "sub": "A customer might meet your business for the first time on a phone. We give that first impression the same care you give the work itself.",
+  "manifesto": "People can tell when you settled.",
+  "sub": "We design websites, brands, and apps for local businesses.",
   "servicesHeading": "The work.",
   "app": {
     "heading": "We build apps, too.",
@@ -37,6 +37,36 @@
     {
       "title": "Built for real use.",
       "text": "We build for quick loads, everyday use, and upkeep after launch."
+    }
+  ],
+  "projects": [
+    {
+      "name": "OneSource Commercial",
+      "caption": "Live client site",
+      "image": "work-onesource.jpg",
+      "alt": "The OneSource homepage, with glass office towers behind the line “Built for what’s next.”",
+      "url": "https://letosc.com"
+    },
+    {
+      "name": "BLACKTOP Pro Wrestling",
+      "caption": "Concept",
+      "image": "work-blacktop.jpg",
+      "alt": "Oversized purple and white type on the BLACKTOP wrestling homepage.",
+      "url": "demos/blacktop-pro-wrestling.html"
+    },
+    {
+      "name": "Bk Landscaping",
+      "caption": "Concept",
+      "image": "work-bk-landscaping.jpg",
+      "alt": "The Bk Landscaping homepage with a striped lawn and the headline “A better lawn. Every single visit.”",
+      "url": "demos/bk-landscaping/"
+    },
+    {
+      "name": "Space Coast Sewer and Drain",
+      "caption": "Concept",
+      "image": "work-spacecoast.jpg",
+      "alt": "The Space Coast homepage with blue type over a sewer and drain service van.",
+      "url": "demos/spacecoast/"
     }
   ]
 }

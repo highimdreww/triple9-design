@@ -10,9 +10,19 @@ content:
     fields:
       - { name: headline, label: Hero headline (HTML), type: text }
       - { name: primaryCtaLabel, label: Quote button, type: string }
-      - { name: manifesto, label: Manifesto heading (HTML), type: text }
-      - { name: sub, label: Manifesto text, type: text }
+      - { name: manifesto, label: Work introduction, type: text }
+      - { name: sub, label: Hero introduction, type: text }
       - { name: servicesHeading, label: Services heading, type: string }
+      - name: projects
+        label: Portfolio (lead project first)
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Project name, type: string }
+          - { name: caption, label: Project status, type: string }
+          - { name: image, label: Screenshot filename, type: string }
+          - { name: alt, label: Screenshot description, type: text }
+          - { name: url, label: Website or demo path, type: string }
       - name: app
         label: App showcase
         type: object
