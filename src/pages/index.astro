@@ -16,12 +16,11 @@ const groups = concepts.map((project, index) => {
 ---
 <BaseLayout
   title="Triple9 Design | Websites, Brands, Apps & Marketing"
-  description="We’re a design studio in St. Cloud, Florida. We make websites, brands, iOS apps, and marketing for local businesses."
+  description="We’re a design studio in Orlando, Florida. We make websites, brands, iOS apps, and marketing."
 >
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-layout wrap">
       <div class="hero-copy">
-        <div class="nine-mark" aria-hidden="true"><span>9</span><span>9</span><span>9</span></div>
         <h1 id="hero-title" set:html={home.headline}></h1>
         <p>{home.sub}</p>
         <a class="btn btn-accent" href={`${base}contact/`} data-open-contact>{home.primaryCtaLabel}</a>
