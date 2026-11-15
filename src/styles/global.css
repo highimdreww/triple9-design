@@ -95,12 +95,8 @@ img { display: block; max-width: 100%; }
 .logo { display: inline-flex; align-items: center; min-height: 44px; }
 /* Crop the JPEG's blank vertical margins, preserving the complete artwork. */
 .logo img {
-  width: 168px;
   height: 56px;
-  object-fit: cover;
-  object-position: center 45.8%;
-  filter: grayscale(1) invert(1);
-  mix-blend-mode: screen;
+  width: auto;
 }
 .nav { display: flex; align-items: center; gap: clamp(1.5rem, 3vw, 3.5rem); }
 .nav-link { font-size: .83rem; padding-block: .75rem; text-decoration: none; }
