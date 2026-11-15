@@ -233,9 +233,9 @@ main > .page-intro:has(+ .service-catalog) { padding-block: clamp(2.75rem, 6vw, 
 .product .btn { background: var(--paper); color: var(--ink); }
 .product .btn:hover { background: var(--line); }
 
-.approach { background: var(--soft); }
-.approach-layout { display: grid; grid-template-columns: 1.05fr 1fr; gap: 9%; }
-.approach .display { max-width: 10ch; align-self: start; }
+.approach { background: var(--soft); padding-block: clamp(3rem, 5vw, 5rem); }
+.approach-layout { display: grid; grid-template-columns: 1.05fr 1fr; align-items: center; gap: 9%; }
+.approach .display { max-width: 10ch; }
 .principles article { padding-block: 2.1rem; border-top: 1px solid var(--line); }
 .principles h3, .value h2 { font-size: clamp(2rem, 3.7vw, 4rem); }
 .principles p { margin-top: .8rem; }
@@ -290,11 +290,8 @@ main > .page-intro:has(+ .service-catalog) { padding-block: clamp(2.75rem, 6vw, 
   padding-block: clamp(3rem, 6vw, 6rem);
   border-top: 1px solid var(--gray);
 }
-.footer-brand { background: var(--white); }
-.footer-brand .wrap { padding-block: clamp(1rem, 3vw, 3rem); }
-.footer-logo { display: block; width: min(100%, 40rem); margin-inline: auto; }
-.footer-logo img { width: 100%; height: auto; }
-.footer-brand :focus-visible { outline-color: var(--ink); }
+.footer-logo { display: inline-block; vertical-align: top; }
+.footer-logo img { width: auto; height: 40px; }
 .footer-tag, .footer-bottom { margin-top: .8rem; color: var(--line); font-size: .8rem; }
 .footer-links, .footer-contact { display: grid; align-content: start; justify-items: start; gap: .55rem; font-size: .9rem; }
 .footer-contact { font-style: normal; }
